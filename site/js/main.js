@@ -18,6 +18,7 @@
       if (en) en.className = "en-label " + (lang === "en" ? "on" : "off");
       if (zh) zh.className = "zh-label " + (lang === "zh" ? "on" : "off");
     });
+    window.dispatchEvent(new CustomEvent("site:langchange", { detail: { lang: lang } }));
   }
 
   var saved = "zh";
@@ -50,9 +51,17 @@
   (function () {
     if (!window.Lenis) return;
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var lenis = new Lenis({ wheelMultiplier: 0.55, touchMultiplier: 0.8, lerp: 0.09, smoothWheel: true });
+    var lenis = new Lenis({ wheelMultiplier: 0.5, touchMultiplier: 0.72, lerp: 0.09, smoothWheel: true });
     window.__lenis = lenis;
     if (window.ScrollTrigger) lenis.on("scroll", window.ScrollTrigger.update);
+
+    function syncLenisLangSpeed() {
+      if (!lenis.options) return;
+      var isZh = document.body.getAttribute("data-lang") !== "en";
+      lenis.options.wheelMultiplier = isZh ? 0.5 : 0.55;
+      lenis.options.touchMultiplier = isZh ? 0.72 : 0.8;
+    }
+    syncLenisLangSpeed();
 
     // Cap how far the scroll target may run ahead of the current position.
     // Peak speed ≈ lerp * MAX_GAP * fps, so a sudden fast flick can no longer
@@ -71,6 +80,14 @@
       var raf = function (t) { tick(t); requestAnimationFrame(raf); };
       requestAnimationFrame(raf);
     }
+
+    window.addEventListener("site:langchange", function () {
+      requestAnimationFrame(function () {
+        syncLenisLangSpeed();
+        if (lenis.resize) lenis.resize();
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      });
+    });
   })();
 
   /* ----- Sticky nav shadow ----- */

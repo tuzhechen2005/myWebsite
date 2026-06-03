@@ -7,30 +7,27 @@
 (function () {
   "use strict";
 
-  function dev(name) {
-    return "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/" + name + "/" + name + "-original.svg";
-  }
-  function si(slug) {
-    return "https://cdn.simpleicons.org/" + slug;
+  function icon(name) {
+    return "assets/icons/" + name + ".svg";
   }
 
   // key (lowercased label) -> { ico: url|null, mono, color }
   var MAP = {
-    "java":           { ico: dev("java") },
-    "python":         { ico: dev("python") },
+    "java":           { ico: icon("java"), mono: "Ja", color: "#f89820" },
+    "python":         { ico: icon("python"), mono: "Py", color: "#3776ab" },
     "sql":            { ico: null, mono: "SQL", color: "#336791" },
-    "langgraph":      { ico: si("langgraph"), mono: "LG", color: "#1c3c3c" },
+    "langgraph":      { ico: icon("langgraph"), mono: "LG", color: "#1c3c3c" },
     "langsmith":      { ico: null, mono: "LS", color: "#1c3c3c" },
     "langfuse":       { ico: null, mono: "Lf", color: "#e11d48" },
     "faiss":          { ico: null, mono: "Fa", color: "#0467df" },
-    "elasticsearch":  { ico: dev("elasticsearch") },
-    "apache flink":   { ico: si("apacheflink"), mono: "Fl", color: "#e6526f" },
-    "kafka":          { ico: dev("apachekafka") },
-    "spring":         { ico: dev("spring") },
-    "redis":          { ico: dev("redis") },
+    "elasticsearch":  { ico: icon("elasticsearch"), mono: "ES", color: "#005571" },
+    "apache flink":   { ico: icon("apache-flink"), mono: "Fl", color: "#e6526f" },
+    "kafka":          { ico: icon("kafka"), mono: "Kf", color: "#231f20" },
+    "spring":         { ico: icon("spring"), mono: "Sp", color: "#6db33f" },
+    "redis":          { ico: icon("redis"), mono: "Re", color: "#dc382d" },
     "caffeine":       { ico: null, mono: "Cf", color: "#6f4e37" },
-    "jwt":            { ico: si("jsonwebtokens"), mono: "JWT", color: "#d63aff" },
-    "n8n":            { ico: si("n8n"), mono: "n8", color: "#ea4b71" },
+    "jwt":            { ico: icon("jwt"), mono: "JWT", color: "#d63aff" },
+    "n8n":            { ico: icon("n8n"), mono: "n8", color: "#ea4b71" },
     "coze":           { ico: null, mono: "Cz", color: "#4d53e8" }
   };
 

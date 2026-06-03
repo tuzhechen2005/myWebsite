@@ -1,6 +1,12 @@
 # macOS
 .DS_Store
 
+# Generated deployment bundles.
+/dist/
+
+# Local source asset copied into site/assets/profile.jpg for deployment.
+/写真.jpg
+
 # Large saved Wix reference pages (design reference only — not part of the site,
 # third-party content). Kept locally, not tracked. See CLAUDE.md.
 /About_Me___Devraj_Chatribin___Devraj_Chatribin.html
