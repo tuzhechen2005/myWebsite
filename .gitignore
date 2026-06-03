@@ -13,3 +13,10 @@
 /Contact_Me___Devraj_Chatribin___Devraj_Chatribin.html
 /Devraj_Chatribin___Software_Engineer___UI_UX_Designer.html
 /My_Projects___Devraj_Chatribin___Devraj_Chatribin.html
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
