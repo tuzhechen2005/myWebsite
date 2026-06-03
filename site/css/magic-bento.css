@@ -1,0 +1,78 @@
+/* =========================================================
+   MagicBento — vanilla adaptation (from React Bits)
+   Cursor-following border glow + spotlight + particles +
+   magnetism + click ripple. Applied to the site's cards.
+   Classes added by js/magic-bento.js when enabled.
+   ========================================================= */
+.mb-card {
+  position: relative;
+  overflow: hidden;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 320px;
+  --mb-glow: 93, 77, 255; /* site accent rgb */
+  /* let GSAP own `transform`; keep colour/shadow transitions */
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease), background-color .3s var(--ease);
+}
+
+/* cursor-following glowing border (ring only, via mask) */
+.mb-border-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--mb-glow), calc(var(--glow-intensity) * 0.9)) 0%,
+    rgba(var(--mb-glow), calc(var(--glow-intensity) * 0.35)) 30%,
+    transparent 62%
+  );
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 4;
+  transition: opacity .3s ease;
+}
+
+/* stronger lift while a card is glowing */
+.mb-card:hover {
+  box-shadow: 0 18px 44px -22px rgba(40, 25, 110, .45),
+    0 0 26px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* particles spawned on hover */
+.mb-particle { position: absolute; }
+
+/* global spotlight that follows the cursor across cards */
+.mb-spotlight {
+  position: fixed;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 35;
+  opacity: 0;
+  will-change: transform, opacity;
+  background: radial-gradient(circle,
+    rgba(93, 77, 255, .16) 0%,
+    rgba(93, 77, 255, .09) 18%,
+    rgba(93, 77, 255, .04) 35%,
+    transparent 62%);
+}
+/* on dark theme, screen-blend makes it read as a light pool */
+:root[data-theme="dark"] .mb-spotlight {
+  mix-blend-mode: screen;
+  background: radial-gradient(circle,
+    rgba(124, 109, 255, .22) 0%,
+    rgba(124, 109, 255, .12) 18%,
+    rgba(124, 109, 255, .05) 35%,
+    transparent 62%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mb-border-glow::after { display: none; }
+}

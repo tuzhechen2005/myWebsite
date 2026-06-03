@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>(function(){var d=document.documentElement;d.classList.add("js");var t;try{t=localStorage.getItem("site-theme");}catch(e){}if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";d.setAttribute("data-theme",t);})();</script>
+  <title>项目 · Projects — 涂喆宸 Zhechen Tu</title>
+  <meta name="description" content="Selected projects by Zhechen Tu — multi-agent medical triage, enterprise RAG assistant, AI knowledge community." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/assistant.css" />
+  <link rel="stylesheet" href="css/magic-bento.css" />
+</head>
+<body data-lang="zh">
+
+  <header class="nav">
+    <a class="nav__brand" href="index.html">Zhechen<b>.</b>Tu</a>
+    <nav class="nav__links" id="navLinks">
+      <a href="index.html"><span class="zh">首页</span><span class="en">Home</span></a>
+      <a href="about.html"><span class="zh">关于</span><span class="en">About</span></a>
+      <a href="projects.html" aria-current="page"><span class="zh">项目</span><span class="en">Projects</span></a>
+      <a href="contact.html"><span class="zh">联系</span><span class="en">Contact</span></a>
+    </nav>
+    <div class="nav__right">
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+      <button class="lang-toggle" data-lang-toggle aria-label="Switch language">
+        <span class="zh-label on">中</span> / <span class="en-label off">EN</span>
+      </button>
+      <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero wrap">
+      <span class="hero__eyebrow reveal"><span class="dot"></span><span class="zh">项目经历</span><span class="en">Selected work</span></span>
+      <h1 class="reveal" data-delay="1">
+        <span class="zh">打造<span class="grad">下一代数字产品</span></span>
+        <span class="en">Creating <span class="grad">next-level digital products</span></span>
+      </h1>
+      <p class="hero__sub reveal" data-delay="2">
+        <span class="zh">三个独立完成的 AI 系统，覆盖多智能体编排、混合检索与高并发后端 —— 每一个都以评测指标驱动迭代。</span>
+        <span class="en">Three solo-built AI systems spanning multi-agent orchestration, hybrid retrieval, and high-concurrency backends — each driven by evaluation metrics.</span>
+      </p>
+    </section>
+
+    <section class="section wrap" style="padding-top:0">
+      <div class="projects">
+
+        <!-- ============ PROJECT 1 ============ -->
+        <article class="proj reveal">
+          <div class="proj__body">
+            <div class="proj__meta">
+              <span class="role"><span class="zh">独立开发者</span><span class="en">Solo developer</span></span>
+              <span>2026.01 — <span class="zh">至今</span><span class="en">Present</span></span>
+            </div>
+            <h3><span class="zh">多智能体医疗预问诊与导诊系统</span><span class="en">Multi-Agent Medical Pre-Consultation &amp; Triage System</span></h3>
+            <p class="proj__desc">
+              <span class="zh">面向常见科室的医疗预问诊与导诊系统，多 Agent 协作完成结构化采集与分诊，定位决策支持，不做诊断与处方。</span>
+              <span class="en">A pre-consultation and triage system for common clinical departments. Multiple agents collaborate on structured intake and triage — positioned for decision support, never diagnosis or prescription.</span>
+            </p>
+            <ul style="color:var(--ink-soft); padding-left:18px; margin:0 0 22px;">
+              <li><span class="zh"><b>分层多智能体架构：</b>基于 LangGraph，由协调 Agent 统一调度问诊采集、知识检索、分诊导诊与安全护栏等专职 Agent。</span><span class="en"><b>Layered multi-agent architecture:</b> a coordinator agent on LangGraph orchestrates specialized agents for intake, retrieval, triage, and safety guardrails.</span></li>
+              <li><span class="zh"><b>ReAct + Plan-and-Execute：</b>依据已采集症状动态决定追问与工具调用，替代固定表单，关键信息完整度 70% → 90%+。</span><span class="en"><b>ReAct + Plan-and-Execute:</b> dynamically decides follow-ups and tool calls from collected symptoms — replacing fixed forms; key-info completeness rose from 70% to 90%+.</span></li>
+              <li><span class="zh"><b>RAG 工具化：</b>将自研 RAG 封装为检索工具接入临床指南知识库并提供引用溯源，回答可溯源率 90%+。</span><span class="en"><b>RAG as a tool:</b> wrapped a custom RAG system as a retrieval tool over a clinical-guideline knowledge base with citation tracing — 90%+ traceable answers.</span></li>
+              <li><span class="zh"><b>安全护栏 + HITL：</b>急症红旗识别、越界请求拒绝、事实一致性二次校验；自建约 180 条评测集追踪表现。</span><span class="en"><b>Safety guardrails + HITL:</b> emergency red-flag detection, out-of-scope refusal, and consistency re-checks, tracked on a ~180-case eval set.</span></li>
+            </ul>
+            <div class="proj__tags tag-row">
+              <span class="tag tag--accent">Multi-Agent</span><span class="tag">LangGraph</span><span class="tag">ReAct</span><span class="tag">Function Calling</span><span class="tag">HITL</span><span class="tag">LangSmith</span>
+            </div>
+          </div>
+          <div class="proj__side">
+            <div class="metric"><b>96%+</b><span><span class="zh">急症召回率</span><span class="en">Emergency recall</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>88%+</b><span><span class="zh">分诊 Top-2 命中</span><span class="en">Triage Top-2 hit</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>95%+</b><span><span class="zh">工具调用准确率</span><span class="en">Tool-call accuracy</span></span></div>
+          </div>
+        </article>
+
+        <!-- ============ PROJECT 2 ============ -->
+        <article class="proj reveal">
+          <div class="proj__body">
+            <div class="proj__meta">
+              <span class="role"><span class="zh">独立开发者</span><span class="en">Solo developer</span></span>
+              <span>2025.05 — 2025.09</span>
+            </div>
+            <h3><span class="zh">企业级 RAG AI 智能助手</span><span class="en">Enterprise RAG AI Assistant</span></h3>
+            <p class="proj__desc">
+              <span class="zh">统一接入结构化数据库与非结构化文档的 RAG 问答系统，自然语言驱动数据查询与知识检索。</span>
+              <span class="en">A RAG Q&amp;A system unifying structured databases and unstructured documents, with natural-language-driven data querying and knowledge retrieval.</span>
+            </p>
+            <ul style="color:var(--ink-soft); padding-left:18px; margin:0 0 22px;">
+              <li><span class="zh"><b>问题理解链路：</b>集成 Query Rewrite / Decompose / HyDE 提升复杂查询召回，复杂查询 Recall@10 提升 18%。</span><span class="en"><b>Query understanding:</b> Query Rewrite / Decompose / HyDE for complex queries — Recall@10 up 18%.</span></li>
+              <li><span class="zh"><b>检索路由：</b>按问题类型与意图自动选择 Text-to-SQL 或语义检索路径，平均查询响应时间降低 35%+。</span><span class="en"><b>Retrieval routing:</b> auto-selects Text-to-SQL or semantic paths by intent — avg query latency down 35%+.</span></li>
+              <li><span class="zh"><b>混合检索 + Chunking：</b>BM25 + Dense Retrieval + Cross-Encoder 重排使 Top-5 相关性提升 20%+；语义边界切分 + 滑动窗口增强上下文。</span><span class="en"><b>Hybrid retrieval + chunking:</b> BM25 + dense + Cross-Encoder reranking lifted Top-5 relevance 20%+; semantic-boundary chunking with sliding windows.</span></li>
+              <li><span class="zh"><b>评测与自校验：</b>Retrieval Feedback 迭代 + LLM Self-Reflection 校验，回答事实一致性提升 15%+，高风险场景幻觉率下降 20%+。</span><span class="en"><b>Eval &amp; self-check:</b> retrieval-feedback iteration + LLM Self-Reflection — factual consistency up 15%+, high-risk hallucination down 20%+.</span></li>
+            </ul>
+            <div class="proj__tags tag-row">
+              <span class="tag tag--accent">RAG</span><span class="tag">Cross-Encoder</span><span class="tag">FAISS</span><span class="tag">Self-Reflection</span><span class="tag">Text-to-SQL</span><span class="tag">HyDE</span>
+            </div>
+          </div>
+          <div class="proj__side">
+            <div class="metric"><b>+18%</b><span>Recall@10</span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>-35%</b><span><span class="zh">查询响应时间</span><span class="en">Query latency</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>+20%</b><span><span class="zh">Top-5 相关性</span><span class="en">Top-5 relevance</span></span></div>
+          </div>
+        </article>
+
+        <!-- ============ PROJECT 3 ============ -->
+        <article class="proj reveal">
+          <div class="proj__body">
+            <div class="proj__meta">
+              <span class="role"><span class="zh">独立开发者</span><span class="en">Solo developer</span></span>
+              <span>2025.05 — 2025.09</span>
+            </div>
+            <h3><span class="zh">AI 增强型知识社区平台</span><span class="en">AI-Enhanced Knowledge Community Platform</span></h3>
+            <p class="proj__desc">
+              <span class="zh">结合高并发后端架构与 RAG 智能问答的知识社区，支持内容发布、实时数据处理与智能检索问答。</span>
+              <span class="en">A knowledge community combining a high-concurrency backend with RAG-powered Q&amp;A — content publishing, real-time processing, and intelligent retrieval.</span>
+            </p>
+            <ul style="color:var(--ink-soft); padding-left:18px; margin:0 0 22px;">
+              <li><span class="zh"><b>事件驱动架构：</b>Kafka + Outbox 解耦用户关系、计数系统与 Feed 流，保障高并发下数据一致性。</span><span class="en"><b>Event-driven architecture:</b> Kafka + Outbox decouples relationships, counters, and feeds — consistency under high concurrency.</span></li>
+              <li><span class="zh"><b>高并发计数：</b>Redis 结合位图判重与 Lua 原子操作，实现点赞 / 关注的幂等高并发写入。</span><span class="en"><b>High-concurrency counting:</b> Redis with bitmap dedup and atomic Lua scripts — idempotent like/follow writes at scale.</span></li>
+              <li><span class="zh"><b>多级缓存：</b>Caffeine + Redis 结合 hotkey 探测与 single-flight，规避缓存击穿与雪崩。</span><span class="en"><b>Multi-level cache:</b> Caffeine + Redis with hotkey detection and single-flight to prevent cache stampede and avalanche.</span></li>
+              <li><span class="zh"><b>搜索与问答：</b>Elasticsearch（BM25 + 业务权重）支持检索与联想；集成 RAG 问答降低幻觉；JWT 双令牌支持会话续期与实时失效。</span><span class="en"><b>Search &amp; Q&amp;A:</b> Elasticsearch (BM25 + business weighting) for search and suggestions; integrated RAG Q&amp;A; JWT dual-token for renewal and instant revocation.</span></li>
+            </ul>
+            <div class="proj__tags tag-row">
+              <span class="tag tag--accent">Kafka</span><span class="tag"><span class="zh">事件驱动</span><span class="en">Event-Driven</span></span><span class="tag">Redis</span><span class="tag">Caffeine</span><span class="tag">Elasticsearch</span><span class="tag">JWT</span>
+            </div>
+          </div>
+          <div class="proj__side">
+            <div class="metric"><b>70%+</b><span><span class="zh">热点缓存命中率</span><span class="en">Hot-cache hit rate</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>-30%</b><span><span class="zh">平均查询延迟</span><span class="en">Avg query latency</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>Lua</b><span><span class="zh">原子幂等写入</span><span class="en">Atomic idempotent writes</span></span></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="wrap">
+      <div class="cta reveal">
+        <h2><span class="zh">一起打造你的下一个大想法</span><span class="en">Let's build your next big idea</span></h2>
+        <p><span class="zh">如果这些项目让你感兴趣，欢迎联系我。</span><span class="en">If any of this resonates, I'd love to hear from you.</span></p>
+        <a class="btn btn--primary" href="contact.html"><span class="zh">联系我</span><span class="en">Get in touch</span><span class="arrow">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__copy">© <span data-year>2026</span> Zhechen Tu · <span class="zh">涂喆宸</span><span class="en">UW–Madison</span></div>
+    <div class="footer__socials">
+      <a href="https://github.com/tuzhechen2005" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:ztu29@wisc.edu">Email</a>
+      <a href="contact.html">WeChat</a>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/magic-bento.js"></script>
+  <script src="js/scroll-float.js"></script>
+  <script src="js/assistant.js"></script>
+</body>
+</html>
