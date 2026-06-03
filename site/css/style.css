@@ -546,11 +546,28 @@ html.lenis, html.lenis body { height: auto; }
   .tl-date { order: -1; }
 }
 @media (max-width: 680px) {
-  .project-hero-shell { min-height: 620px; }
-  .nav__links { position: fixed; inset: 0 0 0 auto; width: min(78vw, 320px); flex-direction: column; align-items: flex-start; justify-content: center; gap: 28px; padding: 40px; background: var(--surface); border-left: 1px solid var(--line); transform: translateX(100%); transition: transform .35s var(--ease); box-shadow: -20px 0 60px -30px rgba(0,0,0,.4); }
+  .project-hero-shell { min-height: min(620px, 82svh); }
+  body.nav-open { overflow: hidden; }
+  .nav__links {
+    position: fixed; inset: 0; z-index: 55;
+    width: 100vw; min-height: 100dvh;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: clamp(22px, 5vh, 38px); padding: 96px 32px 48px;
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    border-left: 0; transform: translateX(100%);
+    transition: transform .35s var(--ease);
+    box-shadow: none; backdrop-filter: blur(18px) saturate(150%);
+  }
   .nav__links.open { transform: none; }
-  .nav__links a { font-size: 1.4rem; }
-  .nav__burger { display: inline-flex; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; z-index: 60; }
+  .nav__links a {
+    width: min(100%, 280px); text-align: center;
+    font-size: clamp(1.55rem, 8vw, 2.4rem);
+    line-height: 1; color: var(--ink);
+    padding: 8px 0 14px;
+  }
+  .nav__links a::after { left: 50%; transform: translateX(-50%); bottom: 0; }
+  .nav__links a:hover::after, .nav__links a[aria-current="page"]::after { width: 42px; }
+  .nav__burger { display: inline-flex; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; padding: 8px; z-index: 70; }
   .nav__burger span { width: 24px; height: 2px; background: var(--ink); transition: transform .3s var(--ease), opacity .3s var(--ease); }
   .nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav__burger.open span:nth-child(2) { opacity: 0; }

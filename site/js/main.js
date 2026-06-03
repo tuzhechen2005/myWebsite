@@ -102,16 +102,24 @@
   var burger = document.querySelector(".nav__burger");
   var links = document.querySelector(".nav__links");
   if (burger && links) {
+    function closeMenu() {
+      links.classList.remove("open");
+      burger.classList.remove("open");
+      document.body.classList.remove("nav-open");
+      burger.setAttribute("aria-expanded", "false");
+    }
+
     burger.addEventListener("click", function () {
       var open = links.classList.toggle("open");
       burger.classList.toggle("open", open);
+      document.body.classList.toggle("nav-open", open);
       burger.setAttribute("aria-expanded", open ? "true" : "false");
     });
     links.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        links.classList.remove("open");
-        burger.classList.remove("open");
-      });
+      a.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
     });
   }
 

@@ -213,6 +213,8 @@ class BallpitInstance {
     this.hit = new Vector3();
     this.isVisible = true;
     this.isDisposed = false;
+    this.lastStableWidth = 0;
+    this.lastStableHeight = 0;
 
     this.resize();
     this.initScene();
@@ -283,8 +285,21 @@ class BallpitInstance {
     this.config.maxX = wWidth / 2;
     this.config.maxY = wHeight / 2;
     const nextCount = this.computeCount();
-    if (this.mesh && Math.abs(nextCount - this.config.count) >= 8) this.rebuild(nextCount);
-    else if (this.physics) this.physics.reset();
+    const sizeChanged =
+      Math.abs(width - this.lastStableWidth) > 80 ||
+      Math.abs(height - this.lastStableHeight) > 120;
+    if (this.mesh && Math.abs(nextCount - this.config.count) >= 8) {
+      this.rebuild(nextCount);
+      this.lastStableWidth = width;
+      this.lastStableHeight = height;
+    } else if (this.physics && sizeChanged) {
+      this.physics.reset();
+      this.lastStableWidth = width;
+      this.lastStableHeight = height;
+    } else if (!this.lastStableWidth || !this.lastStableHeight) {
+      this.lastStableWidth = width;
+      this.lastStableHeight = height;
+    }
   }
 
   pointerMove(event) {
