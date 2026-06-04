@@ -1,0 +1,82 @@
+/* =========================================================
+   intro.css — cinematic scroll-scrubbed landing (index.html)
+   Dark, theme-independent. Pairs with js/intro.js (canvas 2D).
+   ========================================================= */
+.intro-body { margin: 0; background: #06070c; color: #fff; overflow-x: hidden; }
+
+/* top bar: brand / lang / skip */
+.intro-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px clamp(16px, 4vw, 40px); pointer-events: none; }
+.intro-topbar > * { pointer-events: auto; }
+.intro-topbar .intro-right { display: flex; gap: 10px; align-items: center; }
+.intro-brand { font-family: var(--font-display); font-weight: 700; letter-spacing: .01em;
+  color: #fff; text-decoration: none; opacity: .92; font-size: 1.05rem; }
+.intro-brand b { color: #8a7dff; }
+.intro-skip, .intro-lang { font-family: var(--font-display); font-size: .82rem;
+  color: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.24); border-radius: 999px;
+  padding: 7px 15px; text-decoration: none; background: none; cursor: pointer; transition: color .25s, border-color .25s; }
+.intro-skip:hover, .intro-lang:hover { color: #fff; border-color: rgba(255,255,255,.7); }
+.intro-lang .on { color: #fff; } .intro-lang .off { opacity: .5; }
+
+/* scrub stage */
+.intro-scroll { position: relative; height: 400vh; }
+.intro-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.intro__canvas { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; }
+.intro-sticky::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(125% 95% at 50% 45%, transparent 38%, rgba(0,0,0,.5)); }
+
+/* hanging ID card (React/R3F/Rapier bundle) — small, top-right; drops on Contact */
+.intro__lanyard { position: absolute; top: 0; right: 0; z-index: 4; width: clamp(340px, 40vw, 520px); height: 100vh; pointer-events: none; }
+.intro__lanyard canvas { pointer-events: auto; }
+.lanyard-wrapper { width: 100%; height: 100%; display: block; }
+.intro-contact { font-family: var(--font-display); font-size: .82rem; color: #fff; background: rgba(107,92,255,.92);
+  border: 1px solid transparent; border-radius: 999px; padding: 7px 16px; cursor: pointer; transition: background .25s, transform .2s; }
+.intro-contact:hover { background: #6b5cff; transform: translateY(-1px); }
+
+/* overlaid text lines (cross-fade during scrub) */
+.intro__lines { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end; text-align: center; padding: 0 24px 13vh; pointer-events: none; }
+.intro__line { position: absolute; bottom: 13vh; max-width: 20ch; opacity: 0; }
+.intro__line h2 { font-family: var(--font-display); font-weight: 700; line-height: 1.07;
+  font-size: clamp(2rem, 6.2vw, 4.6rem); margin: 0; text-shadow: 0 4px 30px rgba(0,0,0,.5); }
+.intro__line p { color: rgba(255,255,255,.78); font-size: clamp(1rem, 2.3vw, 1.45rem); margin: 16px 0 0; }
+
+/* scroll cue (invites scrolling at the start) */
+.intro__scrollcue { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%);
+  width: 24px; height: 38px; border: 2px solid rgba(255,255,255,.45); border-radius: 14px; }
+.intro__scrollcue::before { content: ""; position: absolute; left: 50%; top: 7px; width: 4px; height: 7px;
+  border-radius: 2px; background: #fff; transform: translateX(-50%); animation: intro-cue 1.6s ease-in-out infinite; }
+@keyframes intro-cue { 0% { opacity: 0; transform: translate(-50%, 0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 12px); } }
+
+/* preloader */
+.intro__loader { position: fixed; inset: 0; z-index: 60; background: #06070c;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  transition: opacity .6s ease; }
+.intro__loader.hidden { opacity: 0; pointer-events: none; }
+.intro__bar { width: min(240px, 60vw); height: 3px; background: rgba(255,255,255,.16); border-radius: 2px; overflow: hidden; }
+.intro__bar i { display: block; height: 100%; width: 0; background: #fff; transition: width .2s ease; }
+.intro__loadlabel { font-family: var(--font-display); font-size: .78rem; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(255,255,255,.6); }
+
+/* the "Enter" portal after the scrub */
+.intro__enter { position: relative; min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; gap: 20px; padding: 0 24px;
+  background: radial-gradient(120% 100% at 50% 0%, #15192a 0%, #06070c 70%); }
+.intro__enter h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 5vw, 3.4rem); margin: 0; }
+.intro__enter p { color: rgba(255,255,255,.72); margin: 0; }
+.intro__enterbtn { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: #06070c;
+  background: #fff; border-radius: 999px; padding: 15px 34px; text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease; }
+.intro__enterbtn:hover { transform: translateY(-3px); box-shadow: 0 22px 44px -18px rgba(255,255,255,.5); }
+.intro__enterbtn .arrow { transition: transform .25s ease; }
+.intro__enterbtn:hover .arrow { transform: translate(4px, -4px); }
+
+/* static fallback (reduced-motion / no GSAP): show lines stacked, no scrub */
+.intro--static .intro-scroll { height: 100vh; }
+.intro--static .intro__lines { position: absolute; gap: 10px; }
+.intro--static .intro__line { position: relative; opacity: 1; margin: 6px 0; }
+.intro--static .intro__line h2 { font-size: clamp(1.5rem, 4vw, 2.6rem); }
+.intro--static .intro__scrollcue { display: none; }
+@media (prefers-reduced-motion: reduce) { .intro__scrollcue::before { animation: none; opacity: .8; } }

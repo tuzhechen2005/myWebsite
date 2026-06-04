@@ -24,3 +24,9 @@
 !.dev.vars.example
 .env*
 !.env.example
+
+# Lanyard widget build deps (the built bundle in site/js/ is committed)
+/lanyard-src/node_modules/
+/image.png
+/证件照.jpg
+/video_out/
