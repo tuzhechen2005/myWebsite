@@ -80,3 +80,4 @@
 .intro--static .intro__line h2 { font-size: clamp(1.5rem, 4vw, 2.6rem); }
 .intro--static .intro__scrollcue { display: none; }
 @media (prefers-reduced-motion: reduce) { .intro__scrollcue::before { animation: none; opacity: .8; } }
+@media (max-width: 680px) { .intro__lanyard { width: 100vw; } }
