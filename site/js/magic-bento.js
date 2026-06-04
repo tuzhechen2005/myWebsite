@@ -23,6 +23,7 @@
   var CONFIG = [
     { sel: ".exp-card",     tilt: true,  magnet: true,  stars: true,  click: true },
     { sel: ".skill-card",   tilt: true,  magnet: true,  stars: true,  click: true },
+    { sel: ".hl-card",      tilt: false, magnet: true,  stars: true,  click: true },
     { sel: ".stat",         tilt: true,  magnet: true,  stars: false, click: true },
     { sel: ".proj",         tilt: false, magnet: true,  stars: true,  click: true },
     { sel: ".contact-card", tilt: false, magnet: true,  stars: false, click: true },

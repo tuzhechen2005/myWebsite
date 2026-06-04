@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>(function(){var d=document.documentElement;d.classList.add("js");var t;try{t=localStorage.getItem("site-theme");}catch(e){}if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";d.setAttribute("data-theme",t);})();</script>
   <title>关于 · About — 涂喆宸 Zhechen Tu</title>
-  <meta name="description" content="About Zhechen Tu — education, experience, and skills." />  <link rel="stylesheet" href="css/style.css" />
+  <meta name="description" content="About Zhechen Tu — education, experience, and skills." />  <link rel="stylesheet" href="css/style.css?v=4" />
   <link rel="stylesheet" href="css/assistant.css" />
-  <link rel="stylesheet" href="css/magic-bento.css" />
+  <link rel="stylesheet" href="css/magic-bento.css?v=2" />
 </head>
 <body data-lang="zh">
 
@@ -57,9 +57,60 @@
       <div class="sec-head">
         <div>
           <div class="sec-head__label reveal"><span class="zh">教育背景</span><span class="en">Education</span></div>
-          <h2 class="reveal" data-delay="1"><span class="zh">在麦迪逊学计算机</span><span class="en">Studying CS at Madison</span></h2>
+          <h2 class="reveal" data-delay="1"><span class="zh">在麦迪逊攻读计算机</span><span class="en">Studying CS at Madison</span></h2>
         </div>
       </div>
+
+      <!-- CREST STAGE — 3D extruded crest under light rays -->
+      <div class="crest-stage reveal">
+        <div class="crest-stage__rays" aria-hidden="true"></div>
+        <canvas class="crest-stage__prism" data-prism aria-hidden="true"></canvas>
+        <div class="crest-stage__copy">
+          <h3 class="crest-stage__word">UW–Madison</h3>
+        </div>
+        <div class="crest-stage__pod">
+          <div class="crest3d-wrap">
+            <div class="crest3d" data-crest3d="assets/crest.png" role="img" aria-label="University of Wisconsin–Madison W crest"></div>
+            <div class="crest3d-shadow" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HIGHLIGHT CARDS — why this school is a big deal -->
+      <div class="edu-highlights">
+        <article class="hl-card reveal">
+          <h3 class="hl-card__head"><span class="zh">世界排名</span><span class="en">Rankings</span></h3>
+          <ul class="hl-list">
+            <li><span class="zh">全美研究经费支出 <b class="hl-num">第 5</b>（2024 财年 19.3 亿美元，NSF）</span><span class="en">No. <b class="hl-num">5</b> in the U.S. for research spending ($1.93B, FY2024, NSF)</span></li>
+            <li><span class="zh">CWUR 世界大学 <b class="hl-num">第 30</b> · 全美第 20（2025）</span><span class="en">CWUR world rank <b class="hl-num">#30</b> · #20 in the U.S. (2025)</span></li>
+            <li><span class="zh">计算机科学 <b class="hl-num">全美前 16</b> · 数据库系统研究发源地之一</span><span class="en">Computer Science <b class="hl-num">top 16</b> in the U.S. · a birthplace of database systems</span></li>
+            <li><span class="zh"><b class="hl-num">公立常春藤</b> · AAU 美国大学协会创始成员（1900）</span><span class="en"><b class="hl-num">"Public Ivy"</b> · founding member of the AAU (1900)</span></li>
+            <li><span class="zh">学术声誉全球前 40 · US News 全美大学第 39</span><span class="en">Global top-40 academic reputation · U.S. News #39 nationally</span></li>
+          </ul>
+        </article>
+        <article class="hl-card reveal" data-delay="1">
+          <h3 class="hl-card__head"><span class="zh">知名校友</span><span class="en">Notable alumni</span></h3>
+          <ul class="hl-list">
+            <li><b>黄峥 · Colin Huang</b> — <span class="zh">拼多多 / PDD 创始人（本校计算机硕士）</span><span class="en">founder of Pinduoduo / PDD (CS master's here)</span></li>
+            <li><b>John Bardeen</b> — <span class="zh">唯一两次诺贝尔物理学奖得主（晶体管 · 超导）</span><span class="en">only two-time Nobel Physics laureate (transistor · superconductivity)</span></li>
+            <li><b>Frank Lloyd Wright</b> — <span class="zh">现代建筑大师（流水别墅 · 古根海姆）</span><span class="en">master architect (Fallingwater · the Guggenheim)</span></li>
+            <li><b>Carol Bartz</b> — <span class="zh">雅虎 (Yahoo!) 前董事长兼 CEO</span><span class="en">former chair &amp; CEO of Yahoo!</span></li>
+            <li><b>Virgil Abloh</b> — <span class="zh">Off-White 创始人 · LV 男装艺术总监</span><span class="en">founder of Off-White · Louis Vuitton menswear director</span></li>
+          </ul>
+        </article>
+        <article class="hl-card reveal" data-delay="2">
+          <h3 class="hl-card__head"><span class="zh">实力速览</span><span class="en">By the numbers</span></h3>
+          <ul class="hl-list hl-list--stats">
+            <li><b class="hl-num">$1.93B</b> <span class="zh">年度研究经费（全美第 5）</span><span class="en">annual research spend (No. 5 in U.S.)</span></li>
+            <li><b class="hl-num">800+</b> <span class="zh">校友担任企业 CEO</span><span class="en">alumni serving as CEOs</span></li>
+            <li><b class="hl-num">20+</b> <span class="zh">诺贝尔奖得主出自该校</span><span class="en">Nobel laureates tied to the university</span></li>
+            <li><b class="hl-num">1848</b> <span class="zh">建校 · 威斯康星州旗舰公立大学</span><span class="en">founded · Wisconsin's flagship public university</span></li>
+            <li><b class="hl-num">Big Ten</b> <span class="zh">十大联盟创始成员</span><span class="en">founding member of the Big Ten</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- DEGREE -->
       <div class="timeline">
         <div class="tl-item reveal">
           <div class="tl-date">2023.09 — 2027.05</div>
@@ -67,12 +118,30 @@
             <h3><span class="zh">威斯康星大学麦迪逊分校 (UW–Madison)</span><span class="en">University of Wisconsin–Madison</span></h3>
             <div class="org"><span class="zh">计算机科学 本科 · GPA 3.7/4.0 · Dean's List 校长荣誉学生</span><span class="en">B.S. Computer Science · GPA 3.7/4.0 · Dean's List</span></div>
             <ul>
-              <li><span class="zh">方向聚焦 AI 应用开发、Agent 系统、RAG 与数据基础设施。</span><span class="en">Focused on AI application development, agent systems, RAG, and data infrastructure.</span></li>
+              <li><span class="zh">方向聚焦 AI 应用开发、Agent 系统、RAG 与数据基础设施——后者正是本校的传统强项。</span><span class="en">Focused on AI application development, agent systems, RAG, and data infrastructure — the last being one of the school's signature strengths.</span></li>
               <li><span class="zh">相关课程：数据结构与算法、数据库系统、操作系统、计算机网络、离散数学。</span><span class="en">Coursework: Data Structures &amp; Algorithms, Database Systems, Operating Systems, Computer Networks, Discrete Math.</span></li>
             </ul>
           </div>
         </div>
       </div>
+
+      <!-- CAMPUS PHOTOS -->
+      <div class="edu-photos-strip">
+        <figure>
+          <img src="assets/bascom-hall.jpg" alt="Bascom Hall atop Bascom Hill at UW–Madison" loading="lazy" width="1280" height="960" />
+          <figcaption><span class="zh">Bascom Hall — 矗立于 Bascom Hill 的精神地标。</span><span class="en">Bascom Hall — the landmark atop Bascom Hill.</span></figcaption>
+        </figure>
+        <figure>
+          <img src="assets/bascom-mall.jpg" alt="Bascom Mall walkway on the UW–Madison campus" loading="lazy" width="1280" height="960" />
+          <figcaption><span class="zh">Bascom Mall — 通往山顶的林荫主道。</span><span class="en">Bascom Mall — the tree-lined walk up the hill.</span></figcaption>
+        </figure>
+      </div>
+      <p class="edu-credits">
+        <span class="zh">校园照片：</span><span class="en">Campus photos: </span>
+        <a href="https://commons.wikimedia.org/wiki/File:Bascom_Hall_in_Madison.JPG" target="_blank" rel="noopener">Bascom Hall</a> © Rosina Peixoto ·
+        <a href="https://commons.wikimedia.org/wiki/File:Bascom_Hall,_University_of_Wisconsin,_Bascom_Mall,_Madison,_WI_-_54303343139.jpg" target="_blank" rel="noopener">Bascom Mall</a> © Warren LeMay
+        <span class="zh">（CC BY-SA，经 Wikimedia Commons）。</span><span class="en">(CC BY-SA, via Wikimedia Commons).</span>
+      </p>
     </section>
 
     <!-- EXPERIENCE -->
@@ -209,9 +278,11 @@
   <script src="vendor/gsap/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis/lenis.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/magic-bento.js"></script>
+  <script src="js/magic-bento.js?v=2"></script>
   <script src="js/scroll-float.js"></script>
   <script src="js/tech-icons.js"></script>
+  <script src="js/prism.js?v=2"></script>
+  <script src="js/crest3d.js?v=3"></script>
   <script src="js/assistant.js"></script>
 </body>
 </html>

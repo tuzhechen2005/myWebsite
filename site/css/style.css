@@ -383,6 +383,84 @@ body[data-lang="zh"] .en { display: none; }
   color: var(--ink-soft); border: 1px solid var(--line);
 }
 .tag--accent { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+/* Education — crest stage: 3D extruded crest under WebGL light rays */
+.crest-stage { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center;
+  gap: clamp(16px, 3vw, 36px); margin: 6px 0 30px; padding: clamp(28px, 4.5vw, 56px);
+  border-radius: calc(var(--radius) + 6px); overflow: hidden; isolation: isolate; color: #fff;
+  background: radial-gradient(120% 130% at 50% -12%, #1b2030 0%, #090b11 64%, #06070c 100%); }
+/* pure-CSS volumetric light rays from top-center (no WebGL) */
+.crest-stage__rays { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(85% 58% at 50% -4%, rgba(205,218,255,0.38), transparent 60%),
+    repeating-conic-gradient(from 164deg at 50% -8%,
+      rgba(216,228,255,0.16) 0deg, rgba(216,228,255,0.16) 1.3deg,
+      transparent 1.3deg, transparent 6deg);
+  -webkit-mask: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.62) 44%, transparent 84%);
+  mask: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.62) 44%, transparent 84%);
+  animation: rays-breathe 7s ease-in-out infinite; }
+@keyframes rays-breathe { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .crest-stage__rays { animation: none; } }
+/* Prism WebGL background (falls back to .crest-stage__rays on any failure) */
+.crest-stage__prism { position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; pointer-events: none; }
+.crest-stage.prism-on .crest-stage__rays { display: none; }
+.crest-stage::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  border-radius: inherit; box-shadow: inset 0 0 130px rgba(0,0,0,0.62); }
+.crest-stage__copy, .crest-stage__pod { position: relative; z-index: 1; }
+.crest-stage__copy { align-self: center; }
+/* ShinyText — metallic silver base with a white shine sweeping across */
+.crest-stage__word { font-family: var(--font-display); font-weight: 700; line-height: 1.05; margin: 0; white-space: nowrap;
+  font-size: clamp(2.4rem, 5.6vw, 4.2rem); letter-spacing: -0.015em;
+  background-image: linear-gradient(120deg, #8b91a0 0%, #8b91a0 40%, #ffffff 48%, #ffffff 52%, #8b91a0 60%, #8b91a0 100%);
+  background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: shiny-text 2.4s linear infinite; }
+@keyframes shiny-text { 0% { background-position: 150% center; } 100% { background-position: -50% center; } }
+@media (prefers-reduced-motion: reduce) { .crest-stage__word { animation: none; background-position: 50% center; } }
+
+.crest-stage__pod { display: flex; justify-content: center; align-items: center; min-height: 340px; }
+.crest3d-wrap { position: relative; perspective: 1000px; }
+.crest3d { position: relative; width: clamp(176px, 22vw, 244px); aspect-ratio: 580 / 880;
+  transform-style: preserve-3d; will-change: transform; transform: rotateX(-4deg); cursor: grab;
+  -webkit-user-select: none; user-select: none; touch-action: pan-y; }
+.crest3d__layer { position: absolute; inset: 0; background: center / contain no-repeat; pointer-events: none; }
+.crest3d-shadow { position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%); z-index: -1;
+  width: 76%; height: 34px; border-radius: 50%; filter: blur(9px);
+  background: radial-gradient(closest-side, rgba(0,0,0,0.62), transparent); }
+
+/* Education — highlight cards (rankings / alumni / numbers) */
+.edu-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 20px); margin: 0 0 28px; }
+.hl-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(18px, 2.4vw, 24px); transition: border-color .3s var(--ease); }
+.hl-card:hover { border-color: var(--accent); }
+.hl-card__head { font-family: var(--font-display); font-size: .8rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 15px; }
+.hl-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.hl-list li { position: relative; padding-left: 16px; color: var(--ink-soft); font-size: .92rem; line-height: 1.55; }
+.hl-list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.hl-list b { color: var(--ink); }
+.hl-num { color: var(--accent-ink); font-family: var(--font-display); font-weight: 700; }
+.hl-list--stats li { padding-left: 0; }
+.hl-list--stats li::before { display: none; }
+.hl-list--stats .hl-num { font-size: 1.02rem; margin-right: 4px; }
+
+/* Education — campus photo strip + credits */
+.edu-photos-strip { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 18px); margin-top: 24px; }
+.edu-photos-strip figure { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 10; }
+.edu-photos-strip img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s var(--ease); }
+.edu-photos-strip figure:hover img { transform: scale(1.05); }
+.edu-photos-strip figcaption { position: absolute; inset: auto 0 0 0; padding: 26px 14px 11px; font-size: .82rem; color: #fff;
+  background: linear-gradient(transparent, rgba(0,0,0,.74)); }
+.edu-credits { margin: 14px 0 0; font-size: .74rem; line-height: 1.65; color: var(--ink-faint); }
+.edu-credits a { color: var(--accent-ink); text-decoration: none; border-bottom: 1px solid transparent; }
+.edu-credits a:hover { border-bottom-color: currentColor; }
+@media (max-width: 860px) {
+  .edu-highlights { grid-template-columns: 1fr; }
+  .crest-stage { grid-template-columns: 1fr; text-align: center; }
+  .crest-stage__pod { order: -1; }
+}
+@media (max-width: 680px) {
+  .edu-photos-strip { grid-template-columns: 1fr; }
+}
 
 /* =========================================================
    Project cards

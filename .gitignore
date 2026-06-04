@@ -7,6 +7,10 @@
 # Local source asset copied into site/assets/profile.jpg for deployment.
 /写真.jpg
 
+# Local reference / source images (design mockup + crest source copied into site/assets/crest.png).
+/效果图.png
+/校徽.png
+
 # Large saved Wix reference pages (design reference only — not part of the site,
 # third-party content). Kept locally, not tracked. See CLAUDE.md.
 /About_Me___Devraj_Chatribin___Devraj_Chatribin.html

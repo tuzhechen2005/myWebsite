@@ -20,11 +20,11 @@ Cloudflare Workers static assets from the GitHub repo.
 ```
 site/
 ├── index.html        Home — portrait hero (LiquidEther bg), CircularText resume CTA, marquee, expertise cards, featured projects, CTA
-├── about.html        About — hero, stats, education/experience timeline, skills (tech-stack icons), honors
+├── about.html        About — hero, stats, education (crest stage: 3D extruded W-crest over a Prism WebGL bg [CSS-rays fallback] + shiny-metallic UW–Madison wordmark, ranking/alumni/numbers highlight cards, degree timeline, campus photos) / experience timeline, skills, honors
 ├── projects.html     Projects — Ballpit hero bg + 3 detailed project cards with quantified-metric side panels
 ├── contact.html      Contact — email/GitHub/WeChat/phone cards, FAQ accordion
 ├── _headers          Cloudflare caching/security headers
-├── assets/           profile.jpg, resume.pdf, local brand-logo SVGs
+├── assets/           profile.jpg, resume.pdf, local brand-logo SVGs, crest.png (W 校徽, trimmed transparent PNG), bascom-hall.jpg / bascom-mall.jpg (campus, CC BY-SA via Wikimedia)
 ├── fonts/            local Inter + Space Grotesk font files
 ├── vendor/           local GSAP, ScrollTrigger, Lenis, three.js
 ├── css/
@@ -38,6 +38,8 @@ site/
     ├── ballpit.js        ESM — Three.js zero-gravity floating ball background (projects hero)
     ├── circular-text.js  vanilla CircularText text splitter for rotating resume CTA
     ├── magic-bento.js    cursor glow / spotlight / particles / magnetism / ripple on cards
+    ├── crest3d.js        CSS 3D extruded W-crest (about education); stacks layered PNG copies for depth + sway + pointer parallax + drag (clamped, no back face). Sides = solid black via brightness(0). No WebGL.
+    ├── prism.js          raw-WebGL port of React-Bits <Prism/> (no ogl); glowing raymarched prism bg on the crest stage (<canvas data-prism>). HARDENED: on context-loss / shader error / <5fps stall it removes itself and the stage falls back to the pure-CSS .crest-stage__rays bg (adds/removes .prism-on on .crest-stage).
     ├── scroll-float.js   per-character scrubbed reveal for section <h2> headings
     └── tech-icons.js      renders brand logos into [data-tech] chips, monogram fallback
 ```
@@ -67,7 +69,7 @@ site/
 - **Fonts**: local Inter and Space Grotesk files in `site/fonts/`, declared via `@font-face` in `style.css`.
 - **Tech logos**: local SVGs in `site/assets/icons/`.
 Avoid reintroducing Google Fonts, cdnjs, jsdelivr, Devicon, or Simple Icons runtime dependencies unless there is a clear reason; mainland China access is a goal.
-Script load order per page: `gsap → ScrollTrigger → lenis → main.js → magic-bento.js → scroll-float.js → [tech-icons.js] → [circular-text.js on home] → assistant.js → [ESM modules as needed]`.
+Script load order per page: `gsap → ScrollTrigger → lenis → main.js → magic-bento.js → scroll-float.js → [tech-icons.js] → [circular-text.js on home] → [prism.js + crest3d.js on about] → assistant.js → [ESM modules as needed]`. (Cache-busted `?v=` query strings are used on about-page assets — bump them when editing.)
 
 ## Ported React-Bits components (all converted to vanilla)
 - **LiquidEther** → `liquid-ether.js` (`createLiquidEther(el, opts)`); inited from an inline module script in `index.html`. Colors `#5227FF/#FF9FFC/#B497CF`.
@@ -75,6 +77,9 @@ Script load order per page: `gsap → ScrollTrigger → lenis → main.js → ma
 - **ScrollFloat** → `scroll-float.js`; targets `.sec-head h2`, splits inside `.zh`/`.en` spans (bilingual-safe).
 - **Ballpit** → `ballpit.js`; inited from an inline module script in `projects.html`. It is zero-gravity, slowly expands from center, then drifts. Count is area-responsive; mobile resize/address-bar jitter should not reset physics.
 - **CircularText** → `circular-text.js`; targets `[data-circular-text]` and wraps letters for the rotating resume CTA on the home hero.
+- **Prism** → `prism.js` (raw WebGL, no `ogl`); glowing raymarched-prism background on the about-page crest stage (`<canvas data-prism>`), `rotate` mode. Hardened with a context-loss / shader-error / <5fps-stall watchdog that disposes the canvas and falls back to the CSS `.crest-stage__rays` background (toggles `.prism-on` on `.crest-stage`). MagicBento is also applied to the `.hl-card` ranking/alumni/numbers boxes.
+- **ShinyText** → CSS-only (no `motion`): `.crest-stage__word` ("UW–Madison") uses a silver→white→silver `background-clip:text` gradient swept via `@keyframes shiny-text`.
+- **ModelViewer / LightRays** were tried earlier for the crest area and removed — ModelViewer/3D-coin replaced by the flat `crest3d.js`, and the WebGL LightRays caused a GPU-hang black-screen on the owner's hardware (replaced by the CSS rays + the hardened Prism). Avoid reintroducing unguarded WebGL backgrounds.
 
 ## Key tunables (where to change things)
 - **Scroll speed / motion-sickness cap**: `js/main.js` Lenis block — Chinese uses `wheelMultiplier: 0.5`, English `0.55`,
