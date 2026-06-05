@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import Lanyard from './Lanyard.jsx';
 
@@ -21,8 +21,10 @@ function makeCardTexture(badge) {
 function App() {
   var initial = false;
   try { initial = new URLSearchParams(location.search).get('drop') === '1'; } catch (e) {}
-  const [open, setOpen] = useState(initial);
+  const [visible, setVisible] = useState(initial);
+  const [retracting, setRetracting] = useState(false);
   const [tex, setTex] = useState(null);
+  const retractTimer = useRef(0);
   // load the badge FIRST, then build the texture with it already drawn in
   useEffect(() => {
     let done = false;
@@ -33,17 +35,37 @@ function App() {
     img.src = 'assets/badge-card.png';
   }, []);
   useEffect(() => {
-    const onDrop = () => setOpen(v => !v);
+    const onDrop = () => {
+      window.clearTimeout(retractTimer.current);
+      if (visible) {
+        setRetracting(true);
+        document.body.classList.remove('lanyard-dragging');
+        retractTimer.current = window.setTimeout(() => {
+          setVisible(false);
+          setRetracting(false);
+        }, 850);
+      } else {
+        setRetracting(false);
+        setVisible(true);
+      }
+    };
     window.addEventListener('lanyard:drop', onDrop);
-    return () => window.removeEventListener('lanyard:drop', onDrop);
-  }, []);
+    return () => {
+      window.clearTimeout(retractTimer.current);
+      window.removeEventListener('lanyard:drop', onDrop);
+    };
+  }, [visible]);
   useEffect(() => {
     if (!el) return undefined;
-    el.classList.toggle('is-open', open && !!tex);
-    if (!open) document.body.classList.remove('lanyard-dragging');
-    return () => el.classList.remove('is-open');
-  }, [open, tex]);
-  return (open && tex) ? <Lanyard cardTexture={tex} /> : null;
+    el.classList.toggle('is-open', visible && !!tex && !retracting);
+    el.classList.toggle('is-retracting', visible && !!tex && retracting);
+    if (!visible) document.body.classList.remove('lanyard-dragging');
+    return () => {
+      el.classList.remove('is-open');
+      el.classList.remove('is-retracting');
+    };
+  }, [visible, retracting, tex]);
+  return (visible && tex) ? <Lanyard cardTexture={tex} /> : null;
 }
 
 const el = document.getElementById('introLanyard');
