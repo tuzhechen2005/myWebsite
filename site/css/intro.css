@@ -27,9 +27,10 @@
   background: radial-gradient(125% 95% at 50% 45%, transparent 38%, rgba(0,0,0,.5)); }
 
 /* hanging ID card (React/R3F/Rapier bundle) — small, top-right; drops on Contact */
-.intro__lanyard { position: absolute; top: 0; right: 0; z-index: 4; width: clamp(340px, 40vw, 520px); height: 100vh; pointer-events: none; }
-.intro__lanyard canvas { pointer-events: auto; }
+.intro__lanyard { position: absolute; top: 0; right: 0; z-index: 4; width: clamp(340px, 40vw, 520px); height: 100vh; height: 100dvh; pointer-events: none; }
+.intro__lanyard canvas { pointer-events: auto; touch-action: none; -webkit-user-select: none; user-select: none; }
 .lanyard-wrapper { width: 100%; height: 100%; display: block; }
+body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
 .intro-contact { font-family: var(--font-display); font-size: .82rem; color: #fff; background: rgba(107,92,255,.92);
   border: 1px solid transparent; border-radius: 999px; padding: 7px 16px; cursor: pointer; transition: background .25s, transform .2s; }
 .intro-contact:hover { background: #6b5cff; transform: translateY(-1px); }
@@ -80,4 +81,17 @@
 .intro--static .intro__line h2 { font-size: clamp(1.5rem, 4vw, 2.6rem); }
 .intro--static .intro__scrollcue { display: none; }
 @media (prefers-reduced-motion: reduce) { .intro__scrollcue::before { animation: none; opacity: .8; } }
-@media (max-width: 680px) { .intro__lanyard { width: 100vw; } }
+@media (max-width: 680px) {
+  .intro-topbar { padding: 14px 14px; align-items: flex-start; }
+  .intro-brand { font-size: .92rem; max-width: 8.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .intro-topbar .intro-right { gap: 7px; }
+  .intro-skip, .intro-lang, .intro-contact { font-size: .76rem; padding: 7px 11px; }
+  .intro__lanyard { left: 0; right: auto; width: 100vw; height: 100vh; height: 100dvh; }
+  .intro__line { max-width: 12ch; }
+  .intro__line h2 { font-size: clamp(1.85rem, 10vw, 3.1rem); }
+  .intro__line p { font-size: .98rem; }
+}
+@media (max-width: 380px) {
+  .intro-brand { max-width: 6.6rem; }
+  .intro-skip, .intro-lang, .intro-contact { padding-inline: 9px; }
+}

@@ -52,6 +52,22 @@ function Band({ maxSpeed = 50, minSpeed = 0, cardTexture = null }) {
   const [dragged, drag] = useState(false);
   const [hovered, hover] = useState(false);
 
+  const endDrag = e => {
+    e?.stopPropagation?.();
+    if (e?.target?.releasePointerCapture && e.pointerId != null) e.target.releasePointerCapture(e.pointerId);
+    drag(false);
+    hover(false);
+    document.body.classList.remove('lanyard-dragging');
+  };
+
+  const startDrag = e => {
+    e.stopPropagation();
+    if (e.target.setPointerCapture && e.pointerId != null) e.target.setPointerCapture(e.pointerId);
+    [card, j1, j2, j3, fixed].forEach(ref => ref.current?.wakeUp());
+    document.body.classList.add('lanyard-dragging');
+    drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation())));
+  };
+
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
@@ -63,6 +79,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, cardTexture = null }) {
       return () => void (document.body.style.cursor = 'auto');
     }
   }, [hovered, dragged]);
+
+  useEffect(() => () => document.body.classList.remove('lanyard-dragging'), []);
 
   useFrame((state, delta) => {
     if (dragged) {
@@ -106,8 +124,10 @@ function Band({ maxSpeed = 50, minSpeed = 0, cardTexture = null }) {
             position={[0, -1.2, -0.05]}
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
-            onPointerUp={e => (e.target.releasePointerCapture(e.pointerId), drag(false))}
-            onPointerDown={e => (e.target.setPointerCapture(e.pointerId), drag(new THREE.Vector3().copy(e.point).sub(vec.copy(card.current.translation()))))}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+            onLostPointerCapture={endDrag}
+            onPointerDown={startDrag}
           >
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial map={cardTexture || materials.base.map} map-anisotropy={16} clearcoat={1} clearcoatRoughness={0.15} roughness={0.9} metalness={0.8} />

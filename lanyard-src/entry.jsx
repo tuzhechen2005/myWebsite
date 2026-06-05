@@ -37,6 +37,11 @@ function App() {
     window.addEventListener('lanyard:drop', onDrop);
     return () => window.removeEventListener('lanyard:drop', onDrop);
   }, []);
+  useEffect(() => {
+    if (!el) return undefined;
+    el.classList.toggle('is-open', open && !!tex);
+    return () => el.classList.remove('is-open');
+  }, [open, tex]);
   return (open && tex) ? <Lanyard cardTexture={tex} /> : null;
 }
 
