@@ -33,13 +33,14 @@ function App() {
     img.src = 'assets/badge-card.png';
   }, []);
   useEffect(() => {
-    const onDrop = () => setOpen(true);
+    const onDrop = () => setOpen(v => !v);
     window.addEventListener('lanyard:drop', onDrop);
     return () => window.removeEventListener('lanyard:drop', onDrop);
   }, []);
   useEffect(() => {
     if (!el) return undefined;
     el.classList.toggle('is-open', open && !!tex);
+    if (!open) document.body.classList.remove('lanyard-dragging');
     return () => el.classList.remove('is-open');
   }, [open, tex]);
   return (open && tex) ? <Lanyard cardTexture={tex} /> : null;
