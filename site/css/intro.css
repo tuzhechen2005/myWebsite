@@ -29,7 +29,9 @@
 /* hanging ID card (React/R3F/Rapier bundle) — small, top-right; drops on Contact */
 .intro__lanyard { position: absolute; top: 0; right: 0; z-index: 4; width: clamp(340px, 40vw, 520px); height: 100vh; height: 100dvh; pointer-events: none; }
 .intro__lanyard canvas { pointer-events: auto; touch-action: none; -webkit-user-select: none; user-select: none; }
-.lanyard-wrapper { width: 100%; height: 100%; display: block; }
+.lanyard-wrapper { width: 100%; height: 100%; display: block; transform: translateY(0); opacity: 1; will-change: transform, opacity; }
+.intro__lanyard.is-retracting .lanyard-wrapper { transform: translateY(-112vh); opacity: .92;
+  transition: transform .85s cubic-bezier(.72, 0, .9, .45), opacity .3s ease .55s; }
 body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
 .intro-contact { font-family: var(--font-display); font-size: .82rem; color: #fff; background: rgba(107,92,255,.92);
   border: 1px solid transparent; border-radius: 999px; padding: 7px 16px; cursor: pointer; transition: background .25s, transform .2s; }
