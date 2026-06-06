@@ -15,7 +15,7 @@
   <title>涂喆宸 Zhechen Tu — 进入 / Enter</title>
   <meta name="description" content="涂喆宸 (Zhechen Tu) — AI Application & Agent Engineer. Enter the portfolio." />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/intro.css?v=10" />
+  <link rel="stylesheet" href="css/intro.css?v=14" />
 </head>
 <body class="intro-body" data-lang="zh">
 
@@ -24,32 +24,65 @@
     <div class="intro__loadlabel">Loading</div>
   </div>
 
+  <!-- top bar: name (left) + two square B&W pills (right) -->
   <div class="intro-topbar">
-    <a class="intro-brand" href="home.html" data-intro-exit>Zhechen<b>.</b>Tu</a>
-    <div class="intro-right">
-      <button class="intro-contact" id="introContact" type="button"><span class="zh">联系</span><span class="en">Contact</span></button>
-      <button class="intro-lang" data-lang-toggle aria-label="Switch language"><span class="zh-label on">中</span> / <span class="en-label off">EN</span></button>
-      <a class="intro-skip" href="home.html" data-intro-exit><span class="zh">跳过</span><span class="en">Skip</span></a>
+    <div class="intro-name">
+      <span class="intro-name__zh">涂喆宸</span>
+      <span class="intro-name__en">Jelly Tu</span>
     </div>
+    <nav class="pillnav pillnav--square" aria-label="Primary" data-pillnav>
+      <ul class="pill-list" role="menubar">
+        <li role="none">
+          <button type="button" class="pill" id="introContact" role="menuitem" aria-label="Contact">
+            <span class="hover-circle" aria-hidden="true"></span>
+            <span class="label-stack"><span class="pill-label">Contact</span><span class="pill-label-hover" aria-hidden="true">Contact</span></span>
+          </button>
+        </li>
+        <li role="none">
+          <a class="pill pill--lg" href="home.html" data-intro-exit role="menuitem" aria-label="Enter Homepage">
+            <span class="hover-circle" aria-hidden="true"></span>
+            <span class="label-stack"><span class="pill-label">Enter Homepage</span><span class="pill-label-hover" aria-hidden="true">Enter Homepage</span></span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
+
+  <!-- background music — starts when "Read The Story" is pressed -->
+  <audio id="introBgm" src="assets/bgm.m4a" preload="auto" loop></audio>
+
+  <!-- gate: read the story → play BGM + reveal scroll cue + unlock scrolling -->
+  <button type="button" class="intro-readstory" id="introReadStory">Read&nbsp;The&nbsp;Story</button>
+
+  <!-- mute / unmute the BGM (bottom-left) -->
+  <button type="button" class="intro-mute" id="introMute" aria-label="Mute music" aria-pressed="false">
+    <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19.5 5a9 9 0 0 1 0 14"/></svg>
+    <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+  </button>
 
   <!-- scrub stage: scrolling this tall container advances the frames -->
   <div class="intro-scroll" id="introScroll">
     <div class="intro-sticky">
       <canvas class="intro__canvas" id="introCanvas"></canvas>
       <div class="intro__lanyard" id="introLanyard" aria-hidden="true"></div>
+      <!-- BlurText: revealed on load, fades out as you scroll -->
+      <div class="intro-blurtext" data-blurtext data-stagger="110">
+        <span class="bt-line">By day, I build AI agents.</span>
+        <span class="bt-line">By night, I make AI art.</span>
+        <span class="bt-line">Same machine. Different rules.</span>
+      </div>
       <div class="intro__lines">
-        <div class="intro__line">
+        <div class="intro__line pos-center">
           <h2><span class="zh">涂喆宸</span><span class="en">Zhechen Tu</span></h2>
           <p><span class="zh">AI 应用 · Agent 工程师</span><span class="en">AI Application · Agent Engineer</span></p>
         </div>
-        <div class="intro__line">
-          <h2><span class="zh">用评测与指标<br />驱动系统</span><span class="en">Systems driven by<br />evals &amp; metrics</span></h2>
+        <div class="intro__line pos-right">
+          <h2><span class="zh">用评测与指标驱动系统</span><span class="en">Systems driven by evals &amp; metrics</span></h2>
         </div>
-        <div class="intro__line">
-          <h2><span class="zh">多智能体 · RAG<br />端到端交付</span><span class="en">Multi-agent · RAG<br />shipped end-to-end</span></h2>
+        <div class="intro__line pos-left">
+          <h2><span class="zh">多智能体 · RAG 端到端交付</span><span class="en">Multi-agent · RAG, shipped end-to-end</span></h2>
         </div>
-        <div class="intro__line">
+        <div class="intro__line pos-center">
           <h2><span class="zh">这是我的作品集</span><span class="en">This is my portfolio</span></h2>
         </div>
       </div>
@@ -74,10 +107,49 @@
   <script src="vendor/gsap/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis/lenis.min.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/intro.js?v=4"></script>
+  <script src="js/pill-nav.js"></script>
+  <script src="js/blur-text.js"></script>
+  <script src="js/intro.js?v=6"></script>
   <script src="js/lanyard.bundle.js?v=20"></script>
   <script>
-    (function () { var b = document.getElementById('introContact'); if (b) b.addEventListener('click', function () { window.dispatchEvent(new Event('lanyard:drop')); }); })();
+    (function () {
+      // Contact pill drops/toggles the hanging ID card
+      var c = document.getElementById('introContact');
+      if (c) c.addEventListener('click', function () { window.dispatchEvent(new Event('lanyard:drop')); });
+
+      // Story gate: lock scrolling until "Read The Story" is pressed,
+      // then start the BGM (fade in), reveal the scroll cue, and unlock.
+      var body = document.body, lenis = window.__lenis, locked = true;
+      body.classList.add('intro-locked');
+      if (lenis && lenis.stop) lenis.stop();
+      function wheelBlock(e) { if (locked) e.preventDefault(); }
+      function touchBlock(e) { if (locked && !(e.target.closest && e.target.closest('#introLanyard'))) e.preventDefault(); }
+      function keyBlock(e) { if (locked && /^(Arrow|Page|Home|End| |Spacebar)/.test(e.key)) e.preventDefault(); }
+      window.addEventListener('wheel', wheelBlock, { passive: false, capture: true });
+      window.addEventListener('touchmove', touchBlock, { passive: false, capture: true });
+      window.addEventListener('keydown', keyBlock, true);
+
+      var bgm = document.getElementById('introBgm');
+      var rs = document.getElementById('introReadStory');
+      function unlock() {
+        if (!locked) return; locked = false;
+        body.classList.remove('intro-locked'); body.classList.add('intro-ready');
+        if (lenis && lenis.start) lenis.start();
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
+        if (bgm) { try { bgm.volume = 0; bgm.play(); var v = 0, t = setInterval(function () { v = Math.min(0.85, v + 0.05); bgm.volume = v; if (v >= 0.85) clearInterval(t); }, 60); } catch (e) {} }
+      }
+      if (rs) rs.addEventListener('click', unlock);
+
+      // mute / unmute the BGM (bottom-left)
+      var mute = document.getElementById('introMute');
+      if (mute) mute.addEventListener('click', function () {
+        if (!bgm) return;
+        bgm.muted = !bgm.muted;
+        mute.classList.toggle('is-muted', bgm.muted);
+        mute.setAttribute('aria-pressed', String(bgm.muted));
+        mute.setAttribute('aria-label', bgm.muted ? 'Unmute music' : 'Mute music');
+      });
+    })();
   </script>
 </body>
 </html>

@@ -4,11 +4,65 @@
    ========================================================= */
 .intro-body { margin: 0; background: #06070c; color: #fff; overflow-x: hidden; }
 
-/* top bar: brand / lang / skip */
+/* top bar: name (left) + square B&W PillNav (right) */
 .intro-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: space-between; align-items: flex-start;
   padding: 18px clamp(16px, 4vw, 40px); pointer-events: none; }
 .intro-topbar > * { pointer-events: auto; }
+
+/* name, top-left */
+.intro-name { display: flex; flex-direction: column; line-height: 1.04; }
+.intro-name__zh { font-family: var(--font-display); font-weight: 700; color: #fff; letter-spacing: .02em; font-size: clamp(1.25rem, 2.4vw, 1.7rem); }
+.intro-name__en { font-family: var(--font-display); font-weight: 500; color: rgba(255,255,255,.6); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; margin-top: 5px; }
+
+/* square black-and-white PillNav (vanilla port; wired by js/pill-nav.js) */
+.pillnav { display: inline-flex; align-items: center; }
+.pillnav .pill-list { list-style: none; display: flex; align-items: stretch; gap: 5px; margin: 0; padding: 4px;
+  height: 50px; background: #0a0c12; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; }
+.pillnav .pill-list > li { display: flex; }
+.pillnav .pill { --base: #000; --pill-bg: #fff; --pill-text: #000; --hover-text: #fff;
+  display: inline-flex; align-items: center; justify-content: center; height: 100%; padding: 0 20px;
+  background: var(--pill-bg); color: var(--pill-text); text-decoration: none; border: none; cursor: pointer;
+  border-radius: 4px; box-sizing: border-box; font-family: var(--font-display); font-weight: 600; font-size: 14px;
+  text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; position: relative; overflow: hidden; }
+.pillnav .pill--lg { padding: 0 32px; font-size: 16px; font-weight: 700; letter-spacing: .06em; }
+.pillnav .hover-circle { position: absolute; left: 50%; bottom: 0; border-radius: 50%; background: var(--base);
+  z-index: 1; display: block; pointer-events: none; will-change: transform; }
+.pillnav .label-stack { position: relative; display: inline-block; line-height: 1; z-index: 2; }
+.pillnav .pill-label { position: relative; z-index: 2; display: inline-block; line-height: 1; will-change: transform; }
+.pillnav .pill-label-hover { position: absolute; left: 0; top: 0; color: var(--hover-text); z-index: 3;
+  display: inline-block; will-change: transform, opacity; }
+
+/* "Read The Story" gate button (square, bottom-right) — B&W */
+.intro-readstory { position: fixed; right: clamp(16px, 4vw, 40px); bottom: clamp(18px, 5vh, 46px); z-index: 55;
+  font-family: var(--font-display); font-weight: 700; font-size: .92rem; letter-spacing: .06em; text-transform: uppercase;
+  color: #000; background: #fff; border: 1px solid #fff; border-radius: 6px; padding: 16px 26px; cursor: pointer;
+  box-shadow: 0 16px 44px -18px rgba(0,0,0,.65); transition: transform .25s ease, background .25s ease, color .25s ease, opacity .45s ease; }
+.intro-readstory:hover { transform: translateY(-2px); background: #000; color: #fff; }
+body.intro-ready .intro-readstory { opacity: 0; transform: translateY(12px); pointer-events: none; }
+
+/* BlurText intro statement — revealed on load, centered, fades out on scroll */
+.intro-blurtext { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center; gap: .26em; text-align: left;
+  padding: 0 clamp(24px, 8vw, 120px); pointer-events: none; }
+.bt-line { font-family: var(--font-display); font-weight: 700; color: #fff; line-height: 1.25; white-space: nowrap;
+  font-size: clamp(1.2rem, 3.4vw, 2.7rem); text-shadow: 0 4px 30px rgba(0,0,0,.55); }
+.bt-word { display: inline-block; will-change: opacity, filter, transform; }
+html.js .bt-word { opacity: 0; } /* gsap (blur-text.js) reveals these; no-JS shows them */
+
+/* mute / unmute the BGM (bottom-left, square B&W) */
+.intro-mute { position: fixed; left: clamp(16px, 4vw, 40px); bottom: clamp(18px, 5vh, 46px); z-index: 55;
+  width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(10,12,18,.55); border: 1px solid rgba(255,255,255,.2); border-radius: 6px; color: #fff; cursor: pointer;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: background .25s ease, border-color .25s ease; }
+.intro-mute:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.55); }
+.intro-mute svg { width: 20px; height: 20px; display: block; }
+.intro-mute .icon-muted { display: none; }
+.intro-mute.is-muted .icon-on { display: none; }
+.intro-mute.is-muted .icon-muted { display: block; }
+
+/* gate states: hide the scroll cue until the story is started */
+body.intro-locked .intro__scrollcue { opacity: 0 !important; visibility: hidden !important; }
 .intro-topbar .intro-right { display: flex; gap: 10px; align-items: center; }
 .intro-brand { font-family: var(--font-display); font-weight: 700; letter-spacing: .01em;
   color: #fff; text-decoration: none; opacity: .92; font-size: 1.05rem; }
@@ -37,10 +91,14 @@ body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
   border: 1px solid transparent; border-radius: 999px; padding: 7px 16px; cursor: pointer; transition: background .25s, transform .2s; }
 .intro-contact:hover { background: #6b5cff; transform: translateY(-1px); }
 
-/* overlaid text lines (cross-fade during scrub) */
+/* overlaid text lines (cross-fade during scrub) — alternating left/center/right, one line each */
 .intro__lines { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column;
   align-items: center; justify-content: flex-end; text-align: center; padding: 0 24px 13vh; pointer-events: none; }
-.intro__line { position: absolute; bottom: 13vh; max-width: 20ch; opacity: 0; }
+.intro__line { position: absolute; bottom: 13vh; max-width: none; opacity: 0; }
+.intro__line h2, .intro__line p { white-space: nowrap; }
+.intro__line.pos-center { left: 0; right: 0; margin-inline: auto; width: max-content; text-align: center; }
+.intro__line.pos-left { left: clamp(24px, 8vw, 120px); right: auto; text-align: left; }
+.intro__line.pos-right { right: clamp(24px, 8vw, 120px); left: auto; text-align: right; }
 .intro__line h2 { font-family: var(--font-display); font-weight: 700; line-height: 1.07;
   font-size: clamp(2rem, 6.2vw, 4.6rem); margin: 0; text-shadow: 0 4px 30px rgba(0,0,0,.5); }
 .intro__line p { color: rgba(255,255,255,.78); font-size: clamp(1rem, 2.3vw, 1.45rem); margin: 16px 0 0; }

@@ -131,6 +131,8 @@
         onUpdate: function (self) { draw(self.progress); }
       }
     });
+    // the BlurText intro statement fades out as you start scrolling
+    tl.fromTo('.intro-blurtext', { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.5, immediateRender: false }, 0);
     // scroll cue fades out once the visitor starts scrolling
     tl.to('.intro__scrollcue', { autoAlpha: 0, duration: 0.4 }, 0.2);
     // bilingual lines cross-fade, evenly spaced; last one stays
