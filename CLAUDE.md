@@ -21,15 +21,16 @@ Cloudflare Workers static assets from the GitHub repo.
 site/
 ├── index.html        LANDING = cinematic scroll-scrubbed intro (NOT the home page anymore). Full-screen
 │                     baobab-dusk image-sequence scrubbed by scroll (intro.js, canvas 2D) + bilingual text
-│                     reveals + a top-right hanging Lanyard ID card (React bundle, drops in when the Contact
-│                     button is pressed) + an "Enter" portal → home.html. First-visit gate (INTRO_DEV flag).
+│                     reveals + a top-right hanging Lanyard ID card (React bundle, Contact toggles drop/retract)
+│                     + an "Enter" portal → home.html. First-visit gate (INTRO_DEV flag).
 ├── home.html         Home (the former index.html) — portrait hero (LiquidEther bg), CircularText resume CTA, marquee, expertise cards, featured projects, CTA
 ├── about.html        About — hero, stats, education (crest stage: 3D extruded W-crest over a Prism WebGL bg [CSS-rays fallback] + shiny-metallic UW–Madison wordmark, ranking/alumni/numbers highlight cards, degree timeline, campus photos) / experience timeline, skills, honors
 ├── projects.html     Projects — Ballpit hero bg + 3 detailed project cards with quantified-metric side panels
 ├── contact.html      Contact — email/GitHub/WeChat/phone cards, FAQ accordion
 ├── _headers          Cloudflare caching/security headers
 ├── assets/           profile.jpg, resume.pdf, local brand-logo SVGs, crest.png (W 校徽), bascom-hall/-mall.jpg (campus, CC BY-SA),
-│                     intro/frame-0001..0144.jpg (baobab-dusk scrub frames, from Pexels 33165323), idphoto.jpg (证件照 for the card),
+│                     intro/frame-0001..0144.jpg (baobab-dusk scrub frames, from Pexels 33165323), badge-card.png (designed ID-card face),
+│                     idphoto.jpg (source portrait used inside the badge-card artwork),
 │                     lanyard/card.glb + lanyard.png (React-Bits Lanyard model + band texture)
 ├── fonts/            local Inter + Space Grotesk font files
 ├── vendor/           local GSAP, ScrollTrigger, Lenis, three.js
@@ -48,7 +49,7 @@ site/
     ├── crest3d.js        CSS 3D extruded W-crest (about education); stacks layered PNG copies for depth + sway + pointer parallax + drag (clamped, no back face). Sides = solid black via brightness(0). No WebGL.
     ├── prism.js          raw-WebGL port of React-Bits <Prism/> (no ogl); glowing raymarched prism bg on the crest stage (<canvas data-prism>). HARDENED: on context-loss / shader error / <5fps stall it removes itself and the stage falls back to the pure-CSS .crest-stage__rays bg (adds/removes .prism-on on .crest-stage).
     ├── intro.js          landing scroll-scrub: preloads assets/intro/frame-####.jpg, ScrollTrigger scrub → canvas 2D frame draw + GSAP text timeline. Single-poster + procedural-placeholder fallbacks; static under reduced-motion.
-    ├── lanyard.bundle.js BUILT artifact (~3MB) — the React-Bits <Lanyard/> (React+R3F+drei+Rapier-wasm+meshline) bundled by lanyard-src/. Mounts into #introLanyard; shows the hanging Jelly ID card on the `lanyard:drop` window event (fired by the Contact button). DO NOT hand-edit — rebuild from lanyard-src/.
+    ├── lanyard.bundle.js BUILT artifact (~3MB) — the React-Bits <Lanyard/> (React+R3F+drei+Rapier-wasm+meshline) bundled by lanyard-src/. Mounts into #introLanyard; toggles the hanging Jelly ID card on the `lanyard:drop` window event (fired by the Contact button). DO NOT hand-edit — rebuild from lanyard-src/.
     ├── scroll-float.js   per-character scrubbed reveal for section <h2> headings
     └── tech-icons.js      renders brand logos into [data-tech] chips, monogram fallback
 ```
@@ -66,23 +67,26 @@ self-hosted / China-accessible). **Edit the card/physics/look in `lanyard-src/La
 re-run the build** — never hand-edit `lanyard.bundle.js`, and **bump the `?v=` on its `<script>` in `index.html`**
 each rebuild (the file path is cached; the owner tests in a real browser).
 
-Card face = a `THREE.CanvasTexture` drawn in `entry.jsx` `makeCardTexture(photo, name)` and passed in to replace
-the glb's `materials.base.map`. Layout: dark card, **"Jelly" top-left**, **证件照 small in the top-right corner**
-(not full-bleed — `pbw/pbh/pbx/pby` size/place it), then `AI · AGENT ENGINEER` / `涂喆宸` / email / holo + barcode.
-`flipY=false` so the canvas maps right-side-up onto the glb UVs.
+Card face = a `THREE.CanvasTexture` drawn in `entry.jsx` `makeCardTexture(badge)` and passed in to replace the
+glb's `materials.base.map`. It loads the designed black/white cyber ID-card artwork from `site/assets/badge-card.png`
+and draws it into the GLB's visible UV region. The current tuned mapping is:
+`targetX = -25, targetY = -30, targetW = 300, targetH = 600`; **do not change these unless explicitly asked**,
+because the owner tuned them manually in-browser. `flipY=false` so the canvas maps right-side-up onto the glb UVs.
 
 Two gotchas that cost real time — keep them:
-1. **Load the photo BEFORE building the texture.** `entry.jsx` `App` loads `assets/idphoto.jpg`, and only then
-   does `setTex(makeCardTexture(img,…))` and mount `<Lanyard>`. Drawing the photo async + `tex.needsUpdate=true`
-   does NOT repaint (R3F won't re-render an idle frame) → the photo silently goes missing.
+1. **Load the badge artwork BEFORE building the texture.** `entry.jsx` `App` loads `assets/badge-card.png`, and only
+   then does `setTex(makeCardTexture(img))` and mount `<Lanyard>`. Drawing an image async + `tex.needsUpdate=true`
+   does NOT repaint reliably (R3F won't re-render an idle frame) → the card face can silently go missing.
 2. **Persistent invisible `<mesh>`** stays in the scene so R3F keeps rendering until the glb/texture/Rapier finish
    loading; without it the Suspense'd card never paints.
 
-Placement/size: it hangs from a small **top-right** container (`css/intro.css .intro__lanyard`). It "drops from the
-top of the screen" because the camera (`position` z in `Lanyard.jsx`, default 22) puts the rope anchor just above
-the top edge; smaller z = bigger card + anchor higher. It mounts/drops only on the `lanyard:drop` event (Contact
-button); `index.html?drop=1` forces it for dev. Headless screenshots render it only intermittently (virtual-time
-race) — judge it in a real browser.
+Placement/size/interaction: it hangs from a top-right container (`css/intro.css .intro__lanyard`; on mobile it spans
+`100vw`/`100dvh` so touch drag has room). Contact dispatches `lanyard:drop` and now **toggles** the card: first click
+drops/mounts it, second click adds `.is-retracting`, animates `.lanyard-wrapper` upward with `translateY(-112vh)`,
+then unmounts the canvas after ~850ms. `index.html?drop=1` forces it open for dev. Touch dragging is supported via
+R3F pointer events with `pointercancel` / `lostpointercapture` cleanup; dragging adds `body.lanyard-dragging` to lock
+page scroll and prevent mobile touch-scroll conflicts. Headless screenshots render it only intermittently
+(virtual-time race) — judge it in a real browser.
 
 ## Conventions (follow these when editing)
 - **Bilingual**: every translatable string is two sibling spans: `<span class="zh">…</span><span class="en">…</span>`.
@@ -164,12 +168,15 @@ mkdir -p dist && (cd site && zip -rq ../dist/zhechen-tu-cloudflare-pages.zip . -
 
 ## Status / not done yet
 - Deployed through Cloudflare Workers static assets, but a custom personal domain has not been bound yet.
-- **Cinematic intro + Lanyard work is uncommitted on a local feature state; not yet pushed/deployed.** The intro
-  (scroll-scrub baobab bg + text + hanging Jelly card) replaces the old home as the landing; old home → `home.html`.
+- Cinematic intro + Lanyard work exists on feature branch `codex/fix-lanyard-card-visibility` and has been pushed.
+  It is not necessarily deployed until merged/pushed to the Cloudflare-tracked branch (`codex1`). The intro
+  (scroll-scrub baobab bg + text + hanging Jelly card using `badge-card.png`) replaces the old home as the landing;
+  old home → `home.html`.
 - **BEFORE DEPLOY: set `INTRO_DEV = false`** in `index.html`'s `<head>` (currently `true` so refresh always shows
   the intro during dev; `false` restores "first visit only", returning visitors `location.replace('home.html')`).
-- Root scratch files to keep out of git: `image.png`, `证件照.jpg`, `效果图.png`/`校徽.png` (some already in
-  `.gitignore`), `video_out/`. The real assets are the copies under `site/assets/`.
+- Root scratch/source files to keep out of git: `image.png`, `工牌.png`, `证件照.jpg`, `效果图.png`/`校徽.png`
+  (some already in `.gitignore`), `video_out/`. The real deployed badge asset is the copy under
+  `site/assets/badge-card.png`.
 - Possible next steps: custom domain, favicon/OG tags, WeChat QR image, additional mobile QA, intro copy polish.
 
 ## Accessibility / robustness baked in
