@@ -10,7 +10,7 @@
    ========================================================= */
 (function () {
   // ----- config (swap these in when the real frames are ready) -----
-  var FRAME_COUNT = 144; // baobab dusk timelapse (Pexels 33165323), t=14–20s @ 24fps, graded moody
+  var FRAME_COUNT = 360; // underwater sinking intro (背景视频.mp4), full 15s @ 24fps, q2 (source is 720p)
   function FRAME_PATH(i) { return 'assets/intro/frame-' + String(i).padStart(4, '0') + '.jpg'; }
   var PLACEHOLDER_FRAMES = 120; // virtual count shown in the placeholder label
   // Still fallback (shown only if FRAME_COUNT=0 or a frame fails); drawn with a
