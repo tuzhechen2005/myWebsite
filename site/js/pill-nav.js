@@ -51,15 +51,22 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout).catch(function () {});
 
     pills.forEach(function (pill, i) {
-      pill.addEventListener('mouseenter', function () {
-        var tl = tls[i]; if (!tl) return;
-        if (active[i]) active[i].kill();
-        active[i] = tl.tweenTo(tl.duration(), { duration: 0.3, ease: EASE, overwrite: 'auto' });
-      });
-      pill.addEventListener('mouseleave', function () {
-        var tl = tls[i]; if (!tl) return;
-        if (active[i]) active[i].kill();
-        active[i] = tl.tweenTo(0, { duration: 0.2, ease: EASE, overwrite: 'auto' });
+      var pinned = false; // click toggles a sticky "filled/inverted" state
+      function fwd(d) { var tl = tls[i]; if (!tl) return; if (active[i]) active[i].kill();
+        active[i] = tl.tweenTo(tl.duration(), { duration: d, ease: EASE, overwrite: 'auto' }); }
+      function rev(d) { var tl = tls[i]; if (!tl) return; if (active[i]) active[i].kill();
+        active[i] = tl.tweenTo(0, { duration: d, ease: EASE, overwrite: 'auto' }); }
+
+      // hover previews the fill on pointer devices (skipped while pinned)
+      pill.addEventListener('mouseenter', function () { if (!pinned) fwd(0.3); });
+      pill.addEventListener('mouseleave', function () { if (!pinned) rev(0.2); });
+
+      // click toggles it: 1st click fills/inverts, 2nd click plays the reverse
+      // (also works on touch, where there is no hover) — kept in sync with the
+      // Contact button's lanyard drop/retract toggle.
+      pill.addEventListener('click', function () {
+        pinned = !pinned;
+        if (pinned) fwd(0.35); else rev(0.32);
       });
     });
   });

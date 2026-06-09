@@ -28,7 +28,8 @@
    (Safari etc.), falling back to plain frosted glass. Hover/label
    motion is still driven by js/pill-nav.js.
    ========================================================= */
-.intro-topbar__right { position: relative; isolation: isolate;
+.intro-topbar__right { position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+  isolation: isolate;
   display: flex; align-items: center; gap: 3px; padding: 5px; border-radius: 999px;
   background: linear-gradient(180deg, rgba(46,48,60,.5), rgba(10,11,16,.62));
   border: 1px solid rgba(255,255,255,.16);
@@ -47,8 +48,9 @@
 .intro-topbar__right::before { content: ""; position: absolute; inset: 0; border-radius: inherit;
   pointer-events: none; z-index: 2;
   background: linear-gradient(180deg, rgba(255,255,255,.3), rgba(255,255,255,0) 46%); }
-@keyframes island-in { from { opacity: 0; transform: translateY(-12px) scale(.9); }
-  to { opacity: 1; transform: translateY(0) scale(1); } }
+/* keep the -50% X centering inside the entrance transform */
+@keyframes island-in { from { opacity: 0; transform: translate(-50%, -12px) scale(.9); }
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .intro-topbar__right { animation: none; } }
 
 /* 中 / EN language toggle (wired by main.js [data-lang-toggle]) — glass chip */
@@ -194,7 +196,7 @@ body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
   .intro-name__zh { font-size: 1.12rem; }
   .intro-name__en { font-size: .6rem; letter-spacing: .12em; margin-top: 4px; }
   /* shrink the liquid-glass island so 中/EN + Contact + Enter Homepage fit one row */
-  .intro-topbar__right { gap: 3px; padding: 4px; }
+  .intro-topbar__right { gap: 3px; padding: 4px; top: 10px; }
   .intro-lang-btn { height: 34px; padding: 0 10px; font-size: 12px; gap: 4px; }
   .pillnav .pill-list { height: 34px; gap: 3px; }
   .pillnav .pill { padding: 0 12px; font-size: 11px; letter-spacing: .02em; }
