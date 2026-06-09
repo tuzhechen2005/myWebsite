@@ -15,7 +15,7 @@
     window.matchMedia("(pointer: coarse)").matches;
   if (isMobile) return; // hover effects only make sense with a pointer
 
-  var GLOW = "93, 77, 255"; // site accent rgb
+  var GLOW = "111, 79, 207"; // site accent rgb (jewel amethyst)
   var SPOTLIGHT_RADIUS = 340;
   var PARTICLE_COUNT = 9;
 

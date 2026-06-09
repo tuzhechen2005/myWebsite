@@ -11,7 +11,7 @@
   --glow-y: 50%;
   --glow-intensity: 0;
   --glow-radius: 320px;
-  --mb-glow: 93, 77, 255; /* site accent rgb */
+  --mb-glow: 111, 79, 207; /* site accent rgb (jewel amethyst) */
   /* let GSAP own `transform`; keep colour/shadow transitions */
   transition: border-color .3s var(--ease), box-shadow .3s var(--ease), background-color .3s var(--ease);
 }
@@ -40,7 +40,7 @@
 
 /* stronger lift while a card is glowing */
 .mb-card:hover {
-  box-shadow: 0 18px 44px -22px rgba(40, 25, 110, .45),
+  box-shadow: 0 18px 44px -22px rgba(34, 24, 66, .45),
     0 0 26px color-mix(in srgb, var(--accent) 22%, transparent);
 }
 
@@ -58,18 +58,18 @@
   opacity: 0;
   will-change: transform, opacity;
   background: radial-gradient(circle,
-    rgba(93, 77, 255, .16) 0%,
-    rgba(93, 77, 255, .09) 18%,
-    rgba(93, 77, 255, .04) 35%,
+    rgba(111, 79, 207, .16) 0%,
+    rgba(111, 79, 207, .09) 18%,
+    rgba(111, 79, 207, .04) 35%,
     transparent 62%);
 }
 /* on dark theme, screen-blend makes it read as a light pool */
 :root[data-theme="dark"] .mb-spotlight {
   mix-blend-mode: screen;
   background: radial-gradient(circle,
-    rgba(124, 109, 255, .22) 0%,
-    rgba(124, 109, 255, .12) 18%,
-    rgba(124, 109, 255, .05) 35%,
+    rgba(178, 155, 242, .22) 0%,
+    rgba(178, 155, 242, .12) 18%,
+    rgba(178, 155, 242, .05) 35%,
     transparent 62%);
 }
 

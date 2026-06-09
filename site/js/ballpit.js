@@ -26,7 +26,7 @@ import {
 
 const DEFAULTS = {
   count: 200,
-  colors: [0x5d4dff, 0xff8bbd, 0xb497cf],
+  colors: [0xb8a6e8, 0x7c5fd6, 0xa98fe0],
   ambientColor: 0xffffff,
   ambientIntensity: 1,
   lightIntensity: 200,
@@ -46,10 +46,10 @@ const DEFAULTS = {
   drift: 0.006,
   followCursor: true,
   materialParams: {
-    metalness: 0.18,
-    roughness: 0.36,
+    metalness: 0.55,
+    roughness: 0.3,
     clearcoat: 1,
-    clearcoatRoughness: 0.15
+    clearcoatRoughness: 0.12
   }
 };
 
