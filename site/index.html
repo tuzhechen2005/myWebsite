@@ -15,7 +15,7 @@
   <title>涂喆宸 Zhechen Tu — 进入 / Enter</title>
   <meta name="description" content="涂喆宸 (Zhechen Tu) — AI Application & Agent Engineer. Enter the portfolio." />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/intro.css?v=16" />
+  <link rel="stylesheet" href="css/intro.css?v=18" />
 </head>
 <body class="intro-body" data-lang="zh">
 
@@ -24,7 +24,17 @@
     <div class="intro__loadlabel">Loading</div>
   </div>
 
-  <!-- top bar: name (left) + two square B&W pills (right) -->
+  <!-- liquid-glass refraction filter for the Dynamic-Island nav (FluidGlass look, CSS/SVG) -->
+  <svg class="intro-glass-defs" width="0" height="0" aria-hidden="true" focusable="false"
+       style="position:absolute;width:0;height:0;pointer-events:none">
+    <filter id="liquidGlass" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.011 0.015" numOctaves="2" seed="11" result="noise"/>
+      <feGaussianBlur in="noise" stdDeviation="1.5" result="soft"/>
+      <feDisplacementMap in="SourceGraphic" in2="soft" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <!-- top bar: name (left) + liquid-glass Dynamic-Island nav (right) -->
   <div class="intro-topbar">
     <div class="intro-name">
       <span class="intro-name__zh">涂喆宸</span>
@@ -45,7 +55,7 @@
         <li role="none">
           <a class="pill pill--lg" href="home.html" data-intro-exit role="menuitem" aria-label="Enter Homepage">
             <span class="hover-circle" aria-hidden="true"></span>
-            <span class="label-stack"><span class="pill-label">Enter Homepage</span><span class="pill-label-hover" aria-hidden="true">Enter Homepage</span></span>
+            <span class="label-stack"><span class="pill-label"><span class="lbl-full">Enter Homepage</span><span class="lbl-short">Enter</span></span><span class="pill-label-hover" aria-hidden="true"><span class="lbl-full">Enter Homepage</span><span class="lbl-short">Enter</span></span></span>
           </a>
         </li>
       </ul>

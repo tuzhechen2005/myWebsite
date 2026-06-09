@@ -18,30 +18,61 @@
 .intro-name__zh { font-family: var(--font-display); font-weight: 700; color: #fff; letter-spacing: .02em; font-size: clamp(1.25rem, 2.4vw, 1.7rem); }
 .intro-name__en { font-family: var(--font-display); font-weight: 500; color: rgba(255,255,255,.6); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; margin-top: 5px; }
 
-/* right-side group: language toggle + pill nav */
-.intro-topbar__right { display: flex; align-items: center; gap: 10px; }
+/* =========================================================
+   Dynamic-Island liquid-glass nav (灵动岛 / FluidGlass look)
+   The right-side group is ONE floating glass capsule holding the
+   language toggle + Contact + Enter Homepage. Frosted backdrop +
+   an SVG feDisplacementMap refraction (#liquidGlass) for the liquid
+   "thick glass" bend — progressive enhancement: the 2nd backdrop
+   declaration is ignored where backdrop-filter:url() is unsupported
+   (Safari etc.), falling back to plain frosted glass. Hover/label
+   motion is still driven by js/pill-nav.js.
+   ========================================================= */
+.intro-topbar__right { position: relative; isolation: isolate;
+  display: flex; align-items: center; gap: 3px; padding: 5px; border-radius: 999px;
+  background: linear-gradient(180deg, rgba(46,48,60,.5), rgba(10,11,16,.62));
+  border: 1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 12px 36px -10px rgba(0,0,0,.6), 0 2px 8px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.42), inset 0 -10px 22px rgba(255,255,255,.045);
+  animation: island-in .7s cubic-bezier(.2,.9,.25,1) both; }
+/* enhanced layer: add the liquid refraction where supported */
+@supports (backdrop-filter: url(#liquidGlass)) or (-webkit-backdrop-filter: url(#liquidGlass)) {
+  .intro-topbar__right {
+    -webkit-backdrop-filter: blur(11px) saturate(170%) url(#liquidGlass);
+    backdrop-filter: blur(11px) saturate(170%) url(#liquidGlass); }
+}
+/* glossy top sheen (sits on the glass, under the chips) */
+.intro-topbar__right::before { content: ""; position: absolute; inset: 0; border-radius: inherit;
+  pointer-events: none; z-index: 2;
+  background: linear-gradient(180deg, rgba(255,255,255,.3), rgba(255,255,255,0) 46%); }
+@keyframes island-in { from { opacity: 0; transform: translateY(-12px) scale(.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (prefers-reduced-motion: reduce) { .intro-topbar__right { animation: none; } }
 
-/* 中 / EN language toggle (wired by main.js [data-lang-toggle]); B&W to match the nav */
-.intro-lang-btn { display: inline-flex; align-items: center; gap: 5px; height: 50px; padding: 0 15px;
-  background: #0a0c12; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; color: #fff;
+/* 中 / EN language toggle (wired by main.js [data-lang-toggle]) — glass chip */
+.intro-lang-btn { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 5px;
+  height: 40px; padding: 0 14px; border-radius: 999px;
+  background: rgba(255,255,255,.06); border: 1px solid transparent; color: #fff;
   font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: .04em;
-  cursor: pointer; transition: border-color .25s ease, background .25s ease; }
-.intro-lang-btn:hover { border-color: rgba(255,255,255,.55); background: #11141d; }
+  cursor: pointer; transition: background .25s ease; }
+.intro-lang-btn:hover { background: rgba(255,255,255,.16); }
 .intro-lang-btn .sep { opacity: .35; }
 .intro-lang-btn .on { color: #fff; }
 .intro-lang-btn .off { color: rgba(255,255,255,.4); }
 
-/* square black-and-white PillNav (vanilla port; wired by js/pill-nav.js) */
+/* PillNav structure (vanilla port; wired by js/pill-nav.js) — glass chips inside the island */
 .pillnav { display: inline-flex; align-items: center; }
-.pillnav .pill-list { list-style: none; display: flex; align-items: stretch; gap: 5px; margin: 0; padding: 4px;
-  height: 50px; background: #0a0c12; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; }
+.pillnav .pill-list { list-style: none; display: flex; align-items: stretch; gap: 3px; margin: 0; padding: 0; height: 40px; }
 .pillnav .pill-list > li { display: flex; }
-.pillnav .pill { --base: #000; --pill-bg: #fff; --pill-text: #000; --hover-text: #fff;
-  display: inline-flex; align-items: center; justify-content: center; height: 100%; padding: 0 20px;
+.pillnav .pill { --base: rgba(255,255,255,.96); --pill-bg: rgba(255,255,255,.06); --pill-text: #fff; --hover-text: #0b0c10;
+  position: relative; z-index: 3; display: inline-flex; align-items: center; justify-content: center; height: 100%; padding: 0 18px;
   background: var(--pill-bg); color: var(--pill-text); text-decoration: none; border: none; cursor: pointer;
-  border-radius: 4px; box-sizing: border-box; font-family: var(--font-display); font-weight: 600; font-size: 14px;
-  text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; position: relative; overflow: hidden; }
-.pillnav .pill--lg { padding: 0 32px; font-size: 16px; font-weight: 700; letter-spacing: .06em; }
+  border-radius: 999px; box-sizing: border-box; font-family: var(--font-display); font-weight: 600; font-size: 13px;
+  text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; overflow: hidden; }
+.pillnav .pill--lg { --pill-bg: rgba(255,255,255,.13); padding: 0 22px; font-size: 14px; font-weight: 700; letter-spacing: .06em; }
+.lbl-short { display: none; } /* "Enter Homepage" -> "Enter" on phones (toggled in the mobile media query) */
 .pillnav .hover-circle { position: absolute; left: 50%; bottom: 0; border-radius: 50%; background: var(--base);
   z-index: 1; display: block; pointer-events: none; will-change: transform; }
 .pillnav .label-stack { position: relative; display: inline-block; line-height: 1; z-index: 2; }
@@ -162,12 +193,14 @@ body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
   /* name: keep compact so it never crowds the nav */
   .intro-name__zh { font-size: 1.12rem; }
   .intro-name__en { font-size: .6rem; letter-spacing: .12em; margin-top: 4px; }
-  /* shrink the pill nav + lang toggle so Contact + Enter Homepage fit one row */
-  .intro-topbar__right { gap: 7px; }
-  .intro-lang-btn { height: 38px; padding: 0 10px; font-size: 12px; gap: 4px; }
-  .pillnav .pill-list { height: 38px; padding: 3px; gap: 4px; }
-  .pillnav .pill { padding: 0 11px; font-size: 10.5px; letter-spacing: .02em; }
-  .pillnav .pill--lg { padding: 0 13px; font-size: 11.5px; letter-spacing: .02em; }
+  /* shrink the liquid-glass island so 中/EN + Contact + Enter Homepage fit one row */
+  .intro-topbar__right { gap: 3px; padding: 4px; }
+  .intro-lang-btn { height: 34px; padding: 0 10px; font-size: 12px; gap: 4px; }
+  .pillnav .pill-list { height: 34px; gap: 3px; }
+  .pillnav .pill { padding: 0 12px; font-size: 11px; letter-spacing: .02em; }
+  .pillnav .pill--lg { padding: 0 14px; font-size: 12px; letter-spacing: .02em; }
+  .lbl-full { display: none; }   /* show the short "Enter" label on phones */
+  .lbl-short { display: inline; }
 
   /* dynamic-viewport sticky stage; shorter scrub distance on phones */
   .intro-scroll { height: 320vh; }
