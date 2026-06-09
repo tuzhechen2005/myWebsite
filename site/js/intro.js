@@ -10,16 +10,16 @@
    ========================================================= */
 (function () {
   // ----- config (swap these in when the real frames are ready) -----
-  var FRAME_COUNT = 360; // underwater sinking intro (背景视频.mp4), full 15s @ 24fps, q2 (source is 720p)
+  var FRAME_COUNT = 360; // underwater sinking intro (背景视频2k版.mp4), full 15s @ 24fps, 2560x1440 q4 (2K source 3184x1792)
   // ?v bump = cache-bust: frames are served immutable (_headers /assets/*), and the
   // underwater set OVERWROTE the old baobab frames at the same filenames, so the URL
   // must change for browsers/Cloudflare edge to re-fetch. Bump this when frames change.
-  var FRAME_V = '2';
+  var FRAME_V = '3';
   function FRAME_PATH(i) { return 'assets/intro/frame-' + String(i).padStart(4, '0') + '.jpg?v=' + FRAME_V; }
   var PLACEHOLDER_FRAMES = 120; // virtual count shown in the placeholder label
   // Still fallback (shown only if FRAME_COUNT=0 or a frame fails); drawn with a
   // subtle scroll-driven ken-burns push-in. Set '' to disable.
-  var POSTER = 'assets/intro/frame-0001.jpg?v=' + '2';
+  var POSTER = 'assets/intro/frame-0001.jpg?v=' + '3';
 
   var canvas = document.getElementById('introCanvas');
   if (!canvas) return;
