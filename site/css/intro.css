@@ -2,7 +2,10 @@
    intro.css — cinematic scroll-scrubbed landing (index.html)
    Dark, theme-independent. Pairs with js/intro.js (canvas 2D).
    ========================================================= */
-.intro-body { margin: 0; background: #06070c; color: #fff; overflow-x: hidden; }
+/* overflow-x: clip (NOT hidden) — clip stops horizontal overflow without making
+   the body a scroll container, which on mobile (iOS Safari esp.) breaks the
+   position:sticky scrub stage so the canvas scrolls away instead of pinning. */
+.intro-body { margin: 0; background: #06070c; color: #fff; overflow-x: clip; }
 
 /* top bar: name (left) + square B&W PillNav (right) */
 .intro-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50;
@@ -75,7 +78,7 @@ body.intro-locked .intro__scrollcue { opacity: 0 !important; visibility: hidden 
 
 /* scrub stage */
 .intro-scroll { position: relative; height: 400vh; }
-.intro-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.intro-sticky { position: sticky; top: 0; height: 100vh; height: 100dvh; overflow: hidden; }
 .intro__canvas { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; }
 .intro-sticky::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: radial-gradient(125% 95% at 50% 45%, transparent 38%, rgba(0,0,0,.5)); }
@@ -142,16 +145,37 @@ body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
 .intro--static .intro__scrollcue { display: none; }
 @media (prefers-reduced-motion: reduce) { .intro__scrollcue::before { animation: none; opacity: .8; } }
 @media (max-width: 680px) {
-  .intro-topbar { padding: 14px 14px; align-items: flex-start; }
-  .intro-brand { font-size: .92rem; max-width: 8.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .intro-topbar .intro-right { gap: 7px; }
-  .intro-skip, .intro-lang, .intro-contact { font-size: .76rem; padding: 7px 11px; }
+  .intro-topbar { padding: 12px 12px; align-items: flex-start; gap: 10px; }
+  /* name: keep compact so it never crowds the nav */
+  .intro-name__zh { font-size: 1.12rem; }
+  .intro-name__en { font-size: .6rem; letter-spacing: .12em; margin-top: 4px; }
+  /* shrink the pill nav so Contact + Enter Homepage fit on one row on phones */
+  .pillnav .pill-list { height: 38px; padding: 3px; gap: 4px; }
+  .pillnav .pill { padding: 0 11px; font-size: 10.5px; letter-spacing: .02em; }
+  .pillnav .pill--lg { padding: 0 13px; font-size: 11.5px; letter-spacing: .02em; }
+
+  /* dynamic-viewport sticky stage; shorter scrub distance on phones */
+  .intro-scroll { height: 320vh; }
   .intro__lanyard { left: 0; right: auto; width: 100vw; height: 100vh; height: 100dvh; }
-  .intro__line { max-width: 12ch; }
-  .intro__line h2 { font-size: clamp(1.85rem, 10vw, 3.1rem); }
-  .intro__line p { font-size: .98rem; }
+
+  /* BlurText statement: allow wrapping (was nowrap → overflowed/clipped) */
+  .intro-blurtext { padding: 0 22px; gap: .14em; }
+  .bt-line { white-space: normal; line-height: 1.22; font-size: clamp(1.3rem, 6.6vw, 2rem); }
+
+  /* scrub captions: wrap to fit width instead of running off-screen */
+  .intro__line { max-width: 86vw; }
+  .intro__line h2, .intro__line p { white-space: normal; }
+  .intro__line.pos-center { width: auto; }
+  .intro__line.pos-left { left: 18px; right: 18px; }
+  .intro__line.pos-right { right: 18px; left: 18px; }
+  .intro__line h2 { font-size: clamp(1.7rem, 8.2vw, 2.8rem); }
+  .intro__line p { font-size: .96rem; margin-top: 12px; }
+
+  /* gate / mute slightly smaller */
+  .intro-readstory { padding: 13px 18px; font-size: .82rem; }
 }
 @media (max-width: 380px) {
-  .intro-brand { max-width: 6.6rem; }
-  .intro-skip, .intro-lang, .intro-contact { padding-inline: 9px; }
+  .intro-name__en { display: none; }
+  .pillnav .pill { padding: 0 9px; font-size: 10px; }
+  .pillnav .pill--lg { padding: 0 11px; font-size: 11px; }
 }
