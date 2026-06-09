@@ -18,6 +18,19 @@
 .intro-name__zh { font-family: var(--font-display); font-weight: 700; color: #fff; letter-spacing: .02em; font-size: clamp(1.25rem, 2.4vw, 1.7rem); }
 .intro-name__en { font-family: var(--font-display); font-weight: 500; color: rgba(255,255,255,.6); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; margin-top: 5px; }
 
+/* right-side group: language toggle + pill nav */
+.intro-topbar__right { display: flex; align-items: center; gap: 10px; }
+
+/* 中 / EN language toggle (wired by main.js [data-lang-toggle]); B&W to match the nav */
+.intro-lang-btn { display: inline-flex; align-items: center; gap: 5px; height: 50px; padding: 0 15px;
+  background: #0a0c12; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; color: #fff;
+  font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: .04em;
+  cursor: pointer; transition: border-color .25s ease, background .25s ease; }
+.intro-lang-btn:hover { border-color: rgba(255,255,255,.55); background: #11141d; }
+.intro-lang-btn .sep { opacity: .35; }
+.intro-lang-btn .on { color: #fff; }
+.intro-lang-btn .off { color: rgba(255,255,255,.4); }
+
 /* square black-and-white PillNav (vanilla port; wired by js/pill-nav.js) */
 .pillnav { display: inline-flex; align-items: center; }
 .pillnav .pill-list { list-style: none; display: flex; align-items: stretch; gap: 5px; margin: 0; padding: 4px;
@@ -149,7 +162,9 @@ body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
   /* name: keep compact so it never crowds the nav */
   .intro-name__zh { font-size: 1.12rem; }
   .intro-name__en { font-size: .6rem; letter-spacing: .12em; margin-top: 4px; }
-  /* shrink the pill nav so Contact + Enter Homepage fit on one row on phones */
+  /* shrink the pill nav + lang toggle so Contact + Enter Homepage fit one row */
+  .intro-topbar__right { gap: 7px; }
+  .intro-lang-btn { height: 38px; padding: 0 10px; font-size: 12px; gap: 4px; }
   .pillnav .pill-list { height: 38px; padding: 3px; gap: 4px; }
   .pillnav .pill { padding: 0 11px; font-size: 10.5px; letter-spacing: .02em; }
   .pillnav .pill--lg { padding: 0 13px; font-size: 11.5px; letter-spacing: .02em; }
@@ -176,6 +191,7 @@ body.lanyard-dragging { overflow: hidden; overscroll-behavior: contain; }
 }
 @media (max-width: 380px) {
   .intro-name__en { display: none; }
+  .intro-lang-btn { padding: 0 8px; font-size: 11px; }
   .pillnav .pill { padding: 0 9px; font-size: 10px; }
   .pillnav .pill--lg { padding: 0 11px; font-size: 11px; }
 }
