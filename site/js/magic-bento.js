@@ -20,14 +20,11 @@
   var PARTICLE_COUNT = 9;
 
   // selector -> which effects to enable (all get border-glow + spotlight)
+  // Scoped to the one deliberate card affordance (.proj). The other former
+  // "cards" (exp/skill/hl/stat/contact/faq) are now borderless typographic
+  // blocks, so a glowing border-ring + tilt would look wrong on them.
   var CONFIG = [
-    { sel: ".exp-card",     tilt: true,  magnet: true,  stars: true,  click: true },
-    { sel: ".skill-card",   tilt: true,  magnet: true,  stars: true,  click: true },
-    { sel: ".hl-card",      tilt: false, magnet: true,  stars: true,  click: true },
-    { sel: ".stat",         tilt: true,  magnet: true,  stars: false, click: true },
-    { sel: ".proj",         tilt: false, magnet: true,  stars: true,  click: true },
-    { sel: ".contact-card", tilt: false, magnet: true,  stars: false, click: true },
-    { sel: ".faq-item",     tilt: false, magnet: false, stars: false, click: true }
+    { sel: ".proj",         tilt: false, magnet: true,  stars: true,  click: true }
   ];
 
   var allCards = [];
