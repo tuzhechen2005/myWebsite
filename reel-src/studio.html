@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Clawd studio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Shantell+Sans:wght@800&family=Ma+Shan+Zheng&family=Caveat:wght@700&family=Noto+Sans+SC:wght@500&display=block">
+<style>
+  /* the site's own UI fonts, for the explainer cards */
+  @font-face { font-family: "Inter"; font-weight: 500; src: url("../site/fonts/inter-500.ttf") format("truetype"); }
+  @font-face { font-family: "Inter"; font-weight: 600; src: url("../site/fonts/inter-600.ttf") format("truetype"); }
+  @font-face { font-family: "Space Grotesk"; font-weight: 600; src: url("../site/fonts/space-grotesk-600.ttf") format("truetype"); }
+</style>
+<style>
+  html, body { margin: 0; background: #1b1820; color: #eee; font: 13px system-ui, sans-serif; }
+  main { padding: 12px; display: grid; gap: 8px; }
+  #out { width: min(100%, 1280px); aspect-ratio: 16 / 9; height: auto; background: #F3EBDC; }
+  .p5Canvas { display: none !important; }
+  .bar { display: flex; gap: 10px; align-items: center; max-width: 1280px; }
+  #scrub { flex: 1; }
+  #tt { font-variant-numeric: tabular-nums; min-width: 190px; }
+</style>
+<script src="node_modules/p5/lib/p5.min.js"></script>
+<script src="node_modules/p5.brush/dist/p5.brush.js"></script>
+</head>
+<body>
+<main>
+  <canvas id="out" width="1920" height="1080"></canvas>
+  <div class="bar"><input id="scrub" type="range" min="0" max="11" step="0.0417" value="0"><span id="tt">loading…</span></div>
+</main>
+<!-- engine -->
+<script src="src/config.js"></script>
+<script src="src/core.js"></script>
+<script src="src/clawd.js"></script>
+<script src="src/timeline.js"></script>
+<!-- reference sheets (standalone loops) -->
+<script src="src/sheets.js"></script>
+<!-- your video: add a script per scene file, in order -->
+<script src="src/cues.js"></script>
+<script>window.EXTRA_FONTS = [['700 212px "Caveat"', 'Zhechen Tu'], ['600 44px "Space Grotesk"', 'ZT']];</script>
+<script src="src/scenes/sea_set.js"></script>
+<script src="src/scenes/c0_prologue.js"></script>
+<script src="src/scenes/c1_archive.js"></script>
+<script src="src/scenes/c2_clinic.js"></script>
+<script src="src/scenes/c3_tools.js"></script>
+<script src="src/scenes/c4_thyroid.js"></script>
+<!-- bilingual explainer cards (after the scenes: wraps drawWorld + overlayHook) -->
+<script src="src/captions.js"></script>
+<script>
+  // Open studio.html?loop=emotions (or views) to scrub a standalone loop instead of the video.
+  const q = new URLSearchParams(location.search).get('loop'); if (q && LOOPS[q]) window.LOOP = LOOPS[q];
+</script>
+</body>
+</html>

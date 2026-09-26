@@ -146,13 +146,13 @@
     if (ST) gsap.registerPlugin(ST);
 
     // nav drops in
-    gsap.from(".nav", { y: -18, opacity: 0, duration: 0.7, ease: "power3.out" });
+    gsap.from(".nav", { y: -12, duration: 0.5, ease: "power3.out" });
 
     // hero plays on load
     var hero = gsap.utils.toArray(".hero .reveal");
     if (hero.length) {
       gsap.timeline({ defaults: { ease: "power3.out" } })
-        .from(hero, { y: 34, opacity: 0, duration: 0.9, stagger: 0.1, delay: 0.15 });
+        .from(hero, { y: 18, duration: 0.6, stagger: 0.07, delay: 0.1 });
     }
 
     // everything else reveals on scroll
@@ -161,16 +161,15 @@
       return !el.closest(".hero") && !el.matches(".sec-head h2");
     });
     if (rest.length && ST) {
-      gsap.set(rest, { opacity: 0, y: 42 });
       ST.batch(rest, {
         start: "top 87%",
         onEnter: function (b) {
-          gsap.to(b, { opacity: 1, y: 0, duration: 0.85, stagger: 0.1, ease: "power3.out", overwrite: true });
+          gsap.from(b, { y: 18, duration: 0.6, stagger: 0.06, ease: "power3.out", overwrite: true });
         }
       });
       window.addEventListener("load", function () { ST.refresh(); });
     } else {
-      gsap.set(rest, { opacity: 1, y: 0 });
+      gsap.set(rest, { y: 0 });
     }
   }
 

@@ -22,11 +22,15 @@
     tokens.forEach(function (tok) {
       if (tok === "") return;
       if (/^\s+$/.test(tok)) { el.appendChild(document.createTextNode(" ")); return; }
+      // Latin words stay unbreakable (chars are inline-blocks, which the browser may otherwise wrap between);
+      // CJK runs keep a break opportunity between every character.
+      var host = el;
+      if (/^[\u0000-\u024F\u2010-\u2027]+$/.test(tok)) { host = document.createElement("span"); host.className = "word"; el.appendChild(host); }
       for (var i = 0; i < tok.length; i++) {
         var s = document.createElement("span");
         s.className = "char" + (langClass ? " " + langClass : "");
         s.textContent = tok[i];
-        el.appendChild(s);
+        host.appendChild(s);
         collector.push(s);
       }
     });
@@ -38,13 +42,23 @@
 
     var zhChars = [];
     var enChars = [];
+    var accessible = [];
     if (h.children.length) {
       Array.prototype.forEach.call(h.children, function (node) {
         if (node.nodeType !== 1) return;
+        var original = node.textContent;
+        var copy = document.createElement("span");
+        copy.className = "sr-only " + (node.classList.contains("zh") ? "zh" : "en");
+        copy.textContent = original;
+        accessible.push(copy);
+        node.setAttribute("aria-hidden", "true");
         splitInto(node, node.classList.contains("zh") ? zhChars : enChars); // .zh / .en spans
       });
+      accessible.forEach(function (copy) { h.appendChild(copy); });
     } else {
+      var originalText = h.textContent;
       splitInto(h, enChars);
+      h.setAttribute("aria-label", originalText);
     }
 
     if (reduce || (!zhChars.length && !enChars.length)) return; // leave as static text
@@ -53,22 +67,16 @@
       gsap.fromTo(
         zhChars,
         {
-          opacity: 0,
-          yPercent: 86,
-          rotateX: -18,
-          scale: 0.92,
+          yPercent: 36,
           transformOrigin: "50% 72%",
-          willChange: "opacity, transform"
+          willChange: "transform"
         },
         {
-          opacity: 1,
           yPercent: 0,
-          rotateX: 0,
-          scale: 1,
-          duration: 1.2,
+          duration: 0.65,
           ease: "power3.out",
-          stagger: 0.045,
-          scrollTrigger: { trigger: h, start: "top bottom-=8%", end: "bottom center+=6%", scrub: 0.75 }
+          stagger: 0.015,
+          scrollTrigger: { trigger: h, start: "top bottom", end: "bottom center", scrub: 0.6 }
         }
       );
     }
@@ -76,11 +84,11 @@
     if (enChars.length) {
       gsap.fromTo(
         enChars,
-        { opacity: 0, yPercent: 120, scaleY: 2.3, scaleX: 0.7, transformOrigin: "50% 0%", willChange: "opacity, transform" },
+        { yPercent: 36, transformOrigin: "50% 0%", willChange: "transform" },
         {
-          opacity: 1, yPercent: 0, scaleY: 1, scaleX: 1,
-          duration: 1, ease: "back.inOut(2)", stagger: 0.03,
-          scrollTrigger: { trigger: h, start: "center bottom+=50%", end: "bottom bottom-=40%", scrub: true }
+          yPercent: 0,
+          duration: 0.65, ease: "power3.out", stagger: 0.015,
+          scrollTrigger: { trigger: h, start: "top bottom", end: "bottom center", scrub: 0.6 }
         }
       );
     }

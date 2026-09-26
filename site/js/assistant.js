@@ -20,91 +20,83 @@
   var KB = [
     {
       id: "greeting",
-      keys: ["你好", "您好", "hi", "hello", "hey", "在吗", "嗨"],
-      zh: "你好!👋 我是涂喆宸网站的 AI 助手。可以问我关于他的 <b>技能</b>、<b>项目</b>、<b>经历</b> 或 <b>联系方式</b>。试试下面的快捷问题,或直接打字提问。",
-      en: "Hi there! 👋 I'm Zhechen's site assistant. Ask me about his <b>skills</b>, <b>projects</b>, <b>experience</b>, or <b>how to reach him</b>. Try a quick question below, or just type."
+      keys: ["你好", "您好", "hi", "hello", "hey", "嗨"],
+      zh: "你好，我是涂喆宸网站的本地知识库助手。可以问我他的研究、项目、实习、技能或联系方式。",
+      en: "Hi, I'm Zhechen's local knowledge-base assistant. Ask me about his research, projects, internships, skills, or contact details."
     },
     {
-      id: "about",
-      keys: ["你是谁", "介绍", "自我介绍", "谁", "about", "who", "yourself", "涂喆宸是", "他是"],
-      zh: "涂喆宸是 <b>威斯康星大学麦迪逊分校 (UW–Madison)</b> 计算机科学本科生(2023–2027,GPA 3.7/4.0,Dean's List),求职方向是 <b>AI 应用 / Agent 开发工程师</b>。他独立完成过多智能体、RAG 等 AI 系统的端到端交付,能力覆盖 AI 应用、Agent 编排与高并发后端。",
-      en: "Zhechen Tu is a Computer Science undergrad at <b>UW–Madison</b> (2023–2027, GPA 3.7/4.0, Dean's List), targeting <b>AI application / agent engineering</b> roles. He's shipped multi-agent and RAG systems end-to-end, spanning AI apps, agent orchestration, and high-concurrency backends.",
-      acts: [{ zh: "了解更多 →", en: "More about him →", href: "about.html" }]
+      id: "research",
+      keys: ["甲状腺", "thyroid", "surgery", "外科", "研究", "research", "balentine", "mcmillan", "临床"],
+      zh: "<b>甲状腺癌 AI 研究</b>是 UW–Madison 外科系一项获 $69K 资助的在研项目。涂喆宸负责 LLM 系统架构、临床 RAG、可溯源生成及幻觉和临床敏感案例的安全评测，与 Courtney Balentine, MD, MPH 和 Alan McMillan, PhD 两位 PI 合作。系统尚未进行患者端验证。",
+      en: "The <b>thyroid cancer AI project</b> is an ongoing $69K-funded effort at UW–Madison Surgery. Zhechen leads the LLM architecture, clinical RAG, grounded generation, and safety evaluation with faculty PIs Courtney Balentine, MD, MPH and Alan McMillan, PhD. It has not yet undergone patient-facing validation.",
+      acts: [{ zh: "查看研究 →", en: "View research →", href: "projects.html" }]
     },
     {
-      id: "skills",
-      keys: ["技能", "技术", "会什么", "tech", "skill", "stack", "工具", "擅长", "技术栈", "能力"],
-      zh: "他的主要技术栈:<br>• <b>语言</b>:Java、Python、SQL<br>• <b>AI/Agent</b>:LangGraph、RAG、Function Calling、ReAct、Plan-and-Execute、Self-Reflection、LangSmith/Langfuse<br>• <b>检索/数据</b>:FAISS、BM25、Dense Retrieval、Cross-Encoder、Elasticsearch、Apache Flink、Kafka<br>• <b>后端/中间件</b>:Spring、Redis、Caffeine 多级缓存、JWT、n8n/Coze",
-      en: "His core stack:<br>• <b>Languages</b>: Java, Python, SQL<br>• <b>AI/Agent</b>: LangGraph, RAG, Function Calling, ReAct, Plan-and-Execute, Self-Reflection, LangSmith/Langfuse<br>• <b>Retrieval/Data</b>: FAISS, BM25, Dense Retrieval, Cross-Encoder, Elasticsearch, Apache Flink, Kafka<br>• <b>Backend</b>: Spring, Redis, Caffeine multi-level cache, JWT, n8n/Coze",
-      acts: [{ zh: "完整技能 →", en: "Full skills →", href: "about.html" }]
+      id: "microsoft",
+      keys: ["微软", "microsoft", "phi-3", "azure", "semantic kernel", "autogen"],
+      zh: "<b>微软 Cloud &amp; AI 实习</b>(2026.07–09):为 Phi-3 构建 24 个 Azure REST 工具和 320 条双语测试指令，完整工具调用准确率从 61% 提升至 87%；另构建文档 ReAct、架构规划多智能体和事件响应系统。",
+      en: "<b>Microsoft Cloud &amp; AI internship</b> (2026.07–09): built 24 Azure REST tools and 320 bilingual evaluations for Phi-3, improving complete tool-call accuracy from 61% to 87%; also built documentation ReAct, architecture-planning agents, and incident-response systems.",
+      acts: [{ zh: "完整经历 →", en: "Full experience →", href: "about.html" }]
     },
     {
-      id: "agent",
-      keys: ["agent", "智能体", "langgraph", "react", "编排", "多智能体", "plan-and-execute", "function calling", "工具调用"],
-      zh: "🤖 在 <b>Agent 方向</b>,他擅长:LangGraph 分层多智能体编排、ReAct + Plan-and-Execute 动态规划、Function Calling 工具化、人在环 (HITL) 安全护栏,以及用 LangSmith/Langfuse 做轨迹追踪与评测。代表作是 <b>多智能体医疗预问诊系统</b>。",
-      en: "🤖 On <b>agents</b>, he works with: layered multi-agent orchestration on LangGraph, ReAct + Plan-and-Execute planning, Function Calling tool-use, human-in-the-loop (HITL) guardrails, and LangSmith/Langfuse for tracing &amp; evaluation. His flagship is the <b>multi-agent medical triage system</b>.",
-      acts: [{ zh: "看这个项目 →", en: "See the project →", href: "projects.html" }]
+      id: "medical",
+      keys: ["医疗", "问诊", "导诊", "分诊", "medical", "triage", "health", "急症"],
+      zh: "<b>独立医疗预问诊项目</b>使用 LangGraph 编排五类 Agent，并检索 300+ 篇临床指南。测试中信息采集完整度达 92%，约 180 条评测案例中的急症召回率为 96%+。仅定位决策支持，不做诊断或处方。这与 UW Surgery 在研项目是两个不同项目。",
+      en: "The <b>independent medical intake project</b> coordinates five LangGraph agent roles and retrieves from 300+ clinical guidelines. Intake completeness reached 92% in testing; emergency recall was 96%+ across ~180 evaluation cases. Decision support only, not diagnosis or prescribing. It is separate from the UW Surgery research project."
     },
     {
-      id: "projects",
-      keys: ["项目", "作品", "project", "做过什么", "做了什么", "portfolio", "案例"],
-      zh: "他有三个 <b>独立完成</b> 的 AI 项目:<br>1️⃣ 多智能体医疗预问诊与导诊系统 (LangGraph)<br>2️⃣ 企业级 RAG AI 智能助手<br>3️⃣ AI 增强型知识社区平台<br>想了解哪个的细节?直接问我,或点下方看完整版。",
-      en: "He has three <b>solo-built</b> AI projects:<br>1️⃣ Multi-agent medical pre-consultation &amp; triage (LangGraph)<br>2️⃣ Enterprise RAG AI assistant<br>3️⃣ AI-enhanced knowledge community<br>Want details on one? Just ask, or open the full page below.",
-      acts: [{ zh: "全部项目 →", en: "All projects →", href: "projects.html" }]
-    },
-    {
-      id: "proj_medical",
-      keys: ["医疗", "问诊", "导诊", "分诊", "medical", "triage", "health", "诊断", "急症"],
-      zh: "🏥 <b>多智能体医疗预问诊与导诊系统</b>(2026.01–至今,独立开发):基于 LangGraph 的分层多智能体架构;ReAct + Plan-and-Execute 动态问诊使信息完整度 <b>70%→90%+</b>;RAG 工具化回答可溯源率 <b>90%+</b>;安全护栏 + HITL,自建约 180 条评测集 —— 急症召回 <b>96%+</b>、分诊 Top-2 命中 <b>88%+</b>、工具调用准确率 <b>95%+</b>。定位决策支持,不做诊断处方。",
-      en: "🏥 <b>Multi-Agent Medical Pre-Consultation &amp; Triage</b> (2026.01–present, solo): a layered multi-agent architecture on LangGraph; ReAct + Plan-and-Execute dynamic intake lifted info completeness from <b>70% to 90%+</b>; RAG-as-tool gives <b>90%+</b> traceable answers; safety guardrails + HITL with a ~180-case eval set — <b>96%+</b> emergency recall, <b>88%+</b> triage Top-2 hit, <b>95%+</b> tool-call accuracy. Decision support, not diagnosis."
-    },
-    {
-      id: "proj_rag",
-      keys: ["rag", "检索", "智能助手", "知识库", "retrieval", "faiss", "cross-encoder", "text-to-sql", "重排", "hyde"],
-      zh: "🔍 <b>企业级 RAG AI 智能助手</b>(2025.05–09,独立):统一接入结构化数据库与非结构化文档。Query Rewrite/Decompose/HyDE 使复杂查询 <b>Recall@10 +18%</b>;检索路由让响应时间 <b>-35%+</b>;BM25 + Dense + Cross-Encoder 重排使 Top-5 相关性 <b>+20%+</b>;Retrieval Feedback + Self-Reflection 自校验,事实一致性 <b>+15%+</b>。",
-      en: "🔍 <b>Enterprise RAG AI Assistant</b> (2025.05–09, solo): unifies structured databases and unstructured docs. Query Rewrite/Decompose/HyDE lifted complex-query <b>Recall@10 by 18%</b>; retrieval routing cut latency <b>35%+</b>; BM25 + Dense + Cross-Encoder reranking raised Top-5 relevance <b>20%+</b>; Retrieval Feedback + Self-Reflection improved factual consistency <b>15%+</b>."
-    },
-    {
-      id: "proj_community",
-      keys: ["社区", "kafka", "高并发", "缓存", "community", "redis", "elasticsearch", "事件驱动", "feed", "点赞", "并发"],
-      zh: "💬 <b>AI 增强型知识社区平台</b>(2025.05–09,独立):Kafka + Outbox 事件驱动保障高并发一致性;Redis 位图 + Lua 原子操作做幂等高并发计数;Caffeine + Redis 多级缓存 + hotkey 探测规避缓存击穿/雪崩;Elasticsearch(BM25 + 业务权重)+ RAG 问答;JWT 双令牌认证支持会话续期与实时失效。",
-      en: "💬 <b>AI-Enhanced Knowledge Community</b> (2025.05–09, solo): Kafka + Outbox event-driven design for consistency at scale; Redis bitmaps + atomic Lua for idempotent high-concurrency counting; Caffeine + Redis multi-level cache with hotkey detection to prevent stampede/avalanche; Elasticsearch (BM25 + business weighting) + RAG Q&amp;A; JWT dual-token auth with renewal and instant revocation."
+      id: "rag",
+      keys: ["rag", "检索", "智能助手", "知识库", "retrieval", "milvus", "重排", "text-to-sql"],
+      zh: "<b>企业级 RAG AI 助手</b>使用 BM25、Qwen3-Embedding、DistilBERT 路由和 Qwen3-Reranker。500 条评测中路由准确率 93%、复杂查询 Recall@10 提升 18%，回答可溯源率 92%。",
+      en: "The <b>enterprise RAG assistant</b> uses BM25, Qwen3 embeddings, DistilBERT routing, and Qwen3 reranking. Across 500 evaluations, routing accuracy was 93%, complex-query Recall@10 improved by 18%, and answer traceability reached 92%.",
+      acts: [{ zh: "查看项目 →", en: "View projects →", href: "projects.html" }]
     },
     {
       id: "experience",
-      keys: ["实习", "工作", "经历", "experience", "intern", "internship", "蓝船", "力群", "公司", "job"],
-      zh: "他有两段技术实习:<br>• <b>蓝船科技 · AI 研发部</b> — AI 应用与工作流开发工程师(2025.09–12):n8n/Coze 跨平台 AI 工作流使手动处理时间 <b>-40%</b>;经 Webhooks 将 Agent 接入 Slack/Notion。<br>• <b>江苏力群科技 · 数据中台</b>(2025.05–09):Apache Flink 实时 ETL 管道;Schema-aware Text-to-SQL 使数据获取效率 <b>+300%</b> 并完成公司内落地。",
-      en: "Two tech internships:<br>• <b>Lanchuan Technology · AI R&amp;D</b> — AI App &amp; Workflow Engineer (2025.09–12): n8n/Coze cross-platform workflows cut manual processing <b>40%</b>; connected agents to Slack/Notion via webhooks.<br>• <b>Jiangsu Liqun · Data Platform</b> (2025.05–09): real-time ETL on Apache Flink; schema-aware Text-to-SQL raised data-access efficiency <b>~300%</b>, deployed internally.",
-      acts: [{ zh: "完整经历 →", en: "Full timeline →", href: "about.html" }]
+      keys: ["实习", "工作", "经历", "experience", "intern", "蓝船", "力群", "公司"],
+      zh: "三段技术实习：<b>微软 Cloud &amp; AI</b>(2026.07–09)、<b>江苏力群数据中台</b>(2025.09–12)、<b>蓝船科技 AI 研发</b>(2025.05–09)。详细成果见经历页。",
+      en: "Three technical internships: <b>Microsoft Cloud &amp; AI</b> (2026.07–09), <b>Jiangsu Liqun Data Platform</b> (2025.09–12), and <b>Lanchuan Technology AI R&amp;D</b> (2025.05–09). See the experience page for outcomes.",
+      acts: [{ zh: "查看经历 →", en: "View experience →", href: "about.html" }]
+    },
+    {
+      id: "projects",
+      keys: ["项目", "作品", "project", "portfolio", "案例"],
+      zh: "项目页展示一项 <b>UW–Madison 外科系在研项目</b>，以及两个独立构建的系统：多智能体医疗预问诊和企业级 RAG 助手。",
+      en: "The projects page features an <b>ongoing UW–Madison Surgery research project</b> and two independently built systems: multi-agent medical intake and an enterprise RAG assistant.",
+      acts: [{ zh: "全部项目 →", en: "All projects →", href: "projects.html" }]
+    },
+    {
+      id: "skills",
+      keys: ["技能", "技术", "tech", "skill", "stack", "工具", "擅长", "能力", "agent", "智能体"],
+      zh: "技术栈：Python、Java、SQL；LangGraph、Semantic Kernel、AutoGen、Outlines；Milvus、BM25、Qwen3 Embedding/Reranker；FastAPI、Pydantic、Redis、Kafka、Flink；LangSmith / Langfuse 评测追踪。",
+      en: "Stack: Python, Java, SQL; LangGraph, Semantic Kernel, AutoGen, Outlines; Milvus, BM25, Qwen3 Embedding/Reranker; FastAPI, Pydantic, Redis, Kafka, Flink; LangSmith / Langfuse tracing.",
+      acts: [{ zh: "完整技能 →", en: "Full skills →", href: "about.html" }]
     },
     {
       id: "education",
-      keys: ["学校", "教育", "大学", "gpa", "uw", "madison", "威斯康星", "麦迪逊", "education", "school", "课程", "专业"],
-      zh: "🎓 <b>威斯康星大学麦迪逊分校 (UW–Madison)</b>,计算机科学本科,2023.09–2027.05,GPA <b>3.7/4.0</b>,Dean's List 校长荣誉学生。方向聚焦 AI 应用、Agent 系统、RAG 与数据基础设施;修读数据结构与算法、数据库系统、操作系统、计算机网络、离散数学等。",
-      en: "🎓 <b>University of Wisconsin–Madison</b>, B.S. Computer Science, 2023.09–2027.05, GPA <b>3.7/4.0</b>, Dean's List. Focused on AI applications, agent systems, RAG, and data infrastructure; coursework includes Data Structures &amp; Algorithms, Database Systems, OS, Computer Networks, Discrete Math."
+      keys: ["学校", "教育", "大学", "gpa", "uw", "madison", "威斯康星", "麦迪逊", "education", "school"],
+      zh: "威斯康星大学麦迪逊分校计算机科学本科，2023.09–2027.05，GPA <b>3.7/4.0</b>，Dean's List (2023–2025)。",
+      en: "UW–Madison Computer Science undergraduate, 2023.09–2027.05, GPA <b>3.7/4.0</b>, Dean's List (2023–2025)."
     },
     {
       id: "contact",
-      keys: ["联系", "邮箱", "邮件", "微信", "github", "contact", "email", "reach", "wechat", "怎么找", "联系方式"],
-      zh: "📫 联系方式:<br>• <b>邮箱</b>:ztu29@wisc.edu<br>• <b>GitHub</b>:@tuzhechen2005<br>• <b>微信</b>:Jelly_Tu<br>邮件通常 24 小时内回复 🙂",
-      en: "📫 Get in touch:<br>• <b>Email</b>: ztu29@wisc.edu<br>• <b>GitHub</b>: @tuzhechen2005<br>• <b>WeChat</b>: Jelly_Tu<br>Email replies usually land within 24 hours 🙂",
-      acts: [
-        { zh: "✉ 发邮件", en: "✉ Email him", href: "mailto:ztu29@wisc.edu" },
-        { zh: "GitHub ↗", en: "GitHub ↗", href: "https://github.com/tuzhechen2005" }
-      ]
+      keys: ["联系", "邮箱", "邮件", "微信", "github", "contact", "email", "reach", "wechat"],
+      zh: "邮箱：<b>ztu29@wisc.edu</b>；GitHub：<b>@tuzhechen2005</b>；微信：<b>Jelly_Tu</b>。",
+      en: "Email: <b>ztu29@wisc.edu</b>; GitHub: <b>@tuzhechen2005</b>; WeChat: <b>Jelly_Tu</b>.",
+      acts: [{ zh: "发邮件", en: "Send email", href: "mailto:ztu29@wisc.edu" }]
     },
     {
       id: "hire",
-      keys: ["招聘", "找工作", "全职", "机会", "求职", "hire", "hiring", "available", "opportunity", "join", "offer", "可入职"],
-      zh: "✅ 涂喆宸 <b>正在寻找 AI 应用 / Agent 开发方向的实习或全职机会</b>,期待参与从设计到评测落地的端到端 AI 系统建设。最快联系方式是邮箱 <b>ztu29@wisc.edu</b>。",
-      en: "✅ Zhechen is <b>open to AI application / agent engineering internships and full-time roles</b>, ideally building AI systems end-to-end. Fastest way to reach him is <b>ztu29@wisc.edu</b>.",
-      acts: [{ zh: "✉ 联系他", en: "✉ Reach out", href: "mailto:ztu29@wisc.edu" }]
+      keys: ["招聘", "找工作", "全职", "机会", "求职", "hire", "hiring", "available", "opportunity"],
+      zh: "欢迎就 AI 应用开发、Agent 工程及研究合作联系涂喆宸：<b>ztu29@wisc.edu</b>。",
+      en: "For AI application engineering, agent engineering, or research collaboration, contact Zhechen at <b>ztu29@wisc.edu</b>.",
+      acts: [{ zh: "发邮件", en: "Send email", href: "mailto:ztu29@wisc.edu" }]
     },
     {
       id: "thanks",
-      keys: ["谢谢", "感谢", "thanks", "thank you", "thx", "多谢", "好的"],
-      zh: "不客气!😊 还想了解涂喆宸的其他方面吗?随时问我。",
-      en: "You're welcome! 😊 Anything else you'd like to know about Zhechen? Just ask."
+      keys: ["谢谢", "感谢", "thanks", "thank you", "thx"],
+      zh: "不客气。还想了解研究、项目或经历吗？",
+      en: "You're welcome. Want to know more about the research, projects, or experience?"
     }
   ];
 
@@ -123,9 +115,9 @@
   ];
 
   var UI = {
-    title: { zh: "AI 助手", en: "AI Assistant" },
-    status: { zh: "在线 · 涂喆宸的网站助理", en: "Online · Zhechen's site guide" },
-    placeholder: { zh: "问我关于涂喆宸的任何事…", en: "Ask me anything about Zhechen…" },
+    title: { zh: "作品导览", en: "Portfolio guide" },
+    status: { zh: "本地知识库 · 固定问答", en: "Local KB · preset answers" },
+    placeholder: { zh: "查找项目、经历或联系方式…", en: "Ask about projects, experience, or contact…" },
     foot: { zh: "本地知识库 · 内容来自简历", en: "Local knowledge base · from résumé" },
     nudge: { zh: "👋 问我关于涂喆宸的事", en: "👋 Ask me about Zhechen" }
   };

@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>(function(){var d=document.documentElement;d.classList.add("js");var t;try{t=localStorage.getItem("site-theme");}catch(e){}if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";d.setAttribute("data-theme",t);})();</script>
-  <title>涂喆宸 Zhechen Tu — AI 应用 / Agent 开发工程师</title>
-  <meta name="description" content="涂喆宸 (Zhechen Tu) — AI Application & Agent Engineer. Multi-agent systems, RAG, and high-concurrency backends." />  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/assistant.css" />
-  <link rel="stylesheet" href="css/magic-bento.css" />
+  <title>涂喆宸 Zhechen Tu — Clinical AI &amp; Agent Engineering</title>
+  <meta name="description" content="Zhechen Tu leads thyroid cancer AI research at UW–Madison Surgery and builds evaluated RAG and agent systems. Former Microsoft Cloud &amp; AI intern." />
+  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/assistant.css?v=3" />
 </head>
 <body data-lang="zh">
 
@@ -19,6 +19,7 @@
       <a href="about.html"><span class="zh">关于</span><span class="en">About</span></a>
       <a href="projects.html"><span class="zh">项目</span><span class="en">Projects</span></a>
       <a href="contact.html"><span class="zh">联系</span><span class="en">Contact</span></a>
+      <a href="story.html"><span class="zh">故事</span><span class="en">Story</span></a>
     </nav>
     <div class="nav__right">
       <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
@@ -38,7 +39,7 @@
           <figure class="hero__portrait">
             <img src="assets/profile.jpg" alt="Zhechen Tu portrait" />
           </figure>
-          <a class="resume-orbit" href="assets/resume.pdf" target="_blank" rel="noopener" aria-label="Open resume">
+          <a class="resume-orbit" href="assets/resume.pdf?v=20260923" target="_blank" rel="noopener" aria-label="Open resume">
             <span class="circular-text zh" data-circular-text="我的简历*我的简历*"></span>
             <span class="circular-text en" data-circular-text="MY RESUME*MY RESUME*"></span>
             <span class="resume-orbit__arrow" aria-hidden="true">↗</span>
@@ -46,81 +47,54 @@
         </div>
         <div class="hero__copy">
           <span class="hero__eyebrow reveal"><span class="dot"></span>
-            <span class="zh">AI 应用 / Agent 开发工程师</span><span class="en">AI Application / Agent Engineer</span>
+            <span class="zh">UW Surgery 临床 AI 研究 · Agent 工程</span><span class="en">UW Surgery Clinical AI Research · Agent Engineering</span>
           </span>
           <h1 class="reveal" data-delay="1">
-            <span class="zh">构建<span class="grad">智能体系统</span>，连接 AI 与真实业务。</span>
-            <span class="en">Building <span class="grad">agentic systems</span> that connect AI with real products.</span>
+            <span class="zh">涂喆宸<span class="hero__name-en">Zhechen Tu</span></span>
+            <span class="en">Zhechen Tu<span class="hero__name-en">涂喆宸</span></span>
           </h1>
           <p class="hero__sub reveal" data-delay="2">
-            <span class="zh">我是涂喆宸，威斯康星大学麦迪逊分校计算机科学本科生。专注多智能体编排、RAG 检索与高并发后端，独立完成 AI 系统从设计、落地到评测迭代的端到端交付。</span>
-            <span class="en">I'm Zhechen Tu, a Computer Science undergrad at UW–Madison. I focus on multi-agent orchestration, RAG retrieval, and high-concurrency backends — shipping AI systems end-to-end, from design to evaluation.</span>
+            <span class="zh">我在 UW–Madison 外科系主导甲状腺癌 AI 支持系统研发，负责临床 RAG、可溯源生成与安全评测。此前在微软 Cloud &amp; AI 构建并评测工具调用及多智能体系统。</span>
+            <span class="en">I lead development of a thyroid cancer AI support system with UW–Madison Surgery, focusing on clinical RAG, traceable answers, and safety evaluation. Previously, I built and evaluated tool-calling and multi-agent systems at Microsoft Cloud &amp; AI.</span>
           </p>
           <div class="hero__actions reveal" data-delay="3">
-            <a class="btn btn--primary" href="projects.html">
-              <span class="zh">查看项目</span><span class="en">View Projects</span>
+            <a class="btn btn--primary" href="projects.html#thyroid">
+              <span class="zh">查看研究</span><span class="en">View Research</span>
               <span class="arrow">↗</span>
             </a>
             <a class="btn btn--ghost" href="contact.html">
               <span class="zh">联系我</span><span class="en">Get in touch</span>
             </a>
+            <a class="hero__resume-link" href="assets/resume.pdf?v=20260923" target="_blank" rel="noopener"><span class="zh">查看简历</span><span class="en">View résumé</span> ↗</a>
+            <a class="hero__reel-link" href="projects.html#showreel"><span class="hero__reel-dot" aria-hidden="true"></span><span class="zh">看 1:35 作品短片</span><span class="en">Watch the 1:35 showreel</span></a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee reveal" aria-hidden="true">
-      <div class="marquee__track">
-        <span class="marquee-item" data-tech="LangGraph"></span><span class="marquee-item" data-tech="Python"></span><span class="marquee-item" data-tech="Java"></span><span class="marquee-item" data-tech="Spring"></span><span class="marquee-item" data-tech="Redis"></span><span class="marquee-item" data-tech="Kafka"></span><span class="marquee-item" data-tech="Elasticsearch"></span><span class="marquee-item" data-tech="Apache Flink"></span><span class="marquee-item" data-tech="FAISS"></span><span class="marquee-item" data-tech="JWT"></span><span class="marquee-item" data-tech="n8n"></span>
-        <span class="marquee-item" data-tech="LangGraph"></span><span class="marquee-item" data-tech="Python"></span><span class="marquee-item" data-tech="Java"></span><span class="marquee-item" data-tech="Spring"></span><span class="marquee-item" data-tech="Redis"></span><span class="marquee-item" data-tech="Kafka"></span><span class="marquee-item" data-tech="Elasticsearch"></span><span class="marquee-item" data-tech="Apache Flink"></span><span class="marquee-item" data-tech="FAISS"></span><span class="marquee-item" data-tech="JWT"></span><span class="marquee-item" data-tech="n8n"></span>
-      </div>
-    </div>
-
-    <!-- ============ EXPERTISE ============ -->
-    <section class="section wrap">
+    <!-- ============ CURRENT WORK ============ -->
+    <section class="work-signal section wrap" aria-labelledby="currentWorkTitle">
       <div class="sec-head">
         <div>
-          <div class="sec-head__label reveal">
-            <span class="zh">专长领域</span><span class="en">Areas of Expertise</span>
-          </div>
-          <h2 class="reveal" data-delay="1">
-            <span class="zh">我能交付的三件事</span><span class="en">Three things I deliver</span>
-          </h2>
+          <div class="sec-head__label"><span class="zh">研究与工程</span><span class="en">Research &amp; engineering</span></div>
+          <h2 id="currentWorkTitle"><span class="zh">我在解决的问题</span><span class="en">The problems I work on</span></h2>
         </div>
       </div>
-      <div class="expertise-grid">
-        <article class="exp-card reveal">
-          <div class="exp-card__num">01</div>
-          <h3><span class="zh">多智能体系统</span><span class="en">Multi-Agent Systems</span></h3>
-          <p>
-            <span class="zh">基于 LangGraph 的分层智能体编排，ReAct + Plan-and-Execute 动态规划，工具化与人在环安全护栏。</span>
-            <span class="en">Layered agent orchestration on LangGraph, ReAct + Plan-and-Execute planning, tool-use and human-in-the-loop safety guardrails.</span>
-          </p>
-          <div class="tag-row">
-            <span class="tag tag--accent">LangGraph</span><span class="tag">ReAct</span><span class="tag">Function Calling</span><span class="tag">HITL</span>
+      <div class="signal-list">
+        <article class="signal-row">
+          <div class="signal-row__context"><span class="zh">当前 · UW–Madison 外科系</span><span class="en">Now · UW–Madison Surgery</span></div>
+          <div class="signal-row__body">
+            <h3><span class="zh">让临床 AI 的回答有依据，也知道何时拒答。</span><span class="en">Make clinical AI answers traceable, and know when to abstain.</span></h3>
+            <p><span class="zh">负责一项 $69K 资助研究的临床 RAG、证据生成和安全评测。目前仍在研发，为未来患者端验证做准备。</span><span class="en">Leading clinical RAG, grounded generation, and safety evaluation for a $69K-funded project. In development ahead of future patient-facing validation.</span></p>
+            <a class="text-link" href="projects.html#thyroid"><span class="zh">查看研究案例</span><span class="en">Explore the research</span> <span aria-hidden="true">↗</span></a>
           </div>
         </article>
-        <article class="exp-card reveal" data-delay="1">
-          <div class="exp-card__num">02</div>
-          <h3><span class="zh">RAG 与检索</span><span class="en">RAG &amp; Retrieval</span></h3>
-          <p>
-            <span class="zh">混合检索 + 重排序，Query Rewrite / Decompose / HyDE，检索路由与 Self-Reflection 自校验，回答可溯源、低幻觉。</span>
-            <span class="en">Hybrid retrieval + reranking, Query Rewrite / Decompose / HyDE, retrieval routing and Self-Reflection — traceable, low-hallucination answers.</span>
-          </p>
-          <div class="tag-row">
-            <span class="tag tag--accent">FAISS</span><span class="tag">Cross-Encoder</span><span class="tag">BM25</span><span class="tag">Text-to-SQL</span>
-          </div>
-        </article>
-        <article class="exp-card reveal" data-delay="2">
-          <div class="exp-card__num">03</div>
-          <h3><span class="zh">高并发后端</span><span class="en">High-Concurrency Backend</span></h3>
-          <p>
-            <span class="zh">Kafka 事件驱动解耦，Redis + Caffeine 多级缓存，Elasticsearch 检索，JWT 双令牌认证，保障一致性与稳定性。</span>
-            <span class="en">Kafka event-driven decoupling, Redis + Caffeine multi-level caching, Elasticsearch search, JWT dual-token auth — built for consistency at scale.</span>
-          </p>
-          <div class="tag-row">
-            <span class="tag tag--accent">Kafka</span><span class="tag">Redis</span><span class="tag">Spring</span><span class="tag">Elasticsearch</span>
+        <article class="signal-row">
+          <div class="signal-row__context"><span class="zh">此前 · Microsoft Cloud &amp; AI</span><span class="en">Previously · Microsoft Cloud &amp; AI</span></div>
+          <div class="signal-row__body">
+            <h3><span class="zh">让小模型工具调用可测、可控。</span><span class="en">Make small-model tool use measurable and reliable.</span></h3>
+            <p><span class="zh">构建 24 个 Azure REST 工具和 320 条双语评测指令，将 Phi-3 完整调用准确率从 61% 提升至 87%。</span><span class="en">Built 24 Azure REST tools and 320 bilingual evaluations, improving Phi-3 complete-call accuracy from 61% to 87%.</span></p>
+            <a class="text-link" href="about.html#microsoft"><span class="zh">查看微软经历</span><span class="en">View Microsoft work</span> <span aria-hidden="true">↗</span></a>
           </div>
         </article>
       </div>
@@ -131,7 +105,7 @@
       <div class="sec-head">
         <div>
           <div class="sec-head__label reveal"><span class="zh">精选项目</span><span class="en">Selected Projects</span></div>
-          <h2 class="reveal" data-delay="1"><span class="zh">最近在构建的产品</span><span class="en">What I've been building</span></h2>
+          <h2 class="reveal" data-delay="1"><span class="zh">从研究到可评测系统</span><span class="en">Research and evaluated systems</span></h2>
         </div>
         <a class="btn btn--ghost reveal" data-delay="1" href="projects.html">
           <span class="zh">全部项目</span><span class="en">All projects</span><span class="arrow">↗</span>
@@ -139,30 +113,55 @@
       </div>
 
       <div class="projects">
-        <!-- Project 1 -->
+        <!-- Current faculty-led research -->
+        <article class="proj reveal">
+          <div class="proj__body">
+            <div class="proj__meta">
+              <span class="role"><span class="zh">当前研究 · 技术负责人</span><span class="en">Current research · Technical lead</span></span>
+              <span>UW–Madison Surgery</span>
+            </div>
+            <h3><span class="zh">甲状腺癌 AI 支持系统</span><span class="en">Thyroid Cancer AI Support System</span></h3>
+            <p class="proj__desc">
+              <span class="zh">与 UW Surgery 临床团队共建 LLM 系统，负责临床文档处理、RAG、可溯源回答与安全评测；为未来面向患者的验证做准备。</span>
+              <span class="en">Building an LLM system with UW Surgery clinicians, owning clinical RAG, grounded answers, and safety evaluation ahead of future patient-facing validation.</span>
+            </p>
+            <div class="proj__tags tag-row">
+              <span class="tag tag--accent">Clinical AI</span><span class="tag">RAG</span><span class="tag">Grounded Generation</span><span class="tag">Safety Evaluation</span>
+            </div>
+            <a class="text-link proj__link" href="projects.html#thyroid"><span class="zh">阅读研究案例</span><span class="en">Read research case</span> <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="proj__side">
+            <div class="metric"><b>$69K</b><span><span class="zh">项目资助</span><span class="en">Project funding</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>UW</b><span><span class="zh">外科系 · 双 PI 指导</span><span class="en">Surgery · Two faculty PIs</span></span></div>
+          </div>
+        </article>
+
+        <!-- Independent medical project -->
         <article class="proj reveal">
           <div class="proj__body">
             <div class="proj__meta">
               <span class="role"><span class="zh">独立开发</span><span class="en">Solo</span></span>
               <span>2026.01 — <span class="zh">至今</span><span class="en">Present</span></span>
             </div>
-            <h3><span class="zh">多智能体医疗预问诊与导诊系统</span><span class="en">Multi-Agent Medical Pre-Consultation &amp; Triage</span></h3>
+            <h3><span class="zh">多智能体医疗预问诊与导诊</span><span class="en">Multi-Agent Medical Intake &amp; Triage</span></h3>
             <p class="proj__desc">
-              <span class="zh">面向常见科室的预问诊与分诊系统，多 Agent 协作完成结构化采集与导诊，定位决策支持。</span>
-              <span class="en">A pre-consultation and triage system where multiple agents collaborate on structured intake and routing — built for decision support, not diagnosis.</span>
+              <span class="zh">五类 LangGraph Agent 协作完成结构化采集、知识检索和导诊；定位决策支持，不做诊断或处方。</span>
+              <span class="en">Five LangGraph agent roles coordinate structured intake, retrieval, and triage. Decision support only, not diagnosis or prescribing.</span>
             </p>
             <div class="proj__tags tag-row">
-              <span class="tag tag--accent">Multi-Agent</span><span class="tag">LangGraph</span><span class="tag">HITL</span><span class="tag"><span class="zh">医疗 AI</span><span class="en">Medical AI</span></span>
+              <span class="tag tag--accent">LangGraph</span><span class="tag">Multi-Agent</span><span class="tag">Clinical Guidelines</span><span class="tag">HITL</span>
             </div>
+            <a class="text-link proj__link" href="projects.html#medical"><span class="zh">阅读项目案例</span><span class="en">Read project case</span> <span aria-hidden="true">↗</span></a>
           </div>
           <div class="proj__side">
-            <div class="metric"><b>96%+</b><span><span class="zh">急症召回率</span><span class="en">Emergency recall</span></span></div>
+            <div class="metric"><b>96%+</b><span><span class="zh">测试集急症召回率</span><span class="en">Emergency recall in evaluation</span></span></div>
             <div class="metric-divider"></div>
-            <div class="metric"><b>90%+</b><span><span class="zh">信息采集完整度</span><span class="en">Intake completeness</span></span></div>
+            <div class="metric"><b>92%</b><span><span class="zh">测试集信息采集完整度</span><span class="en">Intake completeness in testing</span></span></div>
           </div>
         </article>
 
-        <!-- Project 2 -->
+        <!-- Independent retrieval project -->
         <article class="proj reveal">
           <div class="proj__body">
             <div class="proj__meta">
@@ -171,40 +170,18 @@
             </div>
             <h3><span class="zh">企业级 RAG AI 智能助手</span><span class="en">Enterprise RAG AI Assistant</span></h3>
             <p class="proj__desc">
-              <span class="zh">统一接入结构化数据库与非结构化文档的 RAG 问答系统，自然语言驱动数据查询与知识检索。</span>
-              <span class="en">A RAG system unifying structured databases and unstructured documents — natural-language-driven querying and knowledge retrieval.</span>
+              <span class="zh">用 BM25、Qwen3 Embedding 与级联重排连接文档和结构化数据，加入路由、访问控制与 SQL 安全校验。</span>
+              <span class="en">Combines BM25, Qwen3 embeddings, and cascade reranking across documents and structured data, with routing, access control, and SQL safeguards.</span>
             </p>
             <div class="proj__tags tag-row">
-              <span class="tag tag--accent">RAG</span><span class="tag">Cross-Encoder</span><span class="tag">FAISS</span><span class="tag">Text-to-SQL</span>
+              <span class="tag tag--accent">Milvus</span><span class="tag">BM25</span><span class="tag">Qwen3-Reranker</span><span class="tag">Text-to-SQL</span>
             </div>
+            <a class="text-link proj__link" href="projects.html#rag"><span class="zh">阅读项目案例</span><span class="en">Read project case</span> <span aria-hidden="true">↗</span></a>
           </div>
           <div class="proj__side">
-            <div class="metric"><b>-35%</b><span><span class="zh">平均查询响应时间</span><span class="en">Avg query latency</span></span></div>
+            <div class="metric"><b>93%</b><span><span class="zh">检索路由准确率</span><span class="en">Retrieval routing accuracy</span></span></div>
             <div class="metric-divider"></div>
-            <div class="metric"><b>+20%</b><span><span class="zh">Top-5 检索相关性</span><span class="en">Top-5 relevance</span></span></div>
-          </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="proj reveal">
-          <div class="proj__body">
-            <div class="proj__meta">
-              <span class="role"><span class="zh">独立开发</span><span class="en">Solo</span></span>
-              <span>2025.05 — 2025.09</span>
-            </div>
-            <h3><span class="zh">AI 增强型知识社区平台</span><span class="en">AI-Enhanced Knowledge Community</span></h3>
-            <p class="proj__desc">
-              <span class="zh">结合高并发后端架构与 RAG 智能问答的知识社区，支持内容发布、实时数据处理与智能检索问答。</span>
-              <span class="en">A knowledge community combining high-concurrency backend architecture with RAG Q&amp;A — content publishing, real-time processing, and smart retrieval.</span>
-            </p>
-            <div class="proj__tags tag-row">
-              <span class="tag tag--accent">Kafka</span><span class="tag">Redis</span><span class="tag">Elasticsearch</span><span class="tag">JWT</span>
-            </div>
-          </div>
-          <div class="proj__side">
-            <div class="metric"><b>70%+</b><span><span class="zh">热点缓存命中率</span><span class="en">Hot-cache hit rate</span></span></div>
-            <div class="metric-divider"></div>
-            <div class="metric"><b>Kafka</b><span><span class="zh">事件驱动一致性</span><span class="en">Event-driven consistency</span></span></div>
+            <div class="metric"><b>+18%</b><span><span class="zh">复杂查询 Recall@10</span><span class="en">Complex-query Recall@10</span></span></div>
           </div>
         </article>
       </div>
@@ -213,13 +190,13 @@
     <!-- ============ CTA ============ -->
     <section class="wrap">
       <div class="cta reveal">
-        <h2><span class="zh">一起打造你的下一个大想法</span><span class="en">Let's build your next big idea</span></h2>
+        <h2><span class="zh">聊聊下一项有挑战的工作</span><span class="en">Let's discuss the next hard problem</span></h2>
         <p>
-          <span class="zh">正在寻找 AI 应用 / Agent 开发方向的机会，欢迎交流合作。</span>
-          <span class="en">Open to AI application / agent engineering opportunities — let's talk.</span>
+          <span class="zh">欢迎交流临床 AI、Agent 系统、检索评测与工程合作。</span>
+          <span class="en">Let's discuss clinical AI, agent systems, retrieval evaluation, or engineering collaboration.</span>
         </p>
-        <a class="btn btn--primary" href="contact.html">
-          <span class="zh">联系我</span><span class="en">Get in touch</span><span class="arrow">↗</span>
+        <a class="btn btn--primary" href="mailto:ztu29@wisc.edu?subject=AI%20engineering%20conversation">
+          <span class="zh">发送邮件</span><span class="en">Send an email</span><span class="arrow">↗</span>
         </a>
       </div>
     </section>
@@ -232,18 +209,17 @@
       <a href="https://github.com/tuzhechen2005" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:ztu29@wisc.edu">Email</a>
       <a href="contact.html">WeChat</a>
+      <a href="story.html"><span class="zh">影像故事</span><span class="en">Story</span></a>
     </div>
   </footer>
 
   <script src="vendor/gsap/gsap.min.js"></script>
   <script src="vendor/gsap/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis/lenis.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/magic-bento.js"></script>
-  <script src="js/scroll-float.js"></script>
-  <script src="js/tech-icons.js"></script>
+  <script src="js/main.js?v=2"></script>
+  <script src="js/scroll-float.js?v=3"></script>
   <script src="js/circular-text.js"></script>
-  <script src="js/assistant.js"></script>
+  <script src="js/assistant.js?v=20260923b"></script>
   <script type="module">
     // Animated fluid hero background (LiquidEther). Skipped for reduced-motion users.
     (function () {
@@ -252,10 +228,10 @@
       if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       import('./js/liquid-ether.js').then(function (m) {
         m.createLiquidEther(el, {
-          colors: ['#b8a6e8', '#7c5fd6', '#e6def5'],
+          colors: ['#92b7a7', '#547e71', '#e5b6a6'],
           mouseForce: 20, cursorSize: 100, resolution: 0.5,
           isViscous: false, viscous: 30, iterationsViscous: 32, iterationsPoisson: 32,
-          isBounce: false, autoDemo: true, autoSpeed: 0.5, autoIntensity: 2.2,
+          isBounce: false, autoDemo: true, autoSpeed: 0.35, autoIntensity: 1.3,
           takeoverDuration: 0.25, autoResumeDelay: 3000, autoRampDuration: 0.6,
           dt: 0.014, BFECC: true
         });

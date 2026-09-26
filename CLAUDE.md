@@ -13,39 +13,42 @@ Cloudflare Workers static assets from the GitHub repo.
 - The four big `*.html` files in the **repo root** (`About_Me...html`, `Devraj_Chatribin...html`,
   `My_Projects...html`, `Contact_Me...html`) are **saved Wix pages from a reference portfolio
   (Devraj Chatribin)** used only as a **design reference**. They are 0.4–12 MB each, auto-generated,
-  and must **never be edited or served**. `user_resume.pdf` (root) is the source of the site's content.
+  and must **never be edited or served**. Current content source is the September 2026 résumé copied to
+  `site/assets/resume.pdf`, plus the owner's separately supplied UW Surgery research role.
 - Deployable site assets live under `site/`; root `dist/` zip bundles are generated artifacts and are ignored.
 
 ## Site structure (`site/`)
 ```
 site/
-├── index.html        LANDING = cinematic scroll-scrubbed intro (NOT the home page anymore). Full-screen
-│                     baobab-dusk image-sequence scrubbed by scroll (intro.js, canvas 2D) + bilingual text
-│                     reveals + a top-right hanging Lanyard ID card (React bundle, Contact toggles drop/retract)
-│                     + an "Enter" portal → home.html. First-visit gate (INTRO_DEV flag).
-├── home.html         Home (the former index.html) — portrait hero (LiquidEther bg), CircularText resume CTA, marquee, expertise cards, featured projects, CTA
-├── about.html        About — hero, stats, education (crest stage: 3D extruded W-crest over a Prism WebGL bg [CSS-rays fallback] + shiny-metallic UW–Madison wordmark, ranking/alumni/numbers highlight cards, degree timeline, campus photos) / experience timeline, skills, honors
-├── projects.html     Projects — Ballpit hero bg + 3 detailed project cards with quantified-metric side panels
+├── index.html        Lightweight redirect to home.html; no heavy intro assets on the default visit.
+├── story.html        Optional cinematic underwater intro (intro.js, canvas 2D), with hanging
+│                     Lanyard ID card (Contact toggles drop/retract) and an Enter link to home.html.
+├── home.html         Main portfolio — portrait hero (+ small link to the showreel), current UW Surgery and Microsoft work, featured projects, CTA
+├── about.html        About — hero, stats, current clinical research and three internships, education with crest stage and campus photos, skills, honors
+├── projects.html     Projects — Ballpit hero, #showreel (hand-painted 1:35 short), three case studies, synthetic evidence-chain walkthrough
 ├── contact.html      Contact — email/GitHub/WeChat/phone cards, FAQ accordion
 ├── _headers          Cloudflare caching/security headers
 ├── assets/           profile.jpg, resume.pdf, local brand-logo SVGs, crest.png (W 校徽), bascom-hall/-mall.jpg (campus, CC BY-SA),
-│                     intro/frame-0001..0144.jpg (baobab-dusk scrub frames, from Pexels 33165323), badge-card.png (designed ID-card face),
+│                     intro/frame-0001..0360.jpg (underwater scrub frames), badge-card.png (designed ID-card face),
 │                     idphoto.jpg (source portrait used inside the badge-card artwork),
-│                     lanyard/card.glb + lanyard.png (React-Bits Lanyard model + band texture)
+│                     lanyard/card.glb + lanyard.png (React-Bits Lanyard model + band texture),
+│                     showreel/paper-sea.mp4 + poster.jpg (the showreel, built in reel-src/)
 ├── fonts/            local Inter + Space Grotesk font files
 ├── vendor/           local GSAP, ScrollTrigger, Lenis, three.js
 ├── css/
 │   ├── style.css         design tokens, layout, nav, theming, reveal, marquee, ScrollFloat, Lenis
 │   ├── assistant.css     AI chat widget (incl. dark-theme overrides)
 │   ├── intro.css         landing intro: scrub stage, text reveals, loader, Enter portal, #introLanyard placement, Contact button
-│   └── magic-bento.css   card border-glow / spotlight / particles
+│   └── magic-bento.css   archived card effects, not loaded by portfolio pages
 └── js/
     ├── main.js           lang toggle, theme toggle, mobile nav, GSAP scroll-reveal, marquee, Lenis, FAQ
-    ├── assistant.js      AI chat assistant (local knowledge base, no backend)
+    ├── assistant.js      Portfolio guide (local preset knowledge base, no backend)
+    ├── evidence-lab.js   Synthetic RAG evidence-state walkthrough on projects.html
+    ├── showreel.js       projects.html #showreel: poster play button + chapter chips that seek the video
     ├── liquid-ether.js   ESM — Three.js fluid hero background (home only)
     ├── ballpit.js        ESM — Three.js zero-gravity floating ball background (projects hero)
     ├── circular-text.js  vanilla CircularText text splitter for rotating resume CTA
-    ├── magic-bento.js    cursor glow / spotlight / particles / magnetism / ripple on cards
+    ├── magic-bento.js    archived hover effects, not loaded by portfolio pages
     ├── crest3d.js        CSS 3D extruded W-crest (about education); stacks layered PNG copies for depth + sway + pointer parallax + drag (clamped, no back face). Sides = solid black via brightness(0). No WebGL.
     ├── prism.js          raw-WebGL port of React-Bits <Prism/> (no ogl); glowing raymarched prism bg on the crest stage (<canvas data-prism>). HARDENED: on context-loss / shader error / <5fps stall it removes itself and the stage falls back to the pure-CSS .crest-stage__rays bg (adds/removes .prism-on on .crest-stage).
     ├── intro.js          landing scroll-scrub: preloads assets/intro/frame-####.jpg, ScrollTrigger scrub → canvas 2D frame draw + GSAP text timeline. Single-poster + procedural-placeholder fallbacks; static under reduced-motion.
@@ -64,7 +67,7 @@ cd lanyard-src && npm install && npm run build   # esbuild → ../site/js/lanyar
 ```
 Deploy stays 100% static (Cloudflare just serves the pre-built file; the Rapier wasm is base64-inlined so it's
 self-hosted / China-accessible). **Edit the card/physics/look in `lanyard-src/Lanyard.jsx` + `entry.jsx`, then
-re-run the build** — never hand-edit `lanyard.bundle.js`, and **bump the `?v=` on its `<script>` in `index.html`**
+re-run the build** — never hand-edit `lanyard.bundle.js`, and **bump the `?v=` on its `<script>` in `story.html`**
 each rebuild (the file path is cached; the owner tests in a real browser).
 
 Card face = a `THREE.CanvasTexture` drawn in `entry.jsx` `makeCardTexture(badge)` and passed in to replace the
@@ -83,10 +86,29 @@ Two gotchas that cost real time — keep them:
 Placement/size/interaction: it hangs from a top-right container (`css/intro.css .intro__lanyard`; on mobile it spans
 `100vw`/`100dvh` so touch drag has room). Contact dispatches `lanyard:drop` and now **toggles** the card: first click
 drops/mounts it, second click adds `.is-retracting`, animates `.lanyard-wrapper` upward with `translateY(-112vh)`,
-then unmounts the canvas after ~850ms. `index.html?drop=1` forces it open for dev. Touch dragging is supported via
+then unmounts the canvas after ~850ms. `story.html?drop=1` forces it open for dev. Touch dragging is supported via
 R3F pointer events with `pointercancel` / `lostpointercapture` cleanup; dragging adds `body.lanyard-dragging` to lock
 page scroll and prevent mobile touch-scroll conflicts. Headless screenshots render it only intermittently
 (virtual-time race) — judge it in a real browser.
+
+## Showreel — the second build-only workspace (`reel-src/`)
+"The Paper Sea" (纸海), a 95 s hand-painted cartoon: Jelly the jellyfish (the owner's nickname) learns to answer with
+sources — one chapter per project (enterprise RAG archive, multi-agent clinic, Microsoft tool wall, UW Surgery thyroid
+climax) and a painted signature. Made with the `painted-animation` skill kit: p5.js + p5.brush rendered frame by frame in
+headless Chrome, original score synthesized in Node from the same timeline (`src/cues.js`). Storyboard: `reel-src/STORYBOARD.md`.
+```bash
+cd reel-src && npm install
+node render.mjs --sheet=10,20,30 --cols=3 --w=480 --out=out/check/a.jpg   # look at frames
+node music/score.mjs && ffmpeg -y -i music/score.wav -af "highpass=f=38,equalizer=f=170:t=q:w=1.1:g=-3.5,equalizer=f=3200:t=q:w=1.3:g=2.5,loudnorm=I=-16:TP=-1.5:LRA=9" -c:a aac -b:a 192k assets/score.m4a
+node render.mjs --frames --workers=4 && node render.mjs --encode --audio=assets/score.m4a --out=out/video.mp4
+```
+`bash encode-web.sh` (run in `reel-src/`) writes the web copy `site/assets/showreel/paper-sea.mp4` from `out/frames` +
+`assets/score.m4a` (1600×900, 2-pass H.264 1.1 Mbps, ≈14.6 MB — keep it well under Cloudflare's 25 MiB per-file cap).
+The poster `site/assets/showreel/poster.jpg` is the 72.4 s frame (`node render.mjs --stills=72.4`, scaled to 1600×900).
+**Bump `?v=` on the `<video>` poster + source in projects.html** when replacing either (assets are cached immutable). The video is `preload="none"`, so it costs nothing until someone presses play.
+Bilingual explainer cards (neutral, one per key beat) live in `reel-src/src/captions.js`; their facts come only from the
+résumé/site copy (BM25, 24 Azure tools, 320 evals, Phi-3 61%→87%, thyroid system not yet patient-validated). Keep any
+new caption equally factual, and never add clinical outcome claims.
 
 ## Conventions (follow these when editing)
 - **Bilingual**: every translatable string is two sibling spans: `<span class="zh">…</span><span class="en">…</span>`.
@@ -96,15 +118,13 @@ page scroll and prevent mobile touch-scroll conflicts. Headless screenshots rend
   (reads `localStorage["site-theme"]`, falls back to OS preference) to avoid FOUC. Dark palette = `:root[data-theme="dark"]`
   overrides of the CSS variables. Toggling adds a temporary `.theme-anim` class for a smooth color crossfade.
   Hard-coded colors that must survive theme flips use semantic vars (`--btn-fg`, `--cta-bg`, etc.).
-- **Scroll reveal**: elements with `.reveal` fade up. Driven by GSAP+ScrollTrigger when available
-  (`html.has-gsap`), else IntersectionObserver, else visible (`html:not(.js)`). Section `<h2>` headings are
-  **excluded** from this and handled by ScrollFloat instead (see main.js filter).
+- **Scroll reveal**: content stays visible by default; GSAP adds subtle position motion when available.
+  Section `<h2>` headings are handled by ScrollFloat, which keeps an unsplit accessible copy.
 - **Tech chips**: `<span class="tech" data-tech="Java"></span>` (or `.marquee-item[data-tech]`). `tech-icons.js`
   fills in icon + label. Brand logos are local SVGs in `site/assets/icons/`; monogram fallbacks remain for tools
   without stable local logos.
-- **Only real tools go in the "tech stack"** (About skills section + marquee). Concepts/methodologies
-  (RAG, ReAct, Function Calling, Plan-and-Execute, Self-Reflection, BM25, Cross-Encoder, Text-to-SQL, etc.)
-  are intentionally **kept out of the tech stack** but may appear as project/expertise descriptors.
+- The site now lists concrete tools in its tech chips; BM25 is included as a retrieval method. Keep project claims
+  tied to the current résumé or an explicit owner update, especially for medical evaluation figures.
 
 ## Third-party dependencies (vendored locally, no install)
 - **GSAP 3.12.5** + **ScrollTrigger**: `site/vendor/gsap/`.
@@ -113,37 +133,43 @@ page scroll and prevent mobile touch-scroll conflicts. Headless screenshots rend
 - **Fonts**: local Inter and Space Grotesk files in `site/fonts/`, declared via `@font-face` in `style.css`.
 - **Tech logos**: local SVGs in `site/assets/icons/`.
 Avoid reintroducing Google Fonts, cdnjs, jsdelivr, Devicon, or Simple Icons runtime dependencies unless there is a clear reason; mainland China access is a goal.
-Script load order per page: `gsap → ScrollTrigger → lenis → main.js → magic-bento.js → scroll-float.js → [tech-icons.js] → [circular-text.js on home] → [prism.js + crest3d.js on about] → assistant.js → [ESM modules as needed]`. (Cache-busted `?v=` query strings are used on about-page assets — bump them when editing.)
+Script load order per page: `gsap → ScrollTrigger → lenis → main.js → scroll-float.js → [tech-icons.js on about] → [circular-text.js on home] → [prism.js + crest3d.js on about] → assistant.js → [evidence-lab.js + showreel.js on projects] → [ESM modules as needed]`. Bump `?v=` for changed CSS/JS because Cloudflare caches these paths for one day.
 
 ## Ported React-Bits components (all converted to vanilla)
-- **LiquidEther** → `liquid-ether.js` (`createLiquidEther(el, opts)`); inited from an inline module script in `index.html`. Colors `#5227FF/#FF9FFC/#B497CF`.
-- **MagicBento** → `magic-bento.js` (config array maps selectors → effects). Glow color = site accent `93,77,255`.
+- **LiquidEther** → `liquid-ether.js` (`createLiquidEther(el, opts)`); inited from an inline module script in `home.html`.
+- **MagicBento** → archived `magic-bento.js` and stylesheet are not loaded; project rows now use plain rules and spacing.
 - **ScrollFloat** → `scroll-float.js`; targets `.sec-head h2`, splits inside `.zh`/`.en` spans (bilingual-safe).
 - **Ballpit** → `ballpit.js`; inited from an inline module script in `projects.html`. It is zero-gravity, slowly expands from center, then drifts. Count is area-responsive; mobile resize/address-bar jitter should not reset physics.
 - **CircularText** → `circular-text.js`; targets `[data-circular-text]` and wraps letters for the rotating resume CTA on the home hero.
-- **Prism** → `prism.js` (raw WebGL, no `ogl`); glowing raymarched-prism background on the about-page crest stage (`<canvas data-prism>`), `rotate` mode. Hardened with a context-loss / shader-error / <5fps-stall watchdog that disposes the canvas and falls back to the CSS `.crest-stage__rays` background (toggles `.prism-on` on `.crest-stage`). MagicBento is also applied to the `.hl-card` ranking/alumni/numbers boxes.
+- **Prism** → `prism.js` (raw WebGL, no `ogl`); glowing raymarched-prism background on the about-page crest stage (`<canvas data-prism>`), `rotate` mode. Hardened with a context-loss / shader-error / <5fps-stall watchdog that disposes the canvas and falls back to the CSS `.crest-stage__rays` background (toggles `.prism-on` on `.crest-stage`).
 - **ShinyText** → CSS-only (no `motion`): `.crest-stage__word` ("UW–Madison") uses a silver→white→silver `background-clip:text` gradient swept via `@keyframes shiny-text`.
 - **ModelViewer / LightRays** were tried earlier for the crest area and removed — ModelViewer/3D-coin replaced by the flat `crest3d.js`, and the WebGL LightRays caused a GPU-hang black-screen on the owner's hardware (replaced by the CSS rays + the hardened Prism). Avoid reintroducing unguarded WebGL backgrounds.
 
 ## Key tunables (where to change things)
 - **Scroll speed / motion-sickness cap**: `js/main.js` Lenis block — Chinese uses `wheelMultiplier: 0.5`, English `0.55`,
   `lerp` (0.09), `MAX_GAP` (260, lower = lower peak flick speed). Language changes dispatch `site:langchange`.
-- **MagicBento**: `js/magic-bento.js` — `GLOW`, `SPOTLIGHT_RADIUS`, `PARTICLE_COUNT`, per-selector `CONFIG` flags
-  (tilt/magnet/stars/click). Border/spotlight styling in `css/magic-bento.css`.
+- **MagicBento**: legacy files remain for reference but are not currently active.
 - **ScrollFloat**: `js/scroll-float.js` — Chinese and English use separate char arrays and animation params; refreshes on language changes.
-- **LiquidEther**: init opts in the `<script type="module">` at the bottom of `index.html`.
+- **LiquidEther**: init opts in the `<script type="module">` at the bottom of `home.html`.
 - **Ballpit**: init opts in the `<script type="module">` at the bottom of `projects.html`; `count`, `minCount`,
   `explosionStrength`, `drift`, and `maxVelocity` control the projects hero background.
 - **Mobile nav**: `css/style.css` `@media (max-width: 680px)` + `js/main.js`. Menu opens as a full-screen overlay,
   locks body scroll with `body.nav-open`, closes on link click or Escape.
-- **AI assistant**: knowledge base (`KB` array, 14 bilingual intents), `CHIPS`, `FALLBACK` in `js/assistant.js`.
+- **AI assistant**: knowledge base (`KB` array), `CHIPS`, `FALLBACK` in `js/assistant.js`.
   To upgrade to a real LLM, flip `CONFIG.useAPI = true` and implement `callLLM()` against a backend proxy
   (keeps the API key server-side). Currently **local KB only — no backend, no API key, zero cost.**
 
-## Content facts (from `user_resume.pdf`)
+## Content facts (September 2026 résumé + owner-supplied research role)
 - Email `ztu29@wisc.edu` · GitHub `tuzhechen2005` · WeChat `Jelly_Tu`.
-- 3 solo projects: multi-agent medical pre-consultation/triage (LangGraph), enterprise RAG assistant, AI knowledge community.
-- 2 internships: 蓝船科技 (AI workflow, n8n/Coze), 江苏力群科技 (data platform, Flink/Text-to-SQL).
+- Current research: Lead AI Engineer, thyroid cancer AI support system, UW–Madison Department of Surgery,
+  $69K funded project. Faculty PIs Courtney Balentine, MD, MPH and Alan McMillan, PhD. Owns clinical RAG,
+  grounded generation, safety evaluation, and requirements collaboration. In development; future patient-facing
+  validation is planned, not completed. No start date was provided, so do not invent one.
+- Three internships: Microsoft Cloud & AI (2026.07–09), Jiangsu Liqun data platform (2025.09–12),
+  Lanchuan AI workflow (2025.05–09). The older site's Lanchuan/Liqun dates were reversed.
+- Two independent projects: multi-agent medical pre-consultation/triage (2026.01–present) and enterprise RAG
+  assistant (2025.05–09). The old knowledge community is not featured in the new résumé.
+- Medical project evaluation metrics are from its own test sets, not clinical validation or diagnostic approval.
 - Deployed resume asset: `site/assets/resume.pdf`.
 - Home portrait asset: `site/assets/profile.jpg` copied from root `写真.jpg`; root original is ignored.
 
@@ -156,7 +182,8 @@ animations, Three.js, or tech logos.
 
 ## Deployment
 - GitHub repo: `https://github.com/tuzhechen2005/myWebsite` (private).
-- Active branch: `codex1`; Cloudflare currently tracks/deploys this branch.
+- Cloudflare has historically tracked/deployed `codex1`; current local working branch is
+  `design/declutter-cards-color`. Verify the actual Cloudflare branch setting before pushing.
 - Cloudflare URL observed: `https://mywebsite.ztu29.workers.dev`.
 - Cloudflare added `wrangler`/Workers autoconfig via remote commits; always `git pull --rebase` or `git fetch && git rebase origin/codex1` before pushing if remote changed.
 - Cloudflare settings for static site: output directory is `site/`; no build step.
@@ -168,18 +195,15 @@ mkdir -p dist && (cd site && zip -rq ../dist/zhechen-tu-cloudflare-pages.zip . -
 
 ## Status / not done yet
 - Deployed through Cloudflare Workers static assets, but a custom personal domain has not been bound yet.
-- Cinematic intro + Lanyard work exists on feature branch `codex/fix-lanyard-card-visibility` and has been pushed.
-  It is not necessarily deployed until merged/pushed to the Cloudflare-tracked branch (`codex1`). The intro
-  (scroll-scrub baobab bg + text + hanging Jelly card using `badge-card.png`) replaces the old home as the landing;
-  old home → `home.html`.
-- **BEFORE DEPLOY: set `INTRO_DEV = false`** in `index.html`'s `<head>` (currently `true` so refresh always shows
-  the intro during dev; `false` restores "first visit only", returning visitors `location.replace('home.html')`).
+- The default entry at `index.html` redirects to `home.html`. The optional underwater intro and card live at `story.html`.
+- `/assets/*` is cached immutable for a year. When replacing `resume.pdf` or intro frames, bump the URL query
+  version in every referencing file before deploying.
 - Root scratch/source files to keep out of git: `image.png`, `工牌.png`, `证件照.jpg`, `效果图.png`/`校徽.png`
   (some already in `.gitignore`), `video_out/`. The real deployed badge asset is the copy under
   `site/assets/badge-card.png`.
 - Possible next steps: custom domain, favicon/OG tags, WeChat QR image, additional mobile QA, intro copy polish.
 
 ## Accessibility / robustness baked in
-- `prefers-reduced-motion`: disables Lenis, LiquidEther, ScrollFloat, MagicBento, marquee.
-- Touch/mobile: heavy hover effects (MagicBento, LiquidEther) auto-skip; Ballpit disables cursor following on touch.
+- `prefers-reduced-motion`: disables Lenis, LiquidEther, ScrollFloat, and marquee motion.
+- Touch/mobile: LiquidEther auto-skips; Ballpit disables cursor following on touch.
 - No-JS: content stays visible (`html:not(.js)` rule); local asset failures fall back cleanly where possible.

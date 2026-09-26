@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>(function(){var d=document.documentElement;d.classList.add("js");var t;try{t=localStorage.getItem("site-theme");}catch(e){}if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";d.setAttribute("data-theme",t);})();</script>
   <title>关于 · About — 涂喆宸 Zhechen Tu</title>
-  <meta name="description" content="About Zhechen Tu — education, experience, and skills." />  <link rel="stylesheet" href="css/style.css?v=7" />
-  <link rel="stylesheet" href="css/assistant.css" />
-  <link rel="stylesheet" href="css/magic-bento.css?v=2" />
+  <meta name="description" content="Zhechen Tu: UW–Madison Surgery clinical AI research, Microsoft Cloud &amp; AI internship, RAG and agent engineering." />
+  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/assistant.css?v=3" />
 </head>
 <body data-lang="zh">
 
@@ -18,6 +18,7 @@
       <a href="about.html" aria-current="page"><span class="zh">关于</span><span class="en">About</span></a>
       <a href="projects.html"><span class="zh">项目</span><span class="en">Projects</span></a>
       <a href="contact.html"><span class="zh">联系</span><span class="en">Contact</span></a>
+      <a href="story.html"><span class="zh">故事</span><span class="en">Story</span></a>
     </nav>
     <div class="nav__right">
       <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
@@ -33,22 +34,80 @@
     <section class="hero wrap">
       <span class="hero__eyebrow reveal"><span class="dot"></span><span class="zh">关于我</span><span class="en">About me</span></span>
       <h1 class="reveal" data-delay="1">
-        <span class="zh">一个注重<span class="grad">工程素养</span>的全栈 AI 开发者</span>
-        <span class="en">A full-stack AI developer with <span class="grad">engineering rigor</span></span>
+        <span class="zh">以证据和评测驱动<span class="grad">AI 工程</span></span>
+        <span class="en"><span class="grad">AI engineering</span> grounded in evidence</span>
       </h1>
       <p class="hero__sub reveal" data-delay="2">
-        <span class="zh">能力覆盖 AI 应用、Agent 编排与高并发后端。我习惯以评测集与指标驱动系统持续优化，独立完成多智能体 / RAG 系统从设计、落地到评测迭代的端到端交付。</span>
-        <span class="en">Spanning AI applications, agent orchestration, and high-concurrency backends. I drive systems with evaluation sets and metrics, delivering multi-agent / RAG systems end-to-end — from design and shipping to iterative evaluation.</span>
+        <span class="zh">我在 UW–Madison 外科系负责一项获资助的甲状腺癌 AI 研究项目，也曾在微软 Cloud &amp; AI、蓝船科技和江苏力群科技实习。工作重心是可靠的智能体、可溯源 RAG 和可重复的评测。</span>
+        <span class="en">I lead engineering on a funded thyroid cancer AI research project at UW–Madison Surgery, following internships at Microsoft Cloud &amp; AI, Lanchuan Technology, and Jiangsu Liqun. My focus is reliable agents, traceable RAG, and repeatable evaluation.</span>
       </p>
     </section>
 
     <!-- STATS -->
     <section class="wrap">
       <div class="stat-row">
-        <div class="stat reveal"><b>3.7</b><span>GPA / 4.0 · Computer Science</span></div>
-        <div class="stat reveal" data-delay="1"><b>2</b><span><span class="zh">份技术实习</span><span class="en">Tech internships</span></span></div>
-        <div class="stat reveal" data-delay="2"><b>3</b><span><span class="zh">个独立 AI 项目</span><span class="en">Solo AI projects</span></span></div>
-        <div class="stat reveal" data-delay="3"><b>★</b><span>Dean's List</span></div>
+        <div class="stat reveal"><b>$69K</b><span><span class="zh">临床 AI 研究资助</span><span class="en">Clinical AI research funding</span></span></div>
+        <div class="stat reveal" data-delay="1"><b>3</b><span><span class="zh">段技术实习</span><span class="en">Technical internships</span></span></div>
+        <div class="stat reveal" data-delay="2"><b>3.7</b><span>GPA / 4.0 · Computer Science</span></div>
+        <div class="stat reveal" data-delay="3"><b>2</b><span><span class="zh">个独立 AI 系统</span><span class="en">Independent AI systems</span></span></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section wrap">
+      <div class="sec-head">
+        <div>
+          <div class="sec-head__label reveal"><span class="zh">研究与实习</span><span class="en">Research &amp; Experience</span></div>
+          <h2 class="reveal" data-delay="1"><span class="zh">从临床需求到可靠系统</span><span class="en">From clinical needs to reliable systems</span></h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-date"><span class="zh">当前研究</span><span class="en">Current research</span></div>
+          <div class="tl-body">
+            <h3><span class="zh">甲状腺癌 AI 研究 · 技术负责人</span><span class="en">Lead AI Engineer · Thyroid Cancer AI Research</span></h3>
+            <div class="org">UW–Madison Department of Surgery · $69K <span class="zh">资助项目</span><span class="en">funded project</span></div>
+            <ul>
+              <li><span class="zh">与 Courtney Balentine, MD, MPH 和 Alan McMillan, PhD 两位 PI 及临床合作方协作，将需求转化为面向落地的 LLM 系统架构。</span><span class="en">Work with faculty PIs Courtney Balentine, MD, MPH and Alan McMillan, PhD, plus clinical stakeholders to translate requirements into a production-oriented LLM architecture.</span></li>
+              <li><span class="zh">负责临床文档预处理、检索、提示词编排、基于证据的回答生成与评测组成的完整 RAG 链路。</span><span class="en">Own the RAG pipeline from clinical document preprocessing and retrieval to prompt orchestration, grounded generation, and evaluation.</span></li>
+              <li><span class="zh">建立幻觉风险、来源可追溯性、回答质量及临床敏感失败场景的安全评测流程；系统尚在研发中，为未来患者端验证做准备。</span><span class="en">Develop safety evaluations for hallucination, source traceability, response quality, and clinically sensitive failures. The system is in development ahead of future patient-facing validation.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item reveal" id="microsoft">
+          <div class="tl-date">2026.07 — 2026.09</div>
+          <div class="tl-body">
+            <h3><span class="zh">微软 · 云计算与人工智能事业部</span><span class="en">Microsoft · Cloud &amp; AI</span></h3>
+            <div class="org"><span class="zh">AI 应用开发工程师（实习）</span><span class="en">AI Application Engineer Intern</span></div>
+            <ul>
+              <li><span class="zh">为 Phi-3 构建 24 个 Azure REST 工具、320 条双语指令和六维工具调用评测；完整调用准确率从 61% 提升至 87%，平均推理延迟降低 28%。</span><span class="en">Built a Phi-3 tool-calling evaluation with 24 Azure REST tools and 320 bilingual instructions; complete-call accuracy rose from 61% to 87%, with 28% lower average inference latency.</span></li>
+              <li><span class="zh">基于 Semantic Kernel + Phi-3 构建 Azure 文档 ReAct 智能体，120 题评测中答案准确率 85%、有效引用率 92%。</span><span class="en">Built a Semantic Kernel + Phi-3 Azure documentation ReAct agent: 85% answer accuracy and 92% valid citations across 120 evaluation questions.</span></li>
+              <li><span class="zh">用 AutoGen 开发架构规划与审查多智能体流程，并实现 FastAPI 事件响应智能体；配套状态校验、故障恢复及 329 项 Python / 5 项 Node.js 测试。</span><span class="en">Developed AutoGen architecture planning and review, plus a FastAPI incident-response agent, with state validation, recovery paths, and 329 Python / 5 Node.js tests.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">2025.09 — 2025.12</div>
+          <div class="tl-body">
+            <h3><span class="zh">江苏力群科技 · 数据中台</span><span class="en">Jiangsu Liqun Technology · Data Platform</span></h3>
+            <div class="org"><span class="zh">数据中台开发实习生</span><span class="en">Data Platform Developer Intern</span></div>
+            <ul>
+              <li><span class="zh">用 Flink + Kafka 构建 Exactly-Once 实时 ETL，接入 8 个数据源，日处理 500 万+ 条记录，端到端延迟低于 5 秒。</span><span class="en">Built Exactly-Once Flink + Kafka ETL across eight sources, processing 5M+ records per day with under-five-second end-to-end latency.</span></li>
+              <li><span class="zh">面向 200+ 张表开发 Schema-aware Text-to-SQL；在 300 条评测问题上，SQL 执行准确率从 62% 提升至 85%，系统覆盖 6 个业务部门。</span><span class="en">Developed schema-aware Text-to-SQL across 200+ tables; SQL execution accuracy rose from 62% to 85% on 300 evaluation questions, with adoption across six departments.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-date">2025.05 — 2025.09</div>
+          <div class="tl-body">
+            <h3><span class="zh">蓝船科技有限公司 · AI 研发部</span><span class="en">Lanchuan Technology · AI R&amp;D</span></h3>
+            <div class="org"><span class="zh">AI 应用与工作流开发工程师（实习）</span><span class="en">AI Application &amp; Workflow Engineer (Intern)</span></div>
+            <ul>
+              <li><span class="zh">上线 12 条 n8n / Coze 工作流，日处理 2,000+ 条数据；字段抽取准确率达 95.5%，单条处理时间由约 15 分钟缩短至 2.5 分钟以内。</span><span class="en">Shipped 12 n8n / Coze workflows processing 2,000+ records daily; field extraction reached 95.5% accuracy, and per-record processing fell from about 15 minutes to under 2.5 minutes.</span></li>
+              <li><span class="zh">通过 Webhook / REST 接入 Slack 与 Notion，链路成功率从 92% 提升至 99.5%；沉淀 20+ 个可复用流程节点。</span><span class="en">Integrated Slack and Notion through Webhooks / REST, improving workflow success from 92% to 99.5%, and packaged 20+ reusable nodes.</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -57,7 +116,7 @@
       <div class="sec-head">
         <div>
           <div class="sec-head__label reveal"><span class="zh">教育背景</span><span class="en">Education</span></div>
-          <h2 class="reveal" data-delay="1"><span class="zh">在麦迪逊攻读计算机</span><span class="en">Studying CS at Madison</span></h2>
+          <h2 class="reveal" data-delay="1"><span class="zh">计算机科学 · UW–Madison</span><span class="en">Computer Science · UW–Madison</span></h2>
         </div>
       </div>
 
@@ -76,40 +135,6 @@
         </div>
       </div>
 
-      <!-- HIGHLIGHT CARDS — why this school is a big deal -->
-      <div class="edu-highlights">
-        <article class="hl-card reveal">
-          <h3 class="hl-card__head"><span class="zh">世界排名</span><span class="en">Rankings</span></h3>
-          <ul class="hl-list">
-            <li><span class="zh">全美研究经费支出 <b class="hl-num">第 5</b>（2024 财年 19.3 亿美元，NSF）</span><span class="en">No. <b class="hl-num">5</b> in the U.S. for research spending ($1.93B, FY2024, NSF)</span></li>
-            <li><span class="zh">CWUR 世界大学 <b class="hl-num">第 30</b> · 全美第 20（2025）</span><span class="en">CWUR world rank <b class="hl-num">#30</b> · #20 in the U.S. (2025)</span></li>
-            <li><span class="zh">计算机科学 <b class="hl-num">全美前 16</b> · 数据库系统研究发源地之一</span><span class="en">Computer Science <b class="hl-num">top 16</b> in the U.S. · a birthplace of database systems</span></li>
-            <li><span class="zh"><b class="hl-num">公立常春藤</b> · AAU 美国大学协会创始成员（1900）</span><span class="en"><b class="hl-num">"Public Ivy"</b> · founding member of the AAU (1900)</span></li>
-            <li><span class="zh">学术声誉全球前 40 · US News 全美大学第 39</span><span class="en">Global top-40 academic reputation · U.S. News #39 nationally</span></li>
-          </ul>
-        </article>
-        <article class="hl-card reveal" data-delay="1">
-          <h3 class="hl-card__head"><span class="zh">知名校友</span><span class="en">Notable alumni</span></h3>
-          <ul class="hl-list">
-            <li><b>黄峥 · Colin Huang</b> — <span class="zh">拼多多 / PDD 创始人（本校计算机硕士）</span><span class="en">founder of Pinduoduo / PDD (CS master's here)</span></li>
-            <li><b>John Bardeen</b> — <span class="zh">唯一两次诺贝尔物理学奖得主（晶体管 · 超导）</span><span class="en">only two-time Nobel Physics laureate (transistor · superconductivity)</span></li>
-            <li><b>Frank Lloyd Wright</b> — <span class="zh">现代建筑大师（流水别墅 · 古根海姆）</span><span class="en">master architect (Fallingwater · the Guggenheim)</span></li>
-            <li><b>Carol Bartz</b> — <span class="zh">雅虎 (Yahoo!) 前董事长兼 CEO</span><span class="en">former chair &amp; CEO of Yahoo!</span></li>
-            <li><b>Virgil Abloh</b> — <span class="zh">Off-White 创始人 · LV 男装艺术总监</span><span class="en">founder of Off-White · Louis Vuitton menswear director</span></li>
-          </ul>
-        </article>
-        <article class="hl-card reveal" data-delay="2">
-          <h3 class="hl-card__head"><span class="zh">实力速览</span><span class="en">By the numbers</span></h3>
-          <ul class="hl-list hl-list--stats">
-            <li><b class="hl-num">$1.93B</b> <span class="zh">年度研究经费（全美第 5）</span><span class="en">annual research spend (No. 5 in U.S.)</span></li>
-            <li><b class="hl-num">800+</b> <span class="zh">校友担任企业 CEO</span><span class="en">alumni serving as CEOs</span></li>
-            <li><b class="hl-num">20+</b> <span class="zh">诺贝尔奖得主出自该校</span><span class="en">Nobel laureates tied to the university</span></li>
-            <li><b class="hl-num">1848</b> <span class="zh">建校 · 威斯康星州旗舰公立大学</span><span class="en">founded · Wisconsin's flagship public university</span></li>
-            <li><b class="hl-num">Big Ten</b> <span class="zh">十大联盟创始成员</span><span class="en">founding member of the Big Ten</span></li>
-          </ul>
-        </article>
-      </div>
-
       <!-- DEGREE -->
       <div class="timeline">
         <div class="tl-item reveal">
@@ -118,7 +143,7 @@
             <h3><span class="zh">威斯康星大学麦迪逊分校 (UW–Madison)</span><span class="en">University of Wisconsin–Madison</span></h3>
             <div class="org"><span class="zh">计算机科学 本科 · GPA 3.7/4.0 · Dean's List 校长荣誉学生</span><span class="en">B.S. Computer Science · GPA 3.7/4.0 · Dean's List</span></div>
             <ul>
-              <li><span class="zh">方向聚焦 AI 应用开发、Agent 系统、RAG 与数据基础设施——后者正是本校的传统强项。</span><span class="en">Focused on AI application development, agent systems, RAG, and data infrastructure — the last being one of the school's signature strengths.</span></li>
+              <li><span class="zh">聚焦 LLM 应用、Agent 系统、RAG 与数据基础设施。</span><span class="en">Focused on LLM applications, agent systems, RAG, and data infrastructure.</span></li>
               <li><span class="zh">相关课程：数据结构与算法、数据库系统、操作系统、计算机网络、离散数学。</span><span class="en">Coursework: Data Structures &amp; Algorithms, Database Systems, Operating Systems, Computer Networks, Discrete Math.</span></li>
             </ul>
           </div>
@@ -144,40 +169,6 @@
       </p>
     </section>
 
-    <!-- EXPERIENCE -->
-    <section class="section wrap">
-      <div class="sec-head">
-        <div>
-          <div class="sec-head__label reveal"><span class="zh">实习经历</span><span class="en">Experience</span></div>
-          <h2 class="reveal" data-delay="1"><span class="zh">在产业里打磨工程</span><span class="en">Shipping in industry</span></h2>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="tl-item reveal">
-          <div class="tl-date">2025.09 — 2025.12</div>
-          <div class="tl-body">
-            <h3><span class="zh">蓝船科技有限公司 · AI 研发部</span><span class="en">Lanchuan Technology · AI R&amp;D</span></h3>
-            <div class="org"><span class="zh">AI 应用与工作流开发工程师（实习）</span><span class="en">AI Application &amp; Workflow Engineer (Intern)</span></div>
-            <ul>
-              <li><span class="zh">设计并部署 n8n / Coze 跨平台 AI 自动化工作流，将手动数据处理时间减少 40%。</span><span class="en">Designed and deployed cross-platform AI automation workflows (n8n / Coze), cutting manual data-processing time by 40%.</span></li>
-              <li><span class="zh">经 Webhooks 将 AI Agent 接入 Slack / Notion，打通消息触发、任务流转与结果回传，沉淀可复用工作流节点。</span><span class="en">Connected AI agents to Slack / Notion via webhooks for message triggers, task routing, and result callbacks — building reusable workflow nodes.</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="tl-item reveal">
-          <div class="tl-date">2025.05 — 2025.09</div>
-          <div class="tl-body">
-            <h3><span class="zh">江苏力群科技有限公司 · 数据中台事业部</span><span class="en">Jiangsu Liqun Technology · Data Platform</span></h3>
-            <div class="org"><span class="zh">数据中台开发实习生</span><span class="en">Data Platform Developer (Intern)</span></div>
-            <ul>
-              <li><span class="zh">基于 Apache Flink 构建实时数据清洗与 ETL 管道，支撑企业级高并发数据流处理。</span><span class="en">Built real-time data-cleaning and ETL pipelines on Apache Flink for enterprise-scale high-concurrency streams.</span></li>
-              <li><span class="zh">针对复杂数据库 Schema 设计 Schema-aware 检索的 Text-to-SQL 问答，数据获取效率提升约 300% 并完成公司内部落地。</span><span class="en">Designed schema-aware Text-to-SQL Q&amp;A over complex schemas, raising data-access efficiency ~300% — deployed internally.</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- SKILLS -->
     <section class="section wrap">
       <div class="sec-head">
@@ -199,6 +190,8 @@
           <h4><span class="ico"></span>AI / Agent</h4>
           <div class="tech-grid">
             <span class="tech" data-tech="LangGraph"></span>
+            <span class="tech" data-tech="Semantic Kernel"></span>
+            <span class="tech" data-tech="AutoGen"></span>
             <span class="tech" data-tech="LangSmith"></span>
             <span class="tech" data-tech="Langfuse"></span>
           </div>
@@ -206,7 +199,8 @@
         <div class="skill-card reveal" data-delay="2">
           <h4><span class="ico"></span><span class="zh">检索 / 数据</span><span class="en">Retrieval / Data</span></h4>
           <div class="tech-grid">
-            <span class="tech" data-tech="FAISS"></span>
+            <span class="tech" data-tech="Milvus"></span>
+            <span class="tech" data-tech="BM25"></span>
             <span class="tech" data-tech="Elasticsearch"></span>
             <span class="tech" data-tech="Apache Flink"></span>
             <span class="tech" data-tech="Kafka"></span>
@@ -217,7 +211,8 @@
           <div class="tech-grid">
             <span class="tech" data-tech="Spring"></span>
             <span class="tech" data-tech="Redis"></span>
-            <span class="tech" data-tech="Caffeine"></span>
+            <span class="tech" data-tech="FastAPI"></span>
+            <span class="tech" data-tech="Pydantic"></span>
             <span class="tech" data-tech="JWT"></span>
             <span class="tech" data-tech="n8n"></span>
             <span class="tech" data-tech="Coze"></span>
@@ -248,7 +243,7 @@
             <h3><span class="zh">Union South 运营助理</span><span class="en">Operations Assistant · Union South</span></h3>
             <div class="org"><span class="zh">高并发服务场景</span><span class="en">High-traffic service operations</span></div>
             <ul>
-              <li><span class="zh">高并发场景处理点单 / 结算 / 异常协调，强化沟通、执行与压力管理能力。</span><span class="en">Handled ordering, settlement, and exception coordination under peak load — sharpening communication, execution, and composure under pressure.</span></li>
+              <li><span class="zh">高峰期日均处理 300+ 单点单、结算及异常协调。</span><span class="en">Handled 300+ daily orders, payments, and exception coordination at peak demand.</span></li>
             </ul>
           </div>
         </div>
@@ -271,18 +266,18 @@
       <a href="https://github.com/tuzhechen2005" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:ztu29@wisc.edu">Email</a>
       <a href="contact.html">WeChat</a>
+      <a href="story.html"><span class="zh">影像故事</span><span class="en">Story</span></a>
     </div>
   </footer>
 
   <script src="vendor/gsap/gsap.min.js"></script>
   <script src="vendor/gsap/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis/lenis.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/magic-bento.js?v=5"></script>
-  <script src="js/scroll-float.js"></script>
+  <script src="js/main.js?v=2"></script>
+  <script src="js/scroll-float.js?v=3"></script>
   <script src="js/tech-icons.js"></script>
   <script src="js/prism.js?v=2"></script>
   <script src="js/crest3d.js?v=3"></script>
-  <script src="js/assistant.js"></script>
+  <script src="js/assistant.js?v=20260923b"></script>
 </body>
 </html>

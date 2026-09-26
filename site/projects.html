@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>(function(){var d=document.documentElement;d.classList.add("js");var t;try{t=localStorage.getItem("site-theme");}catch(e){}if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";d.setAttribute("data-theme",t);})();</script>
   <title>项目 · Projects — 涂喆宸 Zhechen Tu</title>
-  <meta name="description" content="Selected projects by Zhechen Tu — multi-agent medical triage, enterprise RAG assistant, AI knowledge community." />  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/assistant.css" />
-  <link rel="stylesheet" href="css/magic-bento.css" />
+  <meta name="description" content="Zhechen Tu's current UW–Madison thyroid cancer AI research and independent multi-agent medical intake and enterprise RAG projects." />
+  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/assistant.css?v=3" />
 </head>
 <body data-lang="zh">
 
@@ -18,6 +18,7 @@
       <a href="about.html"><span class="zh">关于</span><span class="en">About</span></a>
       <a href="projects.html" aria-current="page"><span class="zh">项目</span><span class="en">Projects</span></a>
       <a href="contact.html"><span class="zh">联系</span><span class="en">Contact</span></a>
+      <a href="story.html"><span class="zh">故事</span><span class="en">Story</span></a>
     </nav>
     <div class="nav__right">
       <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
@@ -35,21 +36,91 @@
       <div class="hero wrap">
         <span class="hero__eyebrow reveal"><span class="dot"></span><span class="zh">项目经历</span><span class="en">Selected work</span></span>
         <h1 class="reveal" data-delay="1">
-          <span class="zh">打造<span class="grad">下一代数字产品</span></span>
-          <span class="en">Creating <span class="grad">next-level digital products</span></span>
+          <span class="zh">从临床研究到<span class="grad">可评测的 AI 系统</span></span>
+          <span class="en">Clinical research and <span class="grad">evaluated AI systems</span></span>
         </h1>
         <p class="hero__sub reveal" data-delay="2">
-          <span class="zh">三个独立完成的 AI 系统，覆盖多智能体编排、混合检索与高并发后端 —— 每一个都以评测指标驱动迭代。</span>
-          <span class="en">Three solo-built AI systems spanning multi-agent orchestration, hybrid retrieval, and high-concurrency backends — each driven by evaluation metrics.</span>
+          <span class="zh">一项与 UW–Madison 外科系合作的在研项目，以及两个独立构建的 AI 系统。重点是来源可追溯、受控工具调用和明确的评测边界。</span>
+          <span class="en">One ongoing project with UW–Madison Surgery and two independently built AI systems, focused on source traceability, constrained tool use, and clear evaluation boundaries.</span>
         </p>
       </div>
     </section>
 
+    <!-- SHOWREEL: a hand-painted short, drawn frame by frame in code (reel-src/), original synthesized score -->
+    <section class="section wrap showreel" id="showreel" aria-labelledby="showreelTitle">
+      <div class="sec-head">
+        <div>
+          <div class="sec-head__label"><span class="zh">作品短片</span><span class="en">Showreel</span></div>
+          <h2 id="showreelTitle"><span class="zh">纸海：有据可依的水母</span><span class="en">The Paper Sea: a jellyfish learns to cite its sources</span></h2>
+        </div>
+        <p class="showreel__meta">1:35 · <span class="zh">代码逐帧手绘动画 · 原创配乐</span><span class="en">Hand-painted in code, frame by frame · original score</span></p>
+      </div>
+      <figure class="showreel__frame" data-showreel>
+        <video class="showreel__video" preload="none" playsinline width="1920" height="1080" poster="assets/showreel/poster.jpg?v=1" aria-label="The Paper Sea showreel">
+          <source src="assets/showreel/paper-sea.mp4?v=3" type="video/mp4" />
+        </video>
+        <button class="showreel__play" type="button">
+          <span class="showreel__play-icon" aria-hidden="true"></span>
+          <span class="zh">播放短片</span><span class="en">Play the reel</span>
+        </button>
+      </figure>
+      <ol class="showreel__chapters" aria-label="Chapters">
+        <li><button type="button" data-showreel-seek="0"><span class="showreel__time">0:00</span><span class="zh">序 · 一滴墨</span><span class="en">Prologue · a drop of ink</span></button></li>
+        <li><button type="button" data-showreel-seek="10"><span class="showreel__time">0:10</span><span class="zh">企业 RAG · 沉没的档案馆</span><span class="en">Enterprise RAG · the sunken archive</span></button></li>
+        <li><button type="button" data-showreel-seek="27.5"><span class="showreel__time">0:27</span><span class="zh">多智能体问诊 · 珊瑚诊所</span><span class="en">Multi-agent intake · the coral clinic</span></button></li>
+        <li><button type="button" data-showreel-seek="45"><span class="showreel__time">0:45</span><span class="zh">微软 · 工具调用墙</span><span class="en">Microsoft · the tool wall</span></button></li>
+        <li><button type="button" data-showreel-seek="60"><span class="showreel__time">1:00</span><span class="zh">甲状腺癌 AI · 深海取证</span><span class="en">Thyroid AI · sources from the deep</span></button></li>
+        <li><button type="button" data-showreel-seek="85"><span class="showreel__time">1:25</span><span class="zh">尾声 · 落款</span><span class="en">Epilogue · the signature</span></button></li>
+      </ol>
+      <p class="showreel__note"><span class="zh">短片是对项目方法的寓言：先检索、标注来源，证据不足时交给人。画面与配乐全部由代码生成（p5.js + p5.brush 逐帧绘制，Node 合成音乐），不代表任何临床结果。</span><span class="en">An allegory of how these systems work: retrieve, cite, and hand off to a human when evidence runs out. Every frame and note is generated in code (p5.js + p5.brush, frame by frame; a Node-synthesized score). It depicts no clinical results.</span></p>
+    </section>
+
+    <nav class="case-nav wrap" aria-label="Project cases">
+      <a href="#thyroid"><span class="zh">甲状腺癌 AI 研究</span><span class="en">Thyroid AI research</span></a>
+      <a href="#medical"><span class="zh">医疗预问诊</span><span class="en">Medical intake</span></a>
+      <a href="#rag"><span class="zh">企业 RAG</span><span class="en">Enterprise RAG</span></a>
+      <a href="#evidence-lab"><span class="zh">证据链演示</span><span class="en">Evidence demo</span></a>
+    </nav>
+
     <section class="section wrap" style="padding-top:0">
       <div class="projects">
 
+        <article class="proj reveal" id="thyroid">
+          <div class="proj__body">
+            <div class="proj__meta">
+              <span class="role"><span class="zh">当前研究 · 技术负责人</span><span class="en">Current research · Lead AI Engineer</span></span>
+              <span>UW–Madison Department of Surgery</span>
+            </div>
+            <h3><span class="zh">甲状腺癌 AI 支持系统</span><span class="en">Thyroid Cancer AI Support System</span></h3>
+            <p class="proj__desc">
+              <span class="zh">与外科系临床合作方共建 LLM 支持系统，将临床需求转化为面向落地的 AI 架构。目前处于研发和评测阶段，为未来患者端验证做准备。</span>
+              <span class="en">Building an LLM-powered support system with UW Surgery clinicians, translating clinical requirements into a production-oriented architecture. In development and evaluation ahead of future patient-facing validation.</span>
+            </p>
+            <ul class="proj__details">
+              <li><span class="zh">负责临床文档预处理、检索、提示词编排、基于证据的回答生成及端到端评测。</span><span class="en">Own clinical document preprocessing, retrieval, prompt orchestration, grounded response generation, and end-to-end evaluation.</span></li>
+              <li><span class="zh">建立幻觉风险、来源可追溯性、回答质量与临床敏感失败案例的安全评测流程。</span><span class="en">Build safety evaluations for hallucination risk, source traceability, response quality, and clinically sensitive failure cases.</span></li>
+              <li><span class="zh">与 Courtney Balentine, MD, MPH 和 Alan McMillan, PhD 两位 PI 及临床团队共同确定技术需求与优先级。</span><span class="en">Work with faculty PIs Courtney Balentine, MD, MPH and Alan McMillan, PhD, and clinical stakeholders on technical requirements and priorities.</span></li>
+            </ul>
+            <div class="case-flow" aria-label="Clinical RAG workflow">
+              <span><span class="zh">临床文档</span><span class="en">Clinical documents</span></span>
+              <span><span class="zh">检索与编排</span><span class="en">Retrieval &amp; orchestration</span></span>
+              <span><span class="zh">引用回答</span><span class="en">Grounded answer</span></span>
+              <span><span class="zh">安全评测</span><span class="en">Safety evaluation</span></span>
+            </div>
+            <p class="case-boundary"><strong><span class="zh">评测状态</span><span class="en">Evaluation status</span></strong><span class="zh">当前建立幻觉、来源可溯源性和临床敏感失败案例的评测流程；尚未进行患者端验证，因此这里不展示临床效果指标。</span><span class="en">Evaluation workflows for hallucination, traceability, and clinically sensitive failures are in development. No patient-facing validation or clinical efficacy metric is claimed here.</span></p>
+            <div class="proj__tags tag-row"><span class="tag tag--accent">Clinical AI</span><span class="tag">RAG</span><span class="tag">Grounded Generation</span><span class="tag">Safety Evaluation</span></div>
+          </div>
+          <div class="proj__side">
+            <div class="metric"><b>$69K</b><span><span class="zh">项目资助</span><span class="en">Project funding</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b>2 PIs</b><span><span class="zh">院系与临床合作</span><span class="en">Faculty-led clinical collaboration</span></span></div>
+            <div class="metric-divider"></div>
+            <div class="metric"><b><span class="zh">在研</span><span class="en">R&amp;D</span></b><span><span class="zh">尚未进行患者端验证</span><span class="en">Not yet patient-validated</span></span></div>
+          </div>
+        </article>
+
         <!-- ============ PROJECT 1 ============ -->
-        <article class="proj reveal">
+        <article class="proj reveal" id="medical">
           <div class="proj__body">
             <div class="proj__meta">
               <span class="role"><span class="zh">独立开发者</span><span class="en">Solo developer</span></span>
@@ -60,12 +131,19 @@
               <span class="zh">面向常见科室的医疗预问诊与导诊系统，多 Agent 协作完成结构化采集与分诊，定位决策支持，不做诊断与处方。</span>
               <span class="en">A pre-consultation and triage system for common clinical departments. Multiple agents collaborate on structured intake and triage — positioned for decision support, never diagnosis or prescription.</span>
             </p>
-            <ul style="color:var(--ink-soft); padding-left:18px; margin:0 0 22px;">
+            <ul class="proj__details">
               <li><span class="zh"><b>分层多智能体架构：</b>基于 LangGraph，由协调 Agent 统一调度问诊采集、知识检索、分诊导诊与安全护栏等专职 Agent。</span><span class="en"><b>Layered multi-agent architecture:</b> a coordinator agent on LangGraph orchestrates specialized agents for intake, retrieval, triage, and safety guardrails.</span></li>
-              <li><span class="zh"><b>ReAct + Plan-and-Execute：</b>依据已采集症状动态决定追问与工具调用，替代固定表单，关键信息完整度 70% → 90%+。</span><span class="en"><b>ReAct + Plan-and-Execute:</b> dynamically decides follow-ups and tool calls from collected symptoms — replacing fixed forms; key-info completeness rose from 70% to 90%+.</span></li>
-              <li><span class="zh"><b>RAG 工具化：</b>将自研 RAG 封装为检索工具接入临床指南知识库并提供引用溯源，回答可溯源率 90%+。</span><span class="en"><b>RAG as a tool:</b> wrapped a custom RAG system as a retrieval tool over a clinical-guideline knowledge base with citation tracing — 90%+ traceable answers.</span></li>
+              <li><span class="zh"><b>动态采集：</b>依据已采集症状决定追问与工具调用；12 个常见科室测试中关键信息完整度由约 70% 提升至 92%，平均轮次由 12 降至 6.5。</span><span class="en"><b>Dynamic intake:</b> follow-ups and tool calls adapt to symptoms; across 12 tested departments, key-info completeness rose from ~70% to 92% and average rounds fell from 12 to 6.5.</span></li>
+              <li><span class="zh"><b>RAG 工具化：</b>接入 300+ 篇临床指南，通过 JSON Schema 与 Pydantic 约束工具输入输出，回答可溯源率 90%+。</span><span class="en"><b>RAG as a tool:</b> indexed 300+ clinical guidelines, constrained tool inputs and outputs with JSON Schema and Pydantic, and achieved 90%+ traceable answers.</span></li>
               <li><span class="zh"><b>安全护栏 + HITL：</b>急症红旗识别、越界请求拒绝、事实一致性二次校验；自建约 180 条评测集追踪表现。</span><span class="en"><b>Safety guardrails + HITL:</b> emergency red-flag detection, out-of-scope refusal, and consistency re-checks, tracked on a ~180-case eval set.</span></li>
             </ul>
+            <div class="case-flow" aria-label="Multi-agent intake workflow">
+              <span><span class="zh">协调</span><span class="en">Coordinate</span></span>
+              <span><span class="zh">问诊采集</span><span class="en">Intake</span></span>
+              <span><span class="zh">知识检索</span><span class="en">Retrieve</span></span>
+              <span><span class="zh">导诊与护栏</span><span class="en">Triage &amp; guardrails</span></span>
+            </div>
+            <p class="case-boundary"><strong><span class="zh">评测口径</span><span class="en">Evidence base</span></strong><span class="zh">指标来自约 180 条自建评测案例、覆盖 12 个常见科室的项目测试。系统仅定位决策支持，不提供诊断或处方。</span><span class="en">Figures come from approximately 180 self-built evaluation cases spanning 12 common departments. This is decision support, not diagnosis or prescribing.</span></p>
             <div class="proj__tags tag-row">
               <span class="tag tag--accent">Multi-Agent</span><span class="tag">LangGraph</span><span class="tag">ReAct</span><span class="tag">Function Calling</span><span class="tag">HITL</span><span class="tag">LangSmith</span>
             </div>
@@ -80,7 +158,7 @@
         </article>
 
         <!-- ============ PROJECT 2 ============ -->
-        <article class="proj reveal">
+        <article class="proj reveal" id="rag">
           <div class="proj__body">
             <div class="proj__meta">
               <span class="role"><span class="zh">独立开发者</span><span class="en">Solo developer</span></span>
@@ -91,56 +169,75 @@
               <span class="zh">统一接入结构化数据库与非结构化文档的 RAG 问答系统，自然语言驱动数据查询与知识检索。</span>
               <span class="en">A RAG Q&amp;A system unifying structured databases and unstructured documents, with natural-language-driven data querying and knowledge retrieval.</span>
             </p>
-            <ul style="color:var(--ink-soft); padding-left:18px; margin:0 0 22px;">
-              <li><span class="zh"><b>问题理解链路：</b>集成 Query Rewrite / Decompose / HyDE 提升复杂查询召回，复杂查询 Recall@10 提升 18%。</span><span class="en"><b>Query understanding:</b> Query Rewrite / Decompose / HyDE for complex queries — Recall@10 up 18%.</span></li>
-              <li><span class="zh"><b>检索路由：</b>按问题类型与意图自动选择 Text-to-SQL 或语义检索路径，平均查询响应时间降低 35%+。</span><span class="en"><b>Retrieval routing:</b> auto-selects Text-to-SQL or semantic paths by intent — avg query latency down 35%+.</span></li>
-              <li><span class="zh"><b>混合检索 + Chunking：</b>BM25 + Dense Retrieval + Cross-Encoder 重排使 Top-5 相关性提升 20%+；语义边界切分 + 滑动窗口增强上下文。</span><span class="en"><b>Hybrid retrieval + chunking:</b> BM25 + dense + Cross-Encoder reranking lifted Top-5 relevance 20%+; semantic-boundary chunking with sliding windows.</span></li>
-              <li><span class="zh"><b>评测与自校验：</b>Retrieval Feedback 迭代 + LLM Self-Reflection 校验，回答事实一致性提升 15%+，高风险场景幻觉率下降 20%+。</span><span class="en"><b>Eval &amp; self-check:</b> retrieval-feedback iteration + LLM Self-Reflection — factual consistency up 15%+, high-risk hallucination down 20%+.</span></li>
+            <ul class="proj__details">
+              <li><span class="zh"><b>路由与检索：</b>BM25 + Qwen3-Embedding-4B 融合召回，经 DistilBERT 分流文档 / SQL / 混合查询，路由准确率 93%。</span><span class="en"><b>Routing and retrieval:</b> BM25 + Qwen3-Embedding-4B fusion with DistilBERT document / SQL / hybrid routing at 93% accuracy.</span></li>
+              <li><span class="zh"><b>级联重排：</b>Qwen3-Reranker-4B 精排使 500 条评测集上的复杂查询 Recall@10 提升 18%、Top-5 相关性提升 20%，检索耗时低于 120ms。</span><span class="en"><b>Cascade reranking:</b> Qwen3-Reranker-4B improved complex-query Recall@10 by 18% and Top-5 relevance by 20% over 500 evaluations, with retrieval under 120ms.</span></li>
+              <li><span class="zh"><b>安全与上下文：</b>JWT / RBAC 检索前 ACL 过滤，权限测试中越权 0 例；200 条对抗样本中危险 SQL 拦截率 100%。</span><span class="en"><b>Security and context:</b> pre-retrieval JWT / RBAC ACL filtering yielded zero unauthorized accesses in permission tests; dangerous SQL was blocked in 100% of 200 adversarial cases.</span></li>
+              <li><span class="zh"><b>并发与评测：</b>Milvus + Redis + asyncio 支撑 200 并发，P95 延迟下降 30%+；回答可溯源率 92%。</span><span class="en"><b>Concurrency and evaluation:</b> Milvus + Redis + asyncio handled 200 concurrent requests with 30%+ lower P95 latency; answer traceability reached 92%.</span></li>
             </ul>
+            <div class="case-flow" aria-label="RAG retrieval workflow">
+              <span><span class="zh">意图路由</span><span class="en">Intent route</span></span>
+              <span><span class="zh">混合召回</span><span class="en">Hybrid retrieval</span></span>
+              <span><span class="zh">级联重排</span><span class="en">Cascade rerank</span></span>
+              <span><span class="zh">权限与溯源</span><span class="en">ACL &amp; citations</span></span>
+            </div>
+            <p class="case-boundary"><strong><span class="zh">评测口径</span><span class="en">Evidence base</span></strong><span class="zh">检索指标来自 500 条自建问题评测集；SQL 安全检查使用 200 条对抗样本，并单独测试 200 并发下的延迟。它们是项目评测数据，不等同于线上用户结果。</span><span class="en">Retrieval figures come from a 500-question project evaluation set. SQL safety used 200 adversarial samples; latency was tested separately at 200 concurrent requests. These are project evaluations, not live-user outcomes.</span></p>
             <div class="proj__tags tag-row">
-              <span class="tag tag--accent">RAG</span><span class="tag">Cross-Encoder</span><span class="tag">FAISS</span><span class="tag">Self-Reflection</span><span class="tag">Text-to-SQL</span><span class="tag">HyDE</span>
+              <span class="tag tag--accent">Milvus</span><span class="tag">BM25</span><span class="tag">Qwen3-Embedding</span><span class="tag">Qwen3-Reranker</span><span class="tag">Text-to-SQL</span>
             </div>
           </div>
           <div class="proj__side">
             <div class="metric"><b>+18%</b><span>Recall@10</span></div>
             <div class="metric-divider"></div>
-            <div class="metric"><b>-35%</b><span><span class="zh">查询响应时间</span><span class="en">Query latency</span></span></div>
+            <div class="metric"><b>93%</b><span><span class="zh">路由准确率</span><span class="en">Routing accuracy</span></span></div>
             <div class="metric-divider"></div>
             <div class="metric"><b>+20%</b><span><span class="zh">Top-5 相关性</span><span class="en">Top-5 relevance</span></span></div>
           </div>
         </article>
 
-        <!-- ============ PROJECT 3 ============ -->
-        <article class="proj reveal">
-          <div class="proj__body">
-            <div class="proj__meta">
-              <span class="role"><span class="zh">独立开发者</span><span class="en">Solo developer</span></span>
-              <span>2025.05 — 2025.09</span>
-            </div>
-            <h3><span class="zh">AI 增强型知识社区平台</span><span class="en">AI-Enhanced Knowledge Community Platform</span></h3>
-            <p class="proj__desc">
-              <span class="zh">结合高并发后端架构与 RAG 智能问答的知识社区，支持内容发布、实时数据处理与智能检索问答。</span>
-              <span class="en">A knowledge community combining a high-concurrency backend with RAG-powered Q&amp;A — content publishing, real-time processing, and intelligent retrieval.</span>
-            </p>
-            <ul style="color:var(--ink-soft); padding-left:18px; margin:0 0 22px;">
-              <li><span class="zh"><b>事件驱动架构：</b>Kafka + Outbox 解耦用户关系、计数系统与 Feed 流，保障高并发下数据一致性。</span><span class="en"><b>Event-driven architecture:</b> Kafka + Outbox decouples relationships, counters, and feeds — consistency under high concurrency.</span></li>
-              <li><span class="zh"><b>高并发计数：</b>Redis 结合位图判重与 Lua 原子操作，实现点赞 / 关注的幂等高并发写入。</span><span class="en"><b>High-concurrency counting:</b> Redis with bitmap dedup and atomic Lua scripts — idempotent like/follow writes at scale.</span></li>
-              <li><span class="zh"><b>多级缓存：</b>Caffeine + Redis 结合 hotkey 探测与 single-flight，规避缓存击穿与雪崩。</span><span class="en"><b>Multi-level cache:</b> Caffeine + Redis with hotkey detection and single-flight to prevent cache stampede and avalanche.</span></li>
-              <li><span class="zh"><b>搜索与问答：</b>Elasticsearch（BM25 + 业务权重）支持检索与联想；集成 RAG 问答降低幻觉；JWT 双令牌支持会话续期与实时失效。</span><span class="en"><b>Search &amp; Q&amp;A:</b> Elasticsearch (BM25 + business weighting) for search and suggestions; integrated RAG Q&amp;A; JWT dual-token for renewal and instant revocation.</span></li>
-            </ul>
-            <div class="proj__tags tag-row">
-              <span class="tag tag--accent">Kafka</span><span class="tag"><span class="zh">事件驱动</span><span class="en">Event-Driven</span></span><span class="tag">Redis</span><span class="tag">Caffeine</span><span class="tag">Elasticsearch</span><span class="tag">JWT</span>
-            </div>
-          </div>
-          <div class="proj__side">
-            <div class="metric"><b>70%+</b><span><span class="zh">热点缓存命中率</span><span class="en">Hot-cache hit rate</span></span></div>
-            <div class="metric-divider"></div>
-            <div class="metric"><b>-30%</b><span><span class="zh">平均查询延迟</span><span class="en">Avg query latency</span></span></div>
-            <div class="metric-divider"></div>
-            <div class="metric"><b>Lua</b><span><span class="zh">原子幂等写入</span><span class="en">Atomic idempotent writes</span></span></div>
-          </div>
-        </article>
+      </div>
+    </section>
 
+    <section class="section wrap evidence-lab" id="evidence-lab" aria-labelledby="evidenceLabTitle">
+      <div class="sec-head">
+        <div>
+          <div class="sec-head__label"><span class="zh">交互演示</span><span class="en">Interactive walkthrough</span></div>
+          <h2 id="evidenceLabTitle"><span class="zh">一条回答如何保留证据链</span><span class="en">Following an answer back to evidence</span></h2>
+        </div>
+      </div>
+      <p class="lab-intro"><span class="zh">用合成文档演示 RAG 系统中的两种路径：有来源时引用，没有足够来源时拒答。这是流程示意，不是实时模型或医疗建议。</span><span class="en">Two paths through a RAG workflow using synthetic documents: cite a source when one exists, or abstain when evidence is insufficient. This is an illustrative workflow, not a live model or medical advice.</span></p>
+      <div class="lab-surface" data-evidence-lab>
+        <div class="lab-toolbar">
+          <div class="lab-toolbar__title" id="labModeTitle"><span class="zh">切换证据状态</span><span class="en">Choose evidence state</span></div>
+          <div class="lab-modes" role="group" aria-labelledby="labModeTitle">
+            <button type="button" class="lab-mode is-active" data-evidence-mode="supported" aria-pressed="true"><span class="zh">找到来源</span><span class="en">Source found</span></button>
+            <button type="button" class="lab-mode" data-evidence-mode="unsupported" aria-pressed="false"><span class="zh">来源不足</span><span class="en">No reliable source</span></button>
+          </div>
+        </div>
+        <div class="lab-grid">
+          <div class="lab-process">
+            <div class="lab-kicker"><span class="zh">固定流程</span><span class="en">Shared workflow</span></div>
+            <ol class="lab-steps">
+              <li><span class="lab-step-no">01</span><div><strong><span class="zh">识别问题</span><span class="en">Understand the question</span></strong><p><span class="zh">确定回答需要哪一类来源。</span><span class="en">Identify the type of source needed.</span></p></div></li>
+              <li><span class="lab-step-no">02</span><div><strong><span class="zh">检索并核对</span><span class="en">Retrieve and check</span></strong><p><span class="zh">核对文档、段落和引用映射。</span><span class="en">Check the document, section, and citation mapping.</span></p></div></li>
+              <li><span class="lab-step-no">03</span><div><strong><span class="zh">回答或拒答</span><span class="en">Answer or abstain</span></strong><p><span class="zh">有支持才生成；否则提示缺少证据。</span><span class="en">Generate only when supported; otherwise flag missing evidence.</span></p></div></li>
+            </ol>
+          </div>
+          <div class="lab-result" aria-live="polite" aria-atomic="true">
+            <div data-evidence-output="supported">
+              <div class="lab-result__status is-supported"><span class="zh">已找到可引用来源</span><span class="en">Citable source found</span></div>
+              <div class="lab-field"><span><span class="zh">演示问题</span><span class="en">Demo question</span></span><p><span class="zh">这份演示流程要求回答附带来源吗？</span><span class="en">Does this demonstration workflow require a source citation?</span></p></div>
+              <div class="lab-field" id="demo-source"><span><span class="zh">合成文档 · DEMO-01 §2.1</span><span class="en">Synthetic document · DEMO-01 §2.1</span></span><p><span class="zh">“每条回答应标注所使用的文档章节。”</span><span class="en">“Each answer should cite the document section used.”</span></p></div>
+              <div class="lab-answer"><span><span class="zh">示意输出</span><span class="en">Illustrative output</span></span><p><span class="zh">是。演示文档要求回答标注所用章节。<a href="#demo-source">[DEMO-01 §2.1]</a></span><span class="en">Yes. The demo document requires citing the section used. <a href="#demo-source">[DEMO-01 §2.1]</a></span></p></div>
+            </div>
+            <div data-evidence-output="unsupported" hidden>
+              <div class="lab-result__status is-unsupported"><span class="zh">来源不足 · 停止生成</span><span class="en">Insufficient evidence · generation stopped</span></div>
+              <div class="lab-field"><span><span class="zh">演示问题</span><span class="en">Demo question</span></span><p><span class="zh">该文档是否已经核准公开发布？</span><span class="en">Has this document been approved for public release?</span></p></div>
+              <div class="lab-field"><span><span class="zh">检索结果</span><span class="en">Retrieval result</span></span><p><span class="zh">合成文档中没有发布批准记录。</span><span class="en">No release-approval record exists in the synthetic documents.</span></p></div>
+              <div class="lab-answer"><span><span class="zh">示意输出</span><span class="en">Illustrative output</span></span><p><span class="zh">现有来源无法确认。停止回答，并提交人工核实。</span><span class="en">The available sources cannot confirm this. Abstain and request human review.</span></p></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -160,16 +257,18 @@
       <a href="https://github.com/tuzhechen2005" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:ztu29@wisc.edu">Email</a>
       <a href="contact.html">WeChat</a>
+      <a href="story.html"><span class="zh">影像故事</span><span class="en">Story</span></a>
     </div>
   </footer>
 
   <script src="vendor/gsap/gsap.min.js"></script>
   <script src="vendor/gsap/ScrollTrigger.min.js"></script>
   <script src="vendor/lenis/lenis.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/magic-bento.js"></script>
-  <script src="js/scroll-float.js"></script>
-  <script src="js/assistant.js"></script>
+  <script src="js/main.js?v=2"></script>
+  <script src="js/scroll-float.js?v=3"></script>
+  <script src="js/evidence-lab.js?v=1"></script>
+  <script src="js/showreel.js?v=1"></script>
+  <script src="js/assistant.js?v=20260923b"></script>
   <script type="module">
     (function () {
       var canvas = document.getElementById('projectBallpit');
@@ -178,13 +277,13 @@
       var isTouch = window.matchMedia && matchMedia('(hover: none), (pointer: coarse)').matches;
       import('./js/ballpit.js?v=5').then(function (m) {
         var instance = m.createBallpit(canvas, {
-          count: isTouch ? 96 : 180,
-          minCount: isTouch ? 36 : 48,
+          count: isTouch ? 44 : 110,
+          minCount: isTouch ? 20 : 32,
           gravity: 0,
           friction: 0.9991,
           wallBounce: 0.94,
           followCursor: !isTouch,
-          colors: [0xb8a6e8, 0x7c5fd6, 0xcbb8f0, 0xa98fe0],
+          colors: [0x35665c, 0x80a99a, 0xd46e56, 0xb9d3c2],
           ambientIntensity: 1.15,
           lightIntensity: 230,
           minSize: isTouch ? 0.34 : 0.38,
