@@ -187,6 +187,10 @@ animations, Three.js, or tech logos.
 - Cloudflare URL observed: `https://mywebsite.ztu29.workers.dev`.
 - Cloudflare added `wrangler`/Workers autoconfig via remote commits; always `git pull --rebase` or `git fetch && git rebase origin/codex1` before pushing if remote changed.
 - Cloudflare settings for static site: output directory is `site/`; no build step.
+- `wrangler.jsonc` + root `worker.js`: everything is served as static assets except `/assets/showreel/*`, which runs
+  through the Worker first (`assets.run_worker_first`) to add HTTP Range (206) support — Workers static assets answer
+  Range requests with the full file, which breaks video seeking and Safari/iOS playback. Test locally with
+  `npx wrangler@4.86.0 dev --local --compatibility-date=2026-05-03` (the latest wrangler needs Node 22).
 - `site/_headers` configures basic security headers and cache headers.
 - Optional upload bundle can be regenerated with:
 ```bash
