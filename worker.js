@@ -1,11 +1,11 @@
-// worker.js: static assets are served by Cloudflare directly (wrangler.jsonc "assets"). Only /assets/showreel/* runs
-// through this Worker (assets.run_worker_first), to add HTTP Range support for the showreel video: Workers static
+// worker.js: static assets are served by Cloudflare directly (wrangler.jsonc "assets"). Only /assets/reel/* (the intro reel on index.html) runs
+// through this Worker (assets.run_worker_first), to add HTTP Range support for the video: Workers static
 // assets answer a Range request with the whole file (200), which breaks seeking, and Safari/iOS won't play an MP4
 // without 206 Partial Content. The slice is streamed when the asset declares its length; otherwise it is read once.
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (!url.pathname.startsWith('/assets/showreel/')) return env.ASSETS.fetch(request);
+    if (!url.pathname.startsWith('/assets/reel/')) return env.ASSETS.fetch(request);
 
     // ask the asset store for the whole file (no Range), then cut the requested slice out of the stream
     const res = await env.ASSETS.fetch(new Request(url.toString(), { method: 'GET' }));

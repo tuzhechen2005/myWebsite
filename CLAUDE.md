@@ -20,31 +20,34 @@ Cloudflare Workers static assets from the GitHub repo.
 ## Site structure (`site/`)
 ```
 site/
-├── index.html        Lightweight redirect to home.html; no heavy intro assets on the default visit.
+├── index.html        ENTRY: the Work Reel ’26 plays full-screen (css/intro-reel.css + js/intro-reel.js):
+│                     skip + sound during playback, then an end screen with “Enter the site” / “Watch again”.
+│                     Exit = lime iris → home.html. Autoplay-blocked / reduced-motion → same screen in “start” mode.
 ├── story.html        Optional cinematic underwater intro (intro.js, canvas 2D), with hanging
 │                     Lanyard ID card (Contact toggles drop/retract) and an Enter link to home.html.
-├── home.html         Main portfolio — portrait hero (+ small link to the showreel), current UW Surgery and Microsoft work, featured projects, CTA
+├── home.html         Main portfolio — portrait hero, current UW Surgery and Microsoft work, featured projects, CTA (no video)
 ├── about.html        About — hero, stats, current clinical research and three internships, education with crest stage and campus photos, skills, honors
-├── projects.html     Projects — Ballpit hero, #showreel (hand-painted 1:35 short), three case studies, synthetic evidence-chain walkthrough
+├── projects.html     Projects — Ballpit hero, three case studies, synthetic evidence-chain walkthrough (no video)
 ├── contact.html      Contact — email/GitHub/WeChat/phone cards, FAQ accordion
 ├── _headers          Cloudflare caching/security headers
 ├── assets/           profile.jpg, resume.pdf, local brand-logo SVGs, crest.png (W 校徽), bascom-hall/-mall.jpg (campus, CC BY-SA),
 │                     intro/frame-0001..0360.jpg (underwater scrub frames), badge-card.png (designed ID-card face),
 │                     idphoto.jpg (source portrait used inside the badge-card artwork),
 │                     lanyard/card.glb + lanyard.png (React-Bits Lanyard model + band texture),
-│                     showreel/paper-sea.mp4 + poster.jpg (the showreel, built in reel-src/)
-├── fonts/            local Inter + Space Grotesk font files
+│                     reel/work-reel-26.mp4 (1600×900) + work-reel-26-540.mp4 (phones / save-data) + poster.jpg
+├── fonts/            local Inter + Space Grotesk font files; Anton + JetBrains Mono (woff2) for the intro page
 ├── vendor/           local GSAP, ScrollTrigger, Lenis, three.js
 ├── css/
 │   ├── style.css         design tokens, layout, nav, theming, reveal, marquee, ScrollFloat, Lenis
 │   ├── assistant.css     AI chat widget (incl. dark-theme overrides)
-│   ├── intro.css         landing intro: scrub stage, text reveals, loader, Enter portal, #introLanyard placement, Contact button
+│   ├── intro-reel.css    entry page (index.html): full-screen reel, skip/sound pills, end screen, CTAs, iris exit
+│   ├── intro.css         story.html: scrub stage, text reveals, loader, Enter portal, #introLanyard placement, Contact button
 │   └── magic-bento.css   archived card effects, not loaded by portfolio pages
 └── js/
     ├── main.js           lang toggle, theme toggle, mobile nav, GSAP scroll-reveal, marquee, Lenis, FAQ
     ├── assistant.js      Portfolio guide (local preset knowledge base, no backend)
     ├── evidence-lab.js   Synthetic RAG evidence-state walkthrough on projects.html
-    ├── showreel.js       projects.html #showreel: poster play button + chapter chips that seek the video
+    ├── intro-reel.js     index.html: reel playback, skip/sound, end screen, replay, iris exit, 2D dot-field background
     ├── liquid-ether.js   ESM — Three.js fluid hero background (home only)
     ├── ballpit.js        ESM — Three.js zero-gravity floating ball background (projects hero)
     ├── circular-text.js  vanilla CircularText text splitter for rotating resume CTA
@@ -91,24 +94,30 @@ R3F pointer events with `pointercancel` / `lostpointercapture` cleanup; dragging
 page scroll and prevent mobile touch-scroll conflicts. Headless screenshots render it only intermittently
 (virtual-time race) — judge it in a real browser.
 
-## Showreel — the second build-only workspace (`reel-src/`)
-"The Paper Sea" (纸海), a 95 s hand-painted cartoon: Jelly the jellyfish (the owner's nickname) learns to answer with
-sources — one chapter per project (enterprise RAG archive, multi-agent clinic, Microsoft tool wall, UW Surgery thyroid
-climax) and a painted signature. Made with the `painted-animation` skill kit: p5.js + p5.brush rendered frame by frame in
-headless Chrome, original score synthesized in Node from the same timeline (`src/cues.js`). Storyboard: `reel-src/STORYBOARD.md`.
+## Reels — the second build-only workspace (`reel-src/`)
+The site shows ONE video: the kinetic Work Reel ’26, as the entry page (`index.html`). The portfolio pages mention no
+video at all (owner's call, 2026-09-26). "The Paper Sea" (the hand-painted short, `reel-src/src/`, `STORYBOARD.md`) is
+kept in `reel-src/` as a source project only and is no longer on the site.
+The kinetic style is packaged as a Claude skill: `~/.claude/skills/kinetic-reel` (template + guides + this reel as
+the worked example).
+
+### Second cut: kinetic-type reel (`reel-src/kinetic/`)
+"Work Reel ’26": kinetic typography in the style of the owner's reference clip (`diff_style_example.MP4`, gitignored):
+Anton / Archivo Black / Instrument Serif / JetBrains Mono, black + cream + lime, three.js layers (particle terrain,
+liquid marble, chrome knot, a particle cloud that condenses into a thyroid), a WebGL post pass (RGB split, slice
+glitch, grain) and shape-continuity transitions (zoom through a UI element, iris, wipe, slats, pixel grid, push).
+Current = **v3, 84 s**, in the order of emphasis the owner asked for: 01 Microsoft (30 s) → 02 UW–Madison Dept. of Surgery,
+role **"AI Researcher"** (18 s) → 03 Enterprise RAG (14 s) → trace finale. v1/v2 sources are archived in
+`kinetic/v1/` and `kinetic/v2/` (videos `out/kinetic-v1*.mp4`, `out/kinetic-v2*.mp4`). Page `kinetic/kinetic.html` +
+`reel.js`, timeline `kinetic/cues.js`, score `music/score_kinetic.mjs`.
 ```bash
-cd reel-src && npm install
-node render.mjs --sheet=10,20,30 --cols=3 --w=480 --out=out/check/a.jpg   # look at frames
-node music/score.mjs && ffmpeg -y -i music/score.wav -af "highpass=f=38,equalizer=f=170:t=q:w=1.1:g=-3.5,equalizer=f=3200:t=q:w=1.3:g=2.5,loudnorm=I=-16:TP=-1.5:LRA=9" -c:a aac -b:a 192k assets/score.m4a
-node render.mjs --frames --workers=4 && node render.mjs --encode --audio=assets/score.m4a --out=out/video.mp4
+node render.mjs --page=kinetic/kinetic.html --fps=30 --frames --frames-dir=out/frames_k --workers=4   # ~25 s
+node music/score_kinetic.mjs && ffmpeg -y -i music/kinetic.wav -af "highpass=f=30,equalizer=f=250:t=q:w=1:g=-2,loudnorm=I=-14:TP=-1.2:LRA=8" -c:a aac -b:a 192k assets/kinetic.m4a
 ```
-`bash encode-web.sh` (run in `reel-src/`) writes the web copy `site/assets/showreel/paper-sea.mp4` from `out/frames` +
-`assets/score.m4a` (1600×900, 2-pass H.264 1.1 Mbps, ≈14.6 MB — keep it well under Cloudflare's 25 MiB per-file cap).
-The poster `site/assets/showreel/poster.jpg` is the 72.4 s frame (`node render.mjs --stills=72.4`, scaled to 1600×900).
-**Bump `?v=` on the `<video>` poster + source in projects.html** when replacing either (assets are cached immutable). The video is `preload="none"`, so it costs nothing until someone presses play.
-Bilingual explainer cards (neutral, one per key beat) live in `reel-src/src/captions.js`; their facts come only from the
-résumé/site copy (BM25, 24 Azure tools, 320 evals, Phi-3 61%→87%, thyroid system not yet patient-validated). Keep any
-new caption equally factual, and never add clinical outcome claims.
+Sound rule (owner feedback): no noise whooshes on transitions, they got tiring fast. Chapter changes get an in-key
+reversed-pad swell; cuts inside a chapter get quiet tonal cues (bloom / glide / harp / hat roll) or nothing at all.
+The pre-change score is kept as `kinetic/v3_score_whoosh.mjs`. Web copies for the entry page: `bash encode-intro.sh (run in reel-src/)` → `site/assets/reel/work-reel-26{,-540}.mp4` (2-pass, ~15 MB / ~7.4 MB); bump `?v=` in `js/intro-reel.js` when replacing them. The Range worker covers `/assets/reel/*`. On-screen numbers are only résumé/site figures, shown with their evaluation scope. Schematic
+visuals (tool IDs, doc IDs, the AST, example answers) are labelled SCHEMATIC. No clinical efficacy claims.
 
 ## Conventions (follow these when editing)
 - **Bilingual**: every translatable string is two sibling spans: `<span class="zh">…</span><span class="en">…</span>`.
@@ -187,7 +196,7 @@ animations, Three.js, or tech logos.
 - Cloudflare URL observed: `https://mywebsite.ztu29.workers.dev`.
 - Cloudflare added `wrangler`/Workers autoconfig via remote commits; always `git pull --rebase` or `git fetch && git rebase origin/codex1` before pushing if remote changed.
 - Cloudflare settings for static site: output directory is `site/`; no build step.
-- `wrangler.jsonc` + root `worker.js`: everything is served as static assets except `/assets/showreel/*`, which runs
+- `wrangler.jsonc` + root `worker.js`: everything is served as static assets except `/assets/reel/*` (the entry-page video), which runs
   through the Worker first (`assets.run_worker_first`) to add HTTP Range (206) support — Workers static assets answer
   Range requests with the full file, which breaks video seeking and Safari/iOS playback. Test locally with
   `npx wrangler@4.86.0 dev --local --compatibility-date=2026-05-03` (the latest wrangler needs Node 22).
@@ -199,7 +208,7 @@ mkdir -p dist && (cd site && zip -rq ../dist/zhechen-tu-cloudflare-pages.zip . -
 
 ## Status / not done yet
 - Deployed through Cloudflare Workers static assets, but a custom personal domain has not been bound yet.
-- The default entry at `index.html` redirects to `home.html`. The optional underwater intro and card live at `story.html`.
+- The default entry at `index.html` plays the Work Reel ’26, then links to `home.html`. The optional underwater intro and card live at `story.html`.
 - `/assets/*` is cached immutable for a year. When replacing `resume.pdf` or intro frames, bump the URL query
   version in every referencing file before deploying.
 - Root scratch/source files to keep out of git: `image.png`, `工牌.png`, `证件照.jpg`, `效果图.png`/`校徽.png`

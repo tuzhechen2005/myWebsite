@@ -6,7 +6,7 @@
   <script>(function(){var d=document.documentElement;d.classList.add("js");var t;try{t=localStorage.getItem("site-theme");}catch(e){}if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";d.setAttribute("data-theme",t);})();</script>
   <title>项目 · Projects — 涂喆宸 Zhechen Tu</title>
   <meta name="description" content="Zhechen Tu's current UW–Madison thyroid cancer AI research and independent multi-agent medical intake and enterprise RAG projects." />
-  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/style.css?v=13" />
   <link rel="stylesheet" href="css/assistant.css?v=3" />
 </head>
 <body data-lang="zh">
@@ -44,35 +44,6 @@
           <span class="en">One ongoing project with UW–Madison Surgery and two independently built AI systems, focused on source traceability, constrained tool use, and clear evaluation boundaries.</span>
         </p>
       </div>
-    </section>
-
-    <!-- SHOWREEL: a hand-painted short, drawn frame by frame in code (reel-src/), original synthesized score -->
-    <section class="section wrap showreel" id="showreel" aria-labelledby="showreelTitle">
-      <div class="sec-head">
-        <div>
-          <div class="sec-head__label"><span class="zh">作品短片</span><span class="en">Showreel</span></div>
-          <h2 id="showreelTitle"><span class="zh">纸海：有据可依的水母</span><span class="en">The Paper Sea: a jellyfish learns to cite its sources</span></h2>
-        </div>
-        <p class="showreel__meta">1:35 · <span class="zh">代码逐帧手绘动画 · 原创配乐</span><span class="en">Hand-painted in code, frame by frame · original score</span></p>
-      </div>
-      <figure class="showreel__frame" data-showreel>
-        <video class="showreel__video" preload="none" playsinline width="1920" height="1080" poster="assets/showreel/poster.jpg?v=1" aria-label="The Paper Sea showreel">
-          <source src="assets/showreel/paper-sea.mp4?v=3" type="video/mp4" />
-        </video>
-        <button class="showreel__play" type="button">
-          <span class="showreel__play-icon" aria-hidden="true"></span>
-          <span class="zh">播放短片</span><span class="en">Play the reel</span>
-        </button>
-      </figure>
-      <ol class="showreel__chapters" aria-label="Chapters">
-        <li><button type="button" data-showreel-seek="0"><span class="showreel__time">0:00</span><span class="zh">序 · 一滴墨</span><span class="en">Prologue · a drop of ink</span></button></li>
-        <li><button type="button" data-showreel-seek="10"><span class="showreel__time">0:10</span><span class="zh">企业 RAG · 沉没的档案馆</span><span class="en">Enterprise RAG · the sunken archive</span></button></li>
-        <li><button type="button" data-showreel-seek="27.5"><span class="showreel__time">0:27</span><span class="zh">多智能体问诊 · 珊瑚诊所</span><span class="en">Multi-agent intake · the coral clinic</span></button></li>
-        <li><button type="button" data-showreel-seek="45"><span class="showreel__time">0:45</span><span class="zh">微软 · 工具调用墙</span><span class="en">Microsoft · the tool wall</span></button></li>
-        <li><button type="button" data-showreel-seek="60"><span class="showreel__time">1:00</span><span class="zh">甲状腺癌 AI · 深海取证</span><span class="en">Thyroid AI · sources from the deep</span></button></li>
-        <li><button type="button" data-showreel-seek="85"><span class="showreel__time">1:25</span><span class="zh">尾声 · 落款</span><span class="en">Epilogue · the signature</span></button></li>
-      </ol>
-      <p class="showreel__note"><span class="zh">短片是对项目方法的寓言：先检索、标注来源，证据不足时交给人。画面与配乐全部由代码生成（p5.js + p5.brush 逐帧绘制，Node 合成音乐），不代表任何临床结果。</span><span class="en">An allegory of how these systems work: retrieve, cite, and hand off to a human when evidence runs out. Every frame and note is generated in code (p5.js + p5.brush, frame by frame; a Node-synthesized score). It depicts no clinical results.</span></p>
     </section>
 
     <nav class="case-nav wrap" aria-label="Project cases">
@@ -267,7 +238,6 @@
   <script src="js/main.js?v=2"></script>
   <script src="js/scroll-float.js?v=3"></script>
   <script src="js/evidence-lab.js?v=1"></script>
-  <script src="js/showreel.js?v=1"></script>
   <script src="js/assistant.js?v=20260923b"></script>
   <script type="module">
     (function () {
